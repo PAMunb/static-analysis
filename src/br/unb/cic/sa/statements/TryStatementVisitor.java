@@ -1,4 +1,4 @@
-package br.unb.cic.sa;
+package br.unb.cic.sa.statements;
 
 import org.eclipse.jdt.core.dom.ASTVisitor;
 import org.eclipse.jdt.core.dom.TryStatement;
@@ -6,6 +6,7 @@ import org.eclipse.jdt.core.dom.TryStatement;
 import br.unb.cic.sa.model.CollectedData;
 
 public class TryStatementVisitor extends ASTVisitor {
+	
 	
 	private String fileName;
 	private CollectedData data;
@@ -34,10 +35,10 @@ public class TryStatementVisitor extends ASTVisitor {
 	
 	@Override
 	public boolean visit(TryStatement node){
+//		System.out.println(node.hashCode());
 		this.data.addTryStatement(node);
 		return super.visit(node);
 	}
-
 	
-
+	
 }

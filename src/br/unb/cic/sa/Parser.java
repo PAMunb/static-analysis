@@ -31,7 +31,7 @@ public class Parser {
 	}
 	
 	
-	private char[] readFileToString(File file) throws IOException {
+	public char[] readFileToString(File file) throws IOException {
 		char[] contents = null;
 		br = new BufferedReader(new FileReader(file));
 
@@ -54,6 +54,7 @@ public class Parser {
 
 		try {
 			contents = this.readFileToString(file);
+			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -63,7 +64,6 @@ public class Parser {
 		parser.setSource(contents);
 
 		final CompilationUnit cu = (CompilationUnit) parser.createAST(null);
-
 		return cu;
 	}
 

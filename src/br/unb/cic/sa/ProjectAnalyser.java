@@ -7,58 +7,68 @@ import org.eclipse.jdt.core.dom.CompilationUnit;
 
 import br.unb.cic.sa.model.CollectedData;
 import br.unb.cic.sa.model.Project;
+import br.unb.cic.sa.statements.TryStatementVisitor;
 import br.unb.cic.sa.util.IO;
 
 public class ProjectAnalyser implements Callable<CollectedData> {
 
 	private Project project;
 	private CollectedData collectionProject;
+	private CompilationUnit compilationUnit;
 	
-	public ProjectAnalyser(Project project){
+	public ProjectAnalyser(Project project) {
 		this.project = project;
-		this.collectionProject = new CollectedData(project.getProjectName(), project.getProjectRevision(), this.project.getFilePath());
-
+		this.collectionProject = new CollectedData(project.getProjectName(),
+				project.getProjectRevision(), this.project.getFilePath());
+		this.compilationUnit = null;
 	}
-	
-	public Project getProject(){
+
+	public Project getProject() {
 		return this.project;
 	}
-	
+
 	public CollectedData call() throws Exception {
-				
-		for(String file : IO.listFiles(project.getFilePath(), new String[]{"java"})){
-			CompilationUnit cu;
-			try{
-				//fazer um parser de cada arquivo.java encontrado no projeto
-				cu = Parser.Instance().parse(new File(file));
-				if(cu == null){
+
+		for (String file : IO.listFiles(project.getFilePath(),
+				new String[] { "java" })) {
+			try {
+				// fazer um parser de cada arquivo.java encontrado no projeto
+				compilationUnit = Parser.Instance().parse(new File(file));
+				if (compilationUnit == null) {
 					collectionProject.addError("Error parsing file " + file);
 					continue;
 				}
-				
-			}catch(Throwable e){
-				collectionProject.addError(e.getMessage() + " parsing file " + file);
+
+			} catch (Throwable e) {
+				collectionProject.addError(e.getMessage() + " parsing file "
+						+ file);
 				continue;
 			}
+			
+			
 
-			//Visitor of TryStatement
+			// Visitor of TryStatement
 			TryStatementVisitor ts = new TryStatementVisitor(file);
 			
-			cu.accept(ts);
+			compilationUnit.accept(ts);
 			
-			System.out.println("File "+file +" has "+ts.getCollectedData().getTryStatement().size()+" statements.");
+			//Add name each file name in collecation
+			collectionProject.addNameFile(file);
+			
+			//Add name each CompilationUnit of file in collecation
+			collectionProject.addCompilationUnit(compilationUnit);
 			
 			collectionProject.addTryStatementBlock(ts.getCollectedData().getTryStatement());
-			collectionProject.addStatements(ts.getCollectedData().getNumberOfStatements());
 		}
-		
-		
-
 		
 		return collectionProject;
 	}
 	
 	
-	
+	public CompilationUnit getCompilationUnit(){
+		return compilationUnit;
+	}
+
+
 
 }
