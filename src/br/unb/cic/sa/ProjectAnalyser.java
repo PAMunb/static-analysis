@@ -1,14 +1,19 @@
 package br.unb.cic.sa;
 
 import java.io.File;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.Callable;
 
 import org.eclipse.jdt.core.dom.CompilationUnit;
 
 import br.unb.cic.sa.model.CollectedData;
 import br.unb.cic.sa.model.Project;
-import br.unb.cic.sa.statements.TryStatementVisitor;
+import br.unb.cic.sa.statements.MDCollected;
+import br.unb.cic.sa.statements.TSCollected;
 import br.unb.cic.sa.util.IO;
+import br.unb.cic.sa.visitors.MethodDeclarationVisitor;
+import br.unb.cic.sa.visitors.TryStatementVisitor;
 
 public class ProjectAnalyser implements Callable<CollectedData> {
 
@@ -40,25 +45,34 @@ public class ProjectAnalyser implements Callable<CollectedData> {
 				}
 
 			} catch (Throwable e) {
-				collectionProject.addError(e.getMessage() + " parsing file "
-						+ file);
+				collectionProject.addError(e.getMessage() + " parsing file "+ file);
 				continue;
 			}
 			
-			
 
-			// Visitor of TryStatement
-			TryStatementVisitor ts = new TryStatementVisitor(file);
+			// Visitors
+			TryStatementVisitor tsVisitor = new TryStatementVisitor();
+			MethodDeclarationVisitor mdVisitor = new MethodDeclarationVisitor();
 			
-			compilationUnit.accept(ts);
+			//Add visitors to search them statements in parser of each project file
+			compilationUnit.accept(tsVisitor);
+			compilationUnit.accept(mdVisitor);
+			
+			
+			TSCollected tsc = new TSCollected(tsVisitor.getTSCollected(), compilationUnit);
+			MDCollected mdc = new MDCollected(mdVisitor.getMDCollected(), compilationUnit);
+		
 			
 			//Add name each file name in collecation
 			collectionProject.addNameFile(file);
 			
-			//Add name each CompilationUnit of file in collecation
-			collectionProject.addCompilationUnit(compilationUnit);
+			//add tryBlocks in collection of project
+			collectionProject.addTryStatementBlock(tsc);
+
+			//add methods  in collection of project
+			collectionProject.addMethodDeclarationBlock(mdc);
 			
-			collectionProject.addTryStatementBlock(ts.getCollectedData().getTryStatement());
+			
 		}
 		
 		return collectionProject;
