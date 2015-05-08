@@ -1,16 +1,12 @@
 package br.unb.cic.sa;
 
 import java.io.File;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.concurrent.Callable;
 
 import org.eclipse.jdt.core.dom.CompilationUnit;
 
 import br.unb.cic.sa.model.CollectedData;
 import br.unb.cic.sa.model.Project;
-import br.unb.cic.sa.statements.MDCollected;
-import br.unb.cic.sa.statements.TSCollected;
 import br.unb.cic.sa.util.IO;
 import br.unb.cic.sa.visitors.MethodDeclarationVisitor;
 import br.unb.cic.sa.visitors.TryStatementVisitor;
@@ -18,14 +14,9 @@ import br.unb.cic.sa.visitors.TryStatementVisitor;
 public class ProjectAnalyser implements Callable<CollectedData> {
 
 	private Project project;
-	private CollectedData collectionProject;
-	private CompilationUnit compilationUnit;
 	
 	public ProjectAnalyser(Project project) {
 		this.project = project;
-		this.collectionProject = new CollectedData(project.getProjectName(),
-				project.getProjectRevision(), this.project.getFilePath());
-		this.compilationUnit = null;
 	}
 
 	public Project getProject() {
@@ -33,6 +24,10 @@ public class ProjectAnalyser implements Callable<CollectedData> {
 	}
 
 	public CollectedData call() throws Exception {
+		
+		CompilationUnit compilationUnit = null;
+		CollectedData collectionProject = new CollectedData(project.getProjectName(),
+				project.getProjectRevision(), this.project.getFilePath());
 
 		for (String file : IO.listFiles(project.getFilePath(),
 				new String[] { "java" })) {
@@ -51,38 +46,23 @@ public class ProjectAnalyser implements Callable<CollectedData> {
 			
 
 			// Visitors
-			TryStatementVisitor tsVisitor = new TryStatementVisitor();
-			MethodDeclarationVisitor mdVisitor = new MethodDeclarationVisitor();
+			TryStatementVisitor tsVisitor = new TryStatementVisitor(compilationUnit, file, collectionProject);
+			MethodDeclarationVisitor mdVisitor = new MethodDeclarationVisitor(compilationUnit, file, collectionProject);
+			
 			
 			//Add visitors to search them statements in parser of each project file
 			compilationUnit.accept(tsVisitor);
 			compilationUnit.accept(mdVisitor);
 			
-			
-			TSCollected tsc = new TSCollected(tsVisitor.getTSCollected(), compilationUnit);
-			MDCollected mdc = new MDCollected(mdVisitor.getMDCollected(), compilationUnit);
-		
-			
 			//Add name each file name in collecation
 			collectionProject.addNameFile(file);
 			
-			//add tryBlocks in collection of project
-			collectionProject.addTryStatementBlock(tsc);
+	
 
-			//add methods  in collection of project
-			collectionProject.addMethodDeclarationBlock(mdc);
-			
-			
 		}
 		
 		return collectionProject;
 	}
 	
-	
-	public CompilationUnit getCompilationUnit(){
-		return compilationUnit;
-	}
-
-
 
 }

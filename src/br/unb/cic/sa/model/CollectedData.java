@@ -3,28 +3,37 @@ package br.unb.cic.sa.model;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.unb.cic.sa.statements.MDCollected;
-import br.unb.cic.sa.statements.TSCollected;
-
 public class CollectedData {
 
 	private Project project;
 	private int numberOfStatements;
 	private int numberOfTryStatements;
-	private int numberOfMethodDeclaration;
+	private int numberOfTryWithSimilartyCatch;
+	private int numberOfMethod;
+	private int numberOfMethodWithVargs;
 	private List<String> analysisError;
-	private List<TSCollected> tryStatementCollectedData;
-	private List<MDCollected> methodDeclarationCollectedData;
+	private List<Try> trys;
+	private List<Try> tryWithSimilarityCatch;
+
+	private List<Method> methods;
+	private List<Method> methodWithVargs;
 	private List<String> nameFile;
 
 	public CollectedData() {
 		this.analysisError = new ArrayList<String>();
-		this.tryStatementCollectedData = new ArrayList<TSCollected>();
-		this.methodDeclarationCollectedData = new ArrayList<MDCollected>();
+		
+		this.trys = new ArrayList<Try>();
+		this.tryWithSimilarityCatch = new ArrayList<Try>();
+		
+		this.methods = new ArrayList<Method>();
+		this.methodWithVargs = new ArrayList<Method>();
+		
 		this.nameFile = new ArrayList<String>();
 		this.numberOfStatements = 0;
 		this.numberOfTryStatements = 0;
-		this.numberOfMethodDeclaration = 0;
+		this.numberOfTryWithSimilartyCatch = 0;
+		this.numberOfMethod = 0;
+		this.numberOfMethodWithVargs = 0;
 	}
 
 	public CollectedData(String projectName, String projectRevision,
@@ -41,68 +50,75 @@ public class CollectedData {
 		return this.nameFile.get(position);
 	}
 
-
 	public Project getProject() {
 		return project;
 	}
 
 
-	public void addTryStatementBlock(TSCollected tryStatementCollectedData) {
-		this.tryStatementCollectedData.add(tryStatementCollectedData);
-		//increment number of statemens
-		this.incrementStatements(tryStatementCollectedData.getListTrystatement().size());
+//	############################ TryStatment Block ################################
+	public void addTry(Try t){
+		this.trys.add(t);
+		this.numberOfTryStatements++;
+	}
+	
+	public List<Try> getTrys(){
+		return this.trys;
+	}
+	
+	public void addTryWithSimilartyCatch(Try tryWithSimilarityCatch) {
+		this.tryWithSimilarityCatch.add(tryWithSimilarityCatch);
 		//incremente number of trystatement
-		this.incrementTryStatements(tryStatementCollectedData.getListTrystatement().size());
+		this.numberOfTryWithSimilartyCatch++;
+	}
+	public List<Try> getTryWithSimilartyCatch() {
+		return this.tryWithSimilarityCatch;
 	}
 	
-	
-	public void addMethodDeclarationBlock(MDCollected mdCollectedData){
-		this.methodDeclarationCollectedData.add(mdCollectedData);
-		
-		//increment number of statements
-		this.incrementStatements(mdCollectedData.getListMethodDeclaration().size());
-		
-		//incremente number of methodDeclaration
-		this.incrementMethodDeclaration(mdCollectedData.getListMethodDeclaration().size());
-	}
-	
-
-	public List<TSCollected> getTryStatement() {
-		return this.tryStatementCollectedData;
+	public int getNumberOfTry() {
+		return this.numberOfTryStatements;
 	}
 
-	
-	public List<MDCollected> getMethodDeclaration(){
-		return this.methodDeclarationCollectedData;
+	public int getNumberOfTryWithSimilartyCatch() {
+		return this.numberOfTryWithSimilartyCatch;
 	}
 	
 	
-	private void incrementStatements(int statements) {
-		numberOfStatements += statements;
-	}
-
-	private void incrementTryStatements(int statements){
-		this.numberOfTryStatements += statements;
-	}
+//	######################## MethodDeclaration ############################
 	
-	private void incrementMethodDeclaration(int statements){
-		this.numberOfMethodDeclaration += statements;
+	public void addMethods(Method method){
+		this.methods.add(method);
+		this.numberOfMethod++;
 	}
 	
+	public List<Method> getMethods(){
+		return this.methods;
+	}
+	
+	public void addMethodWithVargs(Method method){
+		this.methodWithVargs.add(method);
+		this.numberOfMethodWithVargs++;
+	}
+	
+	public List<Method> getMethodWithVargs(){
+		return this.methodWithVargs;
+	}
+	
+	public int getNumberOfMethod(){
+		return this.numberOfMethod;
+	}
+	
+	public int getNumberOfMethodDeclarationWithVargs(){
+		return this.numberOfMethodWithVargs;
+	}
 	
 	
+	
+	
+//	############### Statements ####################
 	public int getNumberOfStatements() {
 		return this.numberOfStatements;
 	}
 	
-	public int getNumberOfTryStatements() {
-		return this.numberOfTryStatements;
-	}
-	
-	public int getNumberOfMethodDeclaritionStatements() {
-		return this.numberOfMethodDeclaration;
-	}	
-
 	public void addError(String e) {
 		analysisError.add(e);
 	}

@@ -1,12 +1,15 @@
 package br.unb.cic.sa.model;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+
 public class Project {
 	private String projectName;
 	private String projectRevision;
 	private String filePath;
 
 	
-	public Project(String projectName, String projectRevision, String filePath) {
+	public Project(String projectName, String projectRevision, String filePath){
 		this.projectName = projectName;
 		this.projectRevision = projectRevision;
 		this.filePath = filePath;
@@ -38,8 +41,27 @@ public class Project {
 	}
 
 
-	public void setPath(String filePath) {
-		this.filePath = filePath;
+	public void setPath(String filePath){
+		
+		try{
+			
+			File f = new File(filePath);
+			
+			if(!f.isDirectory()){
+				String e = "Project " + this.projectName +
+						  " path " + filePath + " not is valid!";
+				throw new FileNotFoundException(e);
+				
+			}
+			
+			this.filePath = filePath;
+			
+			
+		}catch(FileNotFoundException e){
+			e.getStackTrace();
+		}
+		
+		
 	}
 
 

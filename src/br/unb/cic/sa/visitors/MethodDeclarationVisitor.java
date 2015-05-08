@@ -1,31 +1,47 @@
 package br.unb.cic.sa.visitors;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.eclipse.jdt.core.dom.ASTVisitor;
+import org.eclipse.jdt.core.dom.CompilationUnit;
 import org.eclipse.jdt.core.dom.MethodDeclaration;
+
+import br.unb.cic.sa.model.CollectedData;
+import br.unb.cic.sa.model.Method;
+
+
 
 public class MethodDeclarationVisitor extends ASTVisitor {
 
-	private List<MethodDeclaration> data;
 
-	
-	public MethodDeclarationVisitor(){
-		this.data = new ArrayList<MethodDeclaration>();
+	private CompilationUnit unit;
+	private CollectedData colletion;
+	private String file;
+
+	public MethodDeclarationVisitor(CompilationUnit unit, String file,
+			CollectedData collection) {
+
+		this.unit = unit;
+		this.file = file;
+		this.colletion = collection;
+
 	}
-	
-	
-	public List<MethodDeclaration> getMDCollected() {
-		return data;
-	}
+
 
 	@Override
 	public boolean visit(MethodDeclaration node) {
-		// TODO Auto-generated method stub
-		this.data.add(node);
+
+		this.colletion.addMethods(new Method(file, node.getName().toString(),
+				unit.getLineNumber(node.getStartPosition()),
+				unit.getLineNumber(node.getStartPosition()
+						+ node.getLength())));
+		
+		
+		if (node.isVarargs()) {	
+			this.colletion.addMethodWithVargs(new Method(file, node.getName().toString(),
+					unit.getLineNumber(node.getStartPosition()),
+					unit.getLineNumber(node.getStartPosition()
+							+ node.getLength())));
+		}
+
 		return super.visit(node);
 	}
-	
-	
 }
