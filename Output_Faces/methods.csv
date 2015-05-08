@@ -1,0 +1,6 @@
+Method,Package,Start in line,End in line,
+MethodVisitor,/home/thiago/workspaceOld/Faces/src/br/com/thiago/servlet/OiMundo.java,7,30,
+visit,/home/thiago/workspaceOld/Faces/src/br/com/thiago/servlet/OiMundo.java,32,42,
+visit,/home/thiago/workspaceOld/Faces/src/br/com/thiago/servlet/OiMundo.java,44,65,
+TestvarArgs,/home/thiago/workspaceOld/Faces/src/br/com/thiago/servlet/OiMundo.java,68,70,
+TestvarArgs,/home/thiago/workspaceOld/Faces/src/br/com/thiago/servlet/OiMundo.java,72,74,

@@ -1,0 +1,15 @@
+/static-analysis/src/br/unb/cic/sa/util/IO.java
+/static-analysis/src/br/unb/cic/sa/statements/testVisitor.java
+/static-analysis/src/br/unb/cic/sa/statements/TryStatementVisitor.java
+/static-analysis/src/br/unb/cic/sa/statements/TSCollected.java
+/static-analysis/src/br/unb/cic/sa/statements/MethodStatement.java
+/static-analysis/src/br/unb/cic/sa/similarity/CheckSimilarity.java
+/static-analysis/src/br/unb/cic/sa/model/Project.java
+/static-analysis/src/br/unb/cic/sa/model/ContentProject.java
+/static-analysis/src/br/unb/cic/sa/model/CollectedData.java
+/static-analysis/src/br/unb/cic/sa/model/CatchSimilarityInTryBlock.java
+/static-analysis/src/br/unb/cic/sa/model/CatchSimilarity.java
+/static-analysis/src/br/unb/cic/sa/SourceLineVisitor.java
+/static-analysis/src/br/unb/cic/sa/ProjectAnalyser.java
+/static-analysis/src/br/unb/cic/sa/Parser.java
+/static-analysis/src/br/unb/cic/sa/Main.java
