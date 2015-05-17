@@ -42,6 +42,15 @@ public class CollectedData {
 		this.project = new Project(projectName, projectRevision, filePath);
 	}
 
+	
+	public void setProject(Project project){
+		this.project = project;
+	}
+	
+	public Project getProject() {
+		return project;
+	}
+	
 	public void addNameFile(String nameFile) {
 		this.nameFile.add(nameFile);
 	}
@@ -50,9 +59,6 @@ public class CollectedData {
 		return this.nameFile.get(position);
 	}
 
-	public Project getProject() {
-		return project;
-	}
 
 
 //	############################ TryStatment Block ################################

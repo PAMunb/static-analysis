@@ -9,13 +9,14 @@ import br.unb.cic.sa.model.Method;
 
 
 
-public class MethodDeclarationVisitor extends ASTVisitor {
-
+public class MethodDeclarationVisitor extends ASTVisitor implements IVisitor {
 
 	private CompilationUnit unit;
 	private CollectedData colletion;
 	private String file;
 
+	public MethodDeclarationVisitor(){ }
+	
 	public MethodDeclarationVisitor(CompilationUnit unit, String file,
 			CollectedData collection) {
 
@@ -24,7 +25,19 @@ public class MethodDeclarationVisitor extends ASTVisitor {
 		this.colletion = collection;
 
 	}
-
+	
+	@Override
+	public void setUnit(CompilationUnit unit) {
+		this.unit = unit;
+	}
+	@Override
+	public void setColletion(CollectedData colletion) {
+		this.colletion = colletion;
+	}
+	@Override
+	public void setFile(String file) {
+		this.file = file;
+	}
 
 	@Override
 	public boolean visit(MethodDeclaration node) {

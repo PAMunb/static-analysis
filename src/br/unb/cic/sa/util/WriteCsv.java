@@ -83,6 +83,9 @@ public class WriteCsv {
 			csv.flush();
 			csv.close();
 
+			System.out.println("Write " + nameCsv + " with Success!");
+
+			
 		} catch (IOException e) {
 			System.out.println("Erro to Writer CSV !!!");
 			e.getStackTrace();
