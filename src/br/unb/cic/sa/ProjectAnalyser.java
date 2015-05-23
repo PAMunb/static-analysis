@@ -39,6 +39,7 @@ public class ProjectAnalyser implements Callable<CollectedData> {
 	
 	public CollectedData call() throws Exception {
 		
+		this.collectionProject.cleanData();
 		this.collectionProject.setProject(project);
 		
 //		this.collectionProject = new CollectedData(project.getProjectName(),

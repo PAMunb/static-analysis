@@ -8,6 +8,7 @@ import java.util.List;
 import br.unb.cic.sa.model.CollectedData;
 import br.unb.cic.sa.model.Method;
 import br.unb.cic.sa.model.Try;
+import br.unb.cic.sa.model.Type;
 
 public class WriteCsv {
 
@@ -15,9 +16,21 @@ public class WriteCsv {
 	}
 
 	public void writeCsv(CollectedData collectedData) {
+		
+		System.out.println("Generating output file...");
 
 		File dir = this.createOutputDir("Output_"
 				+ collectedData.getProject().getProjectName());
+		
+		if(collectedData.getNumberOfTypes() > 0) {
+			this.writeType(collectedData.getTypeDeclarations(),
+					dir.getAbsolutePath() + "/" + Constants.CSV_TYPE);
+		}
+		
+		if(collectedData.getNumberOfParamTypes() > 0){
+			this.writeType(collectedData.getParamTypes(),
+					dir.getAbsolutePath() + "/" + Constants.CSV_PARAMTYPE);
+		}
 
 		if (collectedData.getNumberOfMethod() > 0) {
 			this.writeMethodWithVargs(collectedData.getMethods(),
@@ -43,7 +56,7 @@ public class WriteCsv {
 		
 		
 		
-		
+		System.out.println("Finished!");
 
 	}
 
@@ -59,6 +72,36 @@ public class WriteCsv {
 
 		return outputDir;
 
+	}
+	
+	private void writeType(List<Type> types, String nameCsv){
+		FileWriter csv = null;
+		String line;
+		
+		try{
+			csv = new FileWriter(nameCsv);
+			// Header to print Types
+			csv.append(Constants.SUB_HEADER_OUTPUT_TYPES);
+			
+			for (Type ts : types) {
+				line = (
+						ts.getName() + Constants.COMMA_DELIMITER +
+						ts.getFile() + Constants.COMMA_DELIMITER +
+						ts.getStartLine() + Constants.COMMA_DELIMITER +
+						ts.getEndLine() + Constants.COMMA_DELIMITER +
+						Constants.NEW_LINE
+						).toString();
+				
+				csv.append(line);
+			}
+			
+			csv.flush();
+			csv.close();
+			
+		}catch(IOException e){
+			System.out.println("Erro to Writer CSV !!!");
+			e.getStackTrace();
+		}
 	}
 
 	private void writeTry(List<Try> trys, String nameCsv) {
@@ -83,9 +126,6 @@ public class WriteCsv {
 			csv.flush();
 			csv.close();
 
-			System.out.println("Write " + nameCsv + " with Success!");
-
-			
 		} catch (IOException e) {
 			System.out.println("Erro to Writer CSV !!!");
 			e.getStackTrace();
