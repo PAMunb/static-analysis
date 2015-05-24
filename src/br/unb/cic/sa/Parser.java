@@ -48,6 +48,7 @@ public class Parser {
 		return contents;
 	}
 
+	
 	public CompilationUnit parse(File file) {
 
 		char[] contents = null;

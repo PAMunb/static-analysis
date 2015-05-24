@@ -11,12 +11,17 @@ public class CollectedData {
 	private int numberOfTryWithSimilartyCatch;
 	private int numberOfMethod;
 	private int numberOfMethodWithVargs;
+	private int numberOfTypes;
+	private int numberOfParamTypes;
 	private List<String> analysisError;
 	private List<Try> trys;
 	private List<Try> tryWithSimilarityCatch;
 
 	private List<Method> methods;
 	private List<Method> methodWithVargs;
+	private List<Type> types;
+	private List<Type> paramTypes;
+	
 	private List<String> nameFile;
 
 	public CollectedData() {
@@ -27,6 +32,9 @@ public class CollectedData {
 		
 		this.methods = new ArrayList<Method>();
 		this.methodWithVargs = new ArrayList<Method>();
+		
+		this.types = new ArrayList<Type>();
+		this.paramTypes = new ArrayList<Type>();
 		
 		this.nameFile = new ArrayList<String>();
 		this.numberOfStatements = 0;
@@ -42,6 +50,15 @@ public class CollectedData {
 		this.project = new Project(projectName, projectRevision, filePath);
 	}
 
+	
+	public void setProject(Project project){
+		this.project = project;
+	}
+	
+	public Project getProject() {
+		return project;
+	}
+	
 	public void addNameFile(String nameFile) {
 		this.nameFile.add(nameFile);
 	}
@@ -50,9 +67,6 @@ public class CollectedData {
 		return this.nameFile.get(position);
 	}
 
-	public Project getProject() {
-		return project;
-	}
 
 
 //	############################ TryStatment Block ################################
@@ -112,6 +126,32 @@ public class CollectedData {
 	}
 	
 	
+	// ############### TypeDeclarations ####################
+		public void addType(Type type){
+			this.types.add(type);
+			this.numberOfTypes++;
+		}
+		
+		public void addParameterizedType(Type type){
+			this.paramTypes.add(type);
+			this.numberOfParamTypes++;
+		}
+		
+		public List<Type> getTypeDeclarations(){
+			return this.types;
+		}
+		
+		public List<Type> getParamTypes(){
+			return this.paramTypes;
+		}
+		
+		public int getNumberOfTypes(){
+			return this.numberOfTypes;
+		}
+		
+		public int getNumberOfParamTypes(){
+			return this.numberOfParamTypes;
+		}
 	
 	
 //	############### Statements ####################
@@ -126,4 +166,24 @@ public class CollectedData {
 	public List<String> getError() {
 		return analysisError;
 	}
+
+// ################ Clear ########################
+	public void cleanData(){
+		this.numberOfStatements = 0;
+		this.numberOfTryStatements = 0;
+		this.numberOfTryWithSimilartyCatch = 0;
+		this.numberOfMethod = 0;
+		this.numberOfMethodWithVargs = 0;
+		this.numberOfTypes = 0;
+		this.numberOfParamTypes = 0;
+		this.analysisError.clear();
+		this.trys.clear();
+		this.tryWithSimilarityCatch.clear();
+
+		this.methods.clear();
+		this.methodWithVargs.clear();
+		this.types.clear();
+		this.paramTypes.clear();
+	}
+
 }
