@@ -6,11 +6,13 @@ import org.eclipse.jdt.core.dom.EnumDeclaration;
 
 import br.unb.cic.sa.model.CollectedData;
 
-public class EnumDeclarationVisitor extends ASTVisitor {
+public class EnumDeclarationVisitor extends ASTVisitor implements IVisitor {
 
 	private CompilationUnit unit;
 	private CollectedData colletion;
 	private String file;
+	
+	public EnumDeclarationVisitor(){ }
 	
 	public EnumDeclarationVisitor(CompilationUnit unit, String file,
 			CollectedData collection) {
@@ -19,6 +21,19 @@ public class EnumDeclarationVisitor extends ASTVisitor {
 		this.file = file;
 		this.colletion = collection;
 
+	}
+	
+	@Override
+	public void setUnit(CompilationUnit unit) {
+		this.unit = unit;
+	}
+	@Override
+	public void setColletion(CollectedData colletion) {
+		this.colletion = colletion;
+	}
+	@Override
+	public void setFile(String file) {
+		this.file = file;
 	}
 	
 	

@@ -11,6 +11,8 @@ public interface Constants {
 	String CSV_TRY_WITH_SIMILAR_CATCH = "tryWithSimilarCatch.csv";
 	String CSV_TYPE = "types.csv";
 	String CSV_PARAMTYPE = "parameterizedTypes.csv";
+	String CSV_SWITCH = "switch.csv";
+	String CSV_SWITCH_WITH_STRING = "switchWithString.csv";
 	
 	String PROJECT_NAME = "Project Name";
 	String VERSION_PROJECT = "Version Project";
@@ -81,6 +83,13 @@ public interface Constants {
 			Constants.NEW_LINE;
 	
 	String SUB_HEADER_OUTPUT_TRY = 
+			Constants.FILE + Constants.COMMA_DELIMITER +
+			Constants.START_NUMEBER_LINE + Constants.COMMA_DELIMITER +
+			Constants.END_NUMEBER_LINE + Constants.COMMA_DELIMITER +
+			Constants.NEW_LINE;
+	
+	
+	String SUB_HEADER_OUTPUT_SWITCH = 
 			Constants.FILE + Constants.COMMA_DELIMITER +
 			Constants.START_NUMEBER_LINE + Constants.COMMA_DELIMITER +
 			Constants.END_NUMEBER_LINE + Constants.COMMA_DELIMITER +

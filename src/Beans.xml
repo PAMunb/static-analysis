@@ -11,6 +11,8 @@
 	<bean id="tsVisitor" class="br.unb.cic.sa.visitors.TryStatementVisitor"/>
 	<bean id="mdVisitor" class="br.unb.cic.sa.visitors.MethodDeclarationVisitor"/>
 	<bean id="typeVisitor" class="br.unb.cic.sa.visitors.TypeDeclarationVisitor"/>
+	<bean id="swVisitor" class="br.unb.cic.sa.visitors.SwitchStatementVisitor"/>
+	<bean id="enVisitor" class="br.unb.cic.sa.visitors.EnumDeclarationVisitor"/>
 
 	<bean id="collection" class="br.unb.cic.sa.model.CollectedData"/>
 
@@ -21,6 +23,8 @@
 				<ref bean="tsVisitor"/>
 				<ref bean="mdVisitor"/>
 				<ref bean="typeVisitor"/>
+				<ref bean="swVisitor"/>
+				<ref bean="enVisitor"/>
 			</list>
 		</property>
 		

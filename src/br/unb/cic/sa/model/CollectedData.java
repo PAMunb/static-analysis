@@ -7,15 +7,22 @@ public class CollectedData {
 
 	private Project project;
 	private int numberOfStatements;
+	private int numberOfSwitchStatement;
+	private int numberOfSwitchWithString;
 	private int numberOfTryStatements;
 	private int numberOfTryWithSimilartyCatch;
 	private int numberOfMethod;
 	private int numberOfMethodWithVargs;
 	private int numberOfTypes;
 	private int numberOfParamTypes;
+
 	private List<String> analysisError;
+	private List<Switch> switchs;
+	private List<Switch> switchWithString;
 	private List<Try> trys;
 	private List<Try> tryWithSimilarityCatch;
+	
+	
 
 	private List<Method> methods;
 	private List<Method> methodWithVargs;
@@ -27,6 +34,8 @@ public class CollectedData {
 	public CollectedData() {
 		this.analysisError = new ArrayList<String>();
 		
+		this.switchs = new ArrayList<>();
+		this.switchWithString = new ArrayList<>();
 		this.trys = new ArrayList<Try>();
 		this.tryWithSimilarityCatch = new ArrayList<Try>();
 		
@@ -37,6 +46,8 @@ public class CollectedData {
 		this.paramTypes = new ArrayList<Type>();
 		
 		this.nameFile = new ArrayList<String>();
+		this.numberOfSwitchStatement = 0;
+		this.numberOfSwitchWithString = 0;
 		this.numberOfStatements = 0;
 		this.numberOfTryStatements = 0;
 		this.numberOfTryWithSimilartyCatch = 0;
@@ -67,8 +78,35 @@ public class CollectedData {
 		return this.nameFile.get(position);
 	}
 
+	
+//	############################## Switch Block ###################################
+	public void addSwitch(Switch  s){
+		this.switchs.add(s);
+		this.numberOfSwitchStatement++;
+	}
+	
+	public void addSwichWithString(Switch s){
+		this.switchWithString.add(s);
+		this.numberOfSwitchWithString++;
+	}
 
+	public List<Switch> getSwitch(){
+		return this.switchs;
+	}
+	
+	public List<Switch> getSwitchWithString(){
+		return this.switchWithString;
+	}
+	
+	public int getNumberOfSwitch(){
+		return this.numberOfSwitchStatement;
+	}
+	
+	public int getNumberOfSwitchWithString(){
+		return this.numberOfSwitchWithString;
+	}
 
+	
 //	############################ TryStatment Block ################################
 	public void addTry(Try t){
 		this.trys.add(t);
@@ -169,6 +207,8 @@ public class CollectedData {
 
 // ################ Clear ########################
 	public void cleanData(){
+		this.numberOfSwitchStatement = 0;
+		this.numberOfSwitchWithString = 0;
 		this.numberOfStatements = 0;
 		this.numberOfTryStatements = 0;
 		this.numberOfTryWithSimilartyCatch = 0;
@@ -184,6 +224,8 @@ public class CollectedData {
 		this.methodWithVargs.clear();
 		this.types.clear();
 		this.paramTypes.clear();
+		this.switchs.clear();
+		this.switchWithString.clear();
 	}
 
 }
