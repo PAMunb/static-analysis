@@ -7,6 +7,7 @@ import java.util.List;
 
 import br.unb.cic.sa.model.CollectedData;
 import br.unb.cic.sa.model.Method;
+import br.unb.cic.sa.model.Switch;
 import br.unb.cic.sa.model.Try;
 
 public class WriteCsv {
@@ -39,6 +40,18 @@ public class WriteCsv {
 			this.writeTry(collectedData.getTryWithSimilartyCatch(),
 					dir.getAbsolutePath() + "/"
 							+ Constants.CSV_TRY_WITH_SIMILAR_CATCH);
+		}
+		
+		
+		if(collectedData.getNumberOfSwitch() > 0){
+			this.writeSwitch(collectedData.getSwitch(), 
+					dir.getAbsolutePath() + "/" + Constants.CSV_SWITCH);
+		}
+		
+		
+		if(collectedData.getNumberOfSwitchWithString() > 0){
+			this.writeSwitch(collectedData.getSwitchWithString(), 
+					dir.getAbsolutePath() + "/" + Constants.CSV_SWITCH_WITH_STRING);
 		}
 		
 		
@@ -85,15 +98,11 @@ public class WriteCsv {
 
 			System.out.println("Write " + nameCsv + " with Success!");
 
-			
 		} catch (IOException e) {
 			System.out.println("Erro to Writer CSV !!!");
 			e.getStackTrace();
 		}
 	}
-	
-	
-	
 
 	private void writeMethodWithVargs(List<Method> methods, String nameCsv) {
 
@@ -118,8 +127,7 @@ public class WriteCsv {
 
 			csv.flush();
 			csv.close();
-			
-			
+
 			System.out.println("Write " + nameCsv + " with Success!");
 
 		} catch (IOException e) {
@@ -127,6 +135,36 @@ public class WriteCsv {
 			e.getStackTrace();
 		}
 
+	}
+
+	private void writeSwitch(List<Switch> sws, String nameCsv) {
+
+		FileWriter csv = null;
+
+		try {
+			csv = new FileWriter(nameCsv);
+			// Header to print methods
+			csv.append(Constants.SUB_HEADER_OUTPUT_TRY);
+
+			for (Switch sw : sws) {
+
+				String line = (sw.getFile() + Constants.COMMA_DELIMITER
+						+ sw.getStartLine() + Constants.COMMA_DELIMITER
+						+ sw.getEndLine() + Constants.COMMA_DELIMITER + Constants.NEW_LINE)
+						.toString();
+
+				csv.append(line);
+			}
+
+			csv.flush();
+			csv.close();
+
+			System.out.println("Write " + nameCsv + " with Success!");
+
+		} catch (IOException e) {
+			System.out.println("Erro to Writer CSV !!!");
+			e.getStackTrace();
+		}
 	}
 
 }

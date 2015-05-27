@@ -2,9 +2,11 @@ package br.unb.cic.sa.visitors;
 
 import org.eclipse.jdt.core.dom.ASTVisitor;
 import org.eclipse.jdt.core.dom.CompilationUnit;
+import org.eclipse.jdt.core.dom.SimpleName;
 import org.eclipse.jdt.core.dom.SwitchStatement;
 
 import br.unb.cic.sa.model.CollectedData;
+import br.unb.cic.sa.model.Switch;
 
 public class SwitchStatementVisitor extends ASTVisitor implements IVisitor {
 
@@ -32,10 +34,20 @@ public class SwitchStatementVisitor extends ASTVisitor implements IVisitor {
 
 	@Override
 	public boolean visit(SwitchStatement node) {
+
+		this.colletion.addSwitch(new Switch(this.file, unit.getLineNumber(node
+				.getStartPosition()), unit.getLineNumber(node
+				.getStartPosition() + node.getLength())));
+
+
+		if (((Object)node.getExpression()) instanceof SimpleName) {
+			this.colletion.addSwichWithString(new Switch(this.file, unit
+					.getLineNumber(node.getStartPosition()), unit
+					.getLineNumber(node.getStartPosition()
+							+ node.getLength())));
+		}
 		
-//		System.out.println("Expression Property:" + node.getStructuralProperty(SwitchStatement.EXPRESSION_PROPERTY));
-//		System.out.println("Expression Property:" + node);
-//		System.exit(0);
+		
 
 		return super.visit(node);
 	}
