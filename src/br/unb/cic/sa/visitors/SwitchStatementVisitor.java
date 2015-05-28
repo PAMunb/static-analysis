@@ -3,6 +3,8 @@ package br.unb.cic.sa.visitors;
 import org.eclipse.jdt.core.dom.ASTVisitor;
 import org.eclipse.jdt.core.dom.CompilationUnit;
 import org.eclipse.jdt.core.dom.SimpleName;
+import org.eclipse.jdt.core.dom.StringLiteral;
+import org.eclipse.jdt.core.dom.SwitchCase;
 import org.eclipse.jdt.core.dom.SwitchStatement;
 
 import br.unb.cic.sa.model.CollectedData;
@@ -39,15 +41,15 @@ public class SwitchStatementVisitor extends ASTVisitor implements IVisitor {
 				.getStartPosition()), unit.getLineNumber(node
 				.getStartPosition() + node.getLength())));
 
+		SwitchCase sc = (SwitchCase) node.statements().get(0);
+		if (sc.getExpression() instanceof StringLiteral) {
+			this.colletion
+					.addSwichWithString(new Switch(this.file, unit
+							.getLineNumber(node.getStartPosition()), unit
+							.getLineNumber(node.getStartPosition()
+									+ node.getLength())));
 
-		if (((Object)node.getExpression()) instanceof SimpleName) {
-			this.colletion.addSwichWithString(new Switch(this.file, unit
-					.getLineNumber(node.getStartPosition()), unit
-					.getLineNumber(node.getStartPosition()
-							+ node.getLength())));
 		}
-		
-		
 
 		return super.visit(node);
 	}
