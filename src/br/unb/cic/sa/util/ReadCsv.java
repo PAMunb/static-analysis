@@ -11,33 +11,38 @@ import br.unb.cic.sa.model.Project;
 public class ReadCsv {
 
 	private String pathCsv;
-	
-	public ReadCsv(String pathCsv){
+	private List<String> error;
+
+	public ReadCsv(String pathCsv) {
 		this.pathCsv = pathCsv;
+		this.error = new ArrayList<>();
 	}
-	
-	public List<Project> readInput(){
+
+	public List<String> getError() {
+		return error;
+	}
+
+	public List<Project> readInput() {
 		BufferedReader br = null;
 		FileReader fileReader = null;
 		List<Project> projects = new ArrayList<Project>();
-		
+
 		try {
-			
+
 			fileReader = new FileReader(pathCsv);
 			br = new BufferedReader(fileReader);
-			
+
 			String line = "";
-			while((line = br.readLine()) != null ){
+			while ((line = br.readLine()) != null) {
 				String[] lineSplit = line.split(",");
-				projects.add(new Project(lineSplit[0], lineSplit[1], lineSplit[2]));
+				projects.add(new Project(lineSplit[0], lineSplit[1],lineSplit[2]));
 			}
-			
-			
+
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}finally{
-			if(br != null)
+		} finally {
+			if (br != null)
 				try {
 					br.close();
 				} catch (IOException e) {
@@ -45,10 +50,9 @@ public class ReadCsv {
 					e.printStackTrace();
 				}
 		}
-		
+
 		return projects;
-		
-		
+
 	}
-	
+
 }
