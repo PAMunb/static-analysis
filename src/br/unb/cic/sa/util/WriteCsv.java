@@ -16,6 +16,7 @@ public class WriteCsv {
 
 	private File dir;
 	private FileWriter csvMethods;
+	private FileWriter csvParamMethods;
 	private FileWriter csvMethodsVargs;
 	private FileWriter csvTry;
 	private FileWriter csvTysSimilarCatch;

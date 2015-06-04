@@ -16,8 +16,11 @@ public class CollectedData {
 
 	private List<Method> methods;
 	private List<Method> methodWithVargs;
+	private List<Method> paramMethods;
 	private List<Type> types;
 	private List<Type> paramTypes;
+	private List<Variable> variables;
+	private List<Variable> paramVariables;
 
 	private List<String> nameFile;
 
@@ -30,8 +33,11 @@ public class CollectedData {
 		this.tryWithSimilarityCatch = new ArrayList<>();
 		this.methods = new ArrayList<>();
 		this.methodWithVargs = new ArrayList<>();
+		this.paramMethods = new ArrayList<>();
 		this.types = new ArrayList<>();
 		this.paramTypes = new ArrayList<>();
+		this.variables = new ArrayList<>();
+		this.paramVariables = new ArrayList<>();
 		this.nameFile = new ArrayList<>();
 
 		this.numberOfStatements = 0;
@@ -111,22 +117,47 @@ public class CollectedData {
 	public List<Method> getMethodWithVargs() {
 		return this.methodWithVargs;
 	}
+	
+	public void addParameterizedMethod(Method method){
+		this.paramMethods.add(method);
+	}
+	
+	public List<Method> getParameterizedMethods(){
+		return this.paramMethods;
+	}
 
 	// ############### TypeDeclarations ####################
 	public void addType(Type type) {
 		this.types.add(type);
 	}
 
-	public void addParameterizedType(Type type) {
-		this.paramTypes.add(type);
-	}
-
 	public List<Type> getTypeDeclarations() {
 		return this.types;
 	}
 
+	public void addParameterizedType(Type type) {
+		this.paramTypes.add(type);
+	}
+
 	public List<Type> getParamTypes() {
 		return this.paramTypes;
+	}
+	
+	// ############### Variable Declarations ####################
+	public void addVariable(Variable var){
+		this.variables.add(var);
+	}
+		
+	public List<Variable> getVariablesDeclarations() {
+		return this.variables;
+	}
+
+	public void addParameterizedVariable(Variable var){
+		this.paramVariables.add(var);
+	}
+
+	public List<Variable> getParamVariables() {
+		return this.paramVariables;
 	}
 
 	// ############### Statements ####################

@@ -15,6 +15,7 @@
 	<bean id="enVisitor" class="br.unb.cic.sa.visitors.EnumDeclarationVisitor"/>
 	<bean id="ifVisitor" class="br.unb.cic.sa.visitors.IfVisitor"/>
 	<bean id="forVisitor" class="br.unb.cic.sa.visitors.ForVisitor"/>
+	<bean id="varVisitor" class="br.unb.cic.sa.visitors.VariableDeclarationVisitor"/>
 
 	<bean id="collection" class="br.unb.cic.sa.model.CollectedData"/>
 
@@ -29,6 +30,7 @@
 				<ref bean="typeVisitor"/>
 				<ref bean="swVisitor"/>
 				<ref bean="enVisitor"/>
+				<ref bean="varVisitor"/>
 			</list>
 		</property>
 		

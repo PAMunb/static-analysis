@@ -12,8 +12,6 @@ import br.unb.cic.sa.util.WriteCsv;
 
 public class Main {
 
-	
-
 	public static void main(String[] args) {
 		
 		String pathCsv = "input.csv";
