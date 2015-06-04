@@ -20,7 +20,7 @@ public class MethodDeclarationVisitor extends Visitor implements IVisitor {
 		}
 		
 		if(!node.isConstructor() && 
-				node.getReturnType2().isParameterizedType()){
+				node.getReturnType2() != null && node.getReturnType2().isParameterizedType()){
 			this.collection.addParameterizedMethod(method);
 		}
 
