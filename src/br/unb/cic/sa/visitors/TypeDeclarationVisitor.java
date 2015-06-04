@@ -17,6 +17,7 @@ public class TypeDeclarationVisitor extends Visitor implements IVisitor{
 		if(!(node.typeParameters().isEmpty())){
 			collection.addParameterizedType(t);
 		}
+		
 		return super.visit(node);
 	}
 }

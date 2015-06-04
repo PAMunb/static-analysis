@@ -15,14 +15,17 @@ public interface Constants {
 	String CSV_SWITCH = "switch.csv";
 	String CSV_SWITCH_WITH_STRING = "switchWithString.csv";
 	String CSV_SCRIPTING_CALLS = "scriptingCalls.csv";
-
+	String CSV_OUTPUT_DIT = "OutputCSV";
+	String CSV_ERROR = "error.csv";
 	
 	String PROJECT_NAME = "Project Name";
 	String VERSION_PROJECT = "Version Project";
 	
-
+	
+	String EMPTY = "#";
 	String COMMA_DELIMITER = ",";
 	String NEW_LINE = "\n";
+	String ERROR = "Error";
 	
 	String START_NUMEBER_LINE = "Start in line";
 	String END_NUMEBER_LINE = "End in line";
@@ -58,46 +61,50 @@ public interface Constants {
 	String PARAMETERIZED_TYPE = "Parameterized Type";
 	String PARAM_TYPE_DECLARATION = "Parameterized Types Declaration";
 	
-	
-	String HEADER_OUTPUT_CSV = 
-			Constants.PROJECT_NAME + Constants.COMMA_DELIMITER +
-			Constants.VERSION_PROJECT + Constants.COMMA_DELIMITER +
-			Constants.NUMBER_OF_METHOD_DECLARATION + Constants.COMMA_DELIMITER +
-			Constants.NUMBER_OF_TRYSTATEMENTS + Constants.COMMA_DELIMITER +
-			Constants.NUMBER_OF_TYPE_DECLARATION + Constants.COMMA_DELIMITER +
-			Constants.NUMBER_OF_PARAMETERIZED_TYPES + Constants.COMMA_DELIMITER +
-			Constants.NUMBER_TOTAL_OF_STATEMENTS + Constants.COMMA_DELIMITER +
-			Constants.NUMBER_TOTAL_LINES_OF_CODE + Constants.COMMA_DELIMITER +
-			Constants.NEW_LINE;
-	
+
 //	method Declatarion, start, end, try statement, start, end
-	String SUB_HEADER_OUTPUT_METHODS_CSV = 
+	String HEADER_OUTPUT_METHODS_CSV = 
 			Constants.METHOD + Constants.COMMA_DELIMITER +
 			Constants.PACKAGE + Constants.COMMA_DELIMITER +
 			Constants.START_NUMEBER_LINE + Constants.COMMA_DELIMITER +
 			Constants.END_NUMEBER_LINE + Constants.COMMA_DELIMITER +
+			Constants.PROJECT_NAME + Constants.COMMA_DELIMITER +
+			Constants.VERSION_PROJECT + Constants.COMMA_DELIMITER +
 			Constants.NEW_LINE;
 
-	String SUB_HEADER_OUTPUT_TYPES = 
+	String HEADER_OUTPUT_TYPES = 
 			Constants.TYPE + Constants.COMMA_DELIMITER +
-			Constants.PACKAGE + Constants.COMMA_DELIMITER +
-			Constants.START_NUMEBER_LINE + Constants.COMMA_DELIMITER +
-			Constants.END_NUMEBER_LINE + Constants.COMMA_DELIMITER +
-			Constants.NEW_LINE;
-	
-	String SUB_HEADER_OUTPUT_TRY = 
 			Constants.FILE + Constants.COMMA_DELIMITER +
 			Constants.START_NUMEBER_LINE + Constants.COMMA_DELIMITER +
 			Constants.END_NUMEBER_LINE + Constants.COMMA_DELIMITER +
+			Constants.PROJECT_NAME + Constants.COMMA_DELIMITER +
+			Constants.VERSION_PROJECT + Constants.COMMA_DELIMITER +
 			Constants.NEW_LINE;
 	
-	
-	String SUB_HEADER_OUTPUT_SWITCH = 
+	String HEADER_OUTPUT_TRY = 
+			Constants.EMPTY + Constants.COMMA_DELIMITER +
 			Constants.FILE + Constants.COMMA_DELIMITER +
 			Constants.START_NUMEBER_LINE + Constants.COMMA_DELIMITER +
 			Constants.END_NUMEBER_LINE + Constants.COMMA_DELIMITER +
+			Constants.PROJECT_NAME + Constants.COMMA_DELIMITER +
+			Constants.VERSION_PROJECT + Constants.COMMA_DELIMITER +
 			Constants.NEW_LINE;
 	
+	
+	String HEADER_OUTPUT_SWITCH = 
+			Constants.EMPTY + Constants.COMMA_DELIMITER +
+			Constants.FILE + Constants.COMMA_DELIMITER +
+			Constants.START_NUMEBER_LINE + Constants.COMMA_DELIMITER +
+			Constants.END_NUMEBER_LINE + Constants.COMMA_DELIMITER +
+			Constants.PROJECT_NAME + Constants.COMMA_DELIMITER +
+			Constants.VERSION_PROJECT + Constants.COMMA_DELIMITER +
+			Constants.NEW_LINE;
+	
+	String HEADER_ERROR = 
+			Constants.ERROR + Constants.COMMA_DELIMITER +
+			Constants.PROJECT_NAME + Constants.COMMA_DELIMITER + 
+			Constants.NEW_LINE;
+	String SUB_HEADER_OUTPUT_SCRIPTING_CALLS = "file, method, start, end";
 	
 //	Constants.TRY_STATEMENT_WITH_CATCH_SIMILARITY + Constants.COMMA_DELIMITER +
 //	Constants.START_NUMEBER_LINE + Constants.COMMA_DELIMITER+

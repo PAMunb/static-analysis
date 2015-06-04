@@ -7,14 +7,6 @@ public class CollectedData {
 
 	private Project project;
 	private int numberOfStatements;
-	private int numberOfSwitchStatement;
-	private int numberOfSwitchWithString;
-	private int numberOfTryStatements;
-	private int numberOfTryWithSimilartyCatch;
-	private int numberOfMethod;
-	private int numberOfMethodWithVargs;
-	private int numberOfTypes;
-	private int numberOfParamTypes;
 
 	private List<String> analysisError;
 	private List<Switch> switchs;
@@ -25,14 +17,17 @@ public class CollectedData {
 	
 	private List<Method> methods;
 	private List<Method> methodWithVargs;
+	private List<Method> paramMethods;
 	private List<Type> types;
 	private List<Type> paramTypes;
-	
+	private List<Variable> variables;
+	private List<Variable> paramVariables;
+
 	private List<String> nameFile;
 
 	public CollectedData() {
 		this.analysisError = new ArrayList<String>();
-		
+
 		this.switchs = new ArrayList<>();
 		this.switchWithString = new ArrayList<>();
 		this.trys = new ArrayList<Try>();
@@ -47,13 +42,18 @@ public class CollectedData {
 		scriptingEngineCalls = new ArrayList<ScriptingEngineCall>();
 		
 		this.nameFile = new ArrayList<String>();
-		this.numberOfSwitchStatement = 0;
-		this.numberOfSwitchWithString = 0;
+		this.tryWithSimilarityCatch = new ArrayList<>();
+		this.methods = new ArrayList<>();
+		this.methodWithVargs = new ArrayList<>();
+		this.paramMethods = new ArrayList<>();
+		this.types = new ArrayList<>();
+		this.paramTypes = new ArrayList<>();
+		this.variables = new ArrayList<>();
+		this.paramVariables = new ArrayList<>();
+		this.nameFile = new ArrayList<>();
+
 		this.numberOfStatements = 0;
-		this.numberOfTryStatements = 0;
-		this.numberOfTryWithSimilartyCatch = 0;
-		this.numberOfMethod = 0;
-		this.numberOfMethodWithVargs = 0;
+
 	}
 
 	public CollectedData(String projectName, String projectRevision,
@@ -62,15 +62,14 @@ public class CollectedData {
 		this.project = new Project(projectName, projectRevision, filePath);
 	}
 
-	
-	public void setProject(Project project){
+	public void setProject(Project project) {
 		this.project = project;
 	}
-	
+
 	public Project getProject() {
 		return project;
 	}
-	
+
 	public void addNameFile(String nameFile) {
 		this.nameFile.add(nameFile);
 	}
@@ -79,123 +78,107 @@ public class CollectedData {
 		return this.nameFile.get(position);
 	}
 
-	
-//	############################## Switch Block ###################################
-	public void addSwitch(Switch  s){
+	// ############################## Switch Block  ###################################
+	public void addSwitch(Switch s) {
 		this.switchs.add(s);
-		this.numberOfSwitchStatement++;
-	}
-	
-	public void addSwichWithString(Switch s){
-		this.switchWithString.add(s);
-		this.numberOfSwitchWithString++;
 	}
 
-	public List<Switch> getSwitch(){
+	public void addSwichWithString(Switch s) {
+		this.switchWithString.add(s);
+	}
+
+	public List<Switch> getSwitch() {
 		return this.switchs;
 	}
-	
-	public List<Switch> getSwitchWithString(){
+
+	public List<Switch> getSwitchWithString() {
 		return this.switchWithString;
 	}
-	
-	public int getNumberOfSwitch(){
-		return this.numberOfSwitchStatement;
-	}
-	
-	public int getNumberOfSwitchWithString(){
-		return this.numberOfSwitchWithString;
+
+	// ############################ TryStatment Block ################################
+	public void addTry(Try t) {
+		this.trys.add(t);
 	}
 
-	
-//	############################ TryStatment Block ################################
-	public void addTry(Try t){
-		this.trys.add(t);
-		this.numberOfTryStatements++;
-	}
-	
-	public List<Try> getTrys(){
+	public List<Try> getTrys() {
 		return this.trys;
 	}
-	
+
 	public void addTryWithSimilartyCatch(Try tryWithSimilarityCatch) {
 		this.tryWithSimilarityCatch.add(tryWithSimilarityCatch);
-		//incremente number of trystatement
-		this.numberOfTryWithSimilartyCatch++;
 	}
+
 	public List<Try> getTryWithSimilartyCatch() {
 		return this.tryWithSimilarityCatch;
 	}
-	
-	public int getNumberOfTry() {
-		return this.numberOfTryStatements;
+
+	// ######################## MethodDeclaration ############################
+
+	public void addMethods(Method method) {
+		this.methods.add(method);
 	}
 
-	public int getNumberOfTryWithSimilartyCatch() {
-		return this.numberOfTryWithSimilartyCatch;
-	}
-	
-	
-//	######################## MethodDeclaration ############################
-	
-	public void addMethods(Method method){
-		this.methods.add(method);
-		this.numberOfMethod++;
-	}
-	
-	public List<Method> getMethods(){
+	public List<Method> getMethods() {
 		return this.methods;
 	}
-	
-	public void addMethodWithVargs(Method method){
+
+	public void addMethodWithVargs(Method method) {
 		this.methodWithVargs.add(method);
-		this.numberOfMethodWithVargs++;
 	}
-	
-	public List<Method> getMethodWithVargs(){
+
+	public List<Method> getMethodWithVargs() {
 		return this.methodWithVargs;
 	}
 	
-	public int getNumberOfMethod(){
-		return this.numberOfMethod;
+	public void addParameterizedMethod(Method method){
+		this.paramMethods.add(method);
 	}
 	
-	public int getNumberOfMethodDeclarationWithVargs(){
-		return this.numberOfMethodWithVargs;
+	public List<Method> getParameterizedMethods(){
+		return this.paramMethods;
 	}
-	
-	
+
 	// ############### TypeDeclarations ####################
-		public void addType(Type type){
-			this.types.add(type);
-			this.numberOfTypes++;
-		}
-		
-		public void addParameterizedType(Type type){
-			this.paramTypes.add(type);
-			this.numberOfParamTypes++;
-		}
-		
-		public List<Type> getTypeDeclarations(){
-			return this.types;
-		}
-		
-		public List<Type> getParamTypes(){
-			return this.paramTypes;
-		}
-		
-		public int getNumberOfTypes(){
-			return this.numberOfTypes;
-		}
-		
-		public int getNumberOfParamTypes(){
-			return this.numberOfParamTypes;
-		}
+	public void addType(Type type) {
+		this.types.add(type);
+	}
+
+	public List<Type> getTypeDeclarations() {
+		return this.types;
+	}
+
+	public void addParameterizedType(Type type) {
+		this.paramTypes.add(type);
+	}
+
+	public List<Type> getParamTypes() {
+		return this.paramTypes;
+	}
 	
-	
-//	############### Statements ####################
+	// ############### Variable Declarations ####################
+	public void addVariable(Variable var){
+		this.variables.add(var);
+	}
+		
+	public List<Variable> getVariablesDeclarations() {
+		return this.variables;
+	}
+
+	public void addParameterizedVariable(Variable var){
+		this.paramVariables.add(var);
+	}
+
+	public List<Variable> getParamVariables() {
+		return this.paramVariables;
+	}
+
+	// ############### Statements ####################
 	public int getNumberOfStatements() {
 		return this.numberOfStatements;
+	}
+
+	public void addError(List<String> e){
+		analysisError.addAll(e);
 	}
 	
 	public void addError(String e) {
@@ -214,17 +197,9 @@ public class CollectedData {
 		return scriptingEngineCalls;
 	}
 
-// ################ Clear ########################
-	public void cleanData(){
-		this.numberOfSwitchStatement = 0;
-		this.numberOfSwitchWithString = 0;
+	// ################ Clear ########################
+	public void cleanData() {
 		this.numberOfStatements = 0;
-		this.numberOfTryStatements = 0;
-		this.numberOfTryWithSimilartyCatch = 0;
-		this.numberOfMethod = 0;
-		this.numberOfMethodWithVargs = 0;
-		this.numberOfTypes = 0;
-		this.numberOfParamTypes = 0;
 		this.analysisError.clear();
 		this.trys.clear();
 		this.tryWithSimilarityCatch.clear();

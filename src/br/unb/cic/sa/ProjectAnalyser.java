@@ -42,9 +42,6 @@ public class ProjectAnalyser implements Callable<CollectedData> {
 		this.collectionProject.cleanData();
 		this.collectionProject.setProject(project);
 		
-//		this.collectionProject = new CollectedData(project.getProjectName(),
-//				project.getProjectRevision(), this.project.getFilePath());
-				
 		CompilationUnit compilationUnit = null;
 	
 		for (String file : IO.listFiles(project.getFilePath(), new String[] { "java" })) {
