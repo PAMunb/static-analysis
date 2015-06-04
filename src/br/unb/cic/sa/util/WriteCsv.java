@@ -7,6 +7,7 @@ import java.util.List;
 
 import br.unb.cic.sa.model.CollectedData;
 import br.unb.cic.sa.model.Method;
+import br.unb.cic.sa.model.ScriptingEngineCall;
 import br.unb.cic.sa.model.Switch;
 import br.unb.cic.sa.model.Try;
 import br.unb.cic.sa.model.Type;
@@ -67,10 +68,45 @@ public class WriteCsv {
 					dir.getAbsolutePath() + "/" + Constants.CSV_SWITCH_WITH_STRING);
 		}
 		
+		if(collectedData.getScriptEngineCalls().size() > 0) {
+			this.writeScriptingCalls(collectedData.getScriptEngineCalls(), dir.getAbsoluteFile() + "/" + Constants.CSV_SCRIPTING_CALLS);
+		}
 		
 		
 		System.out.println("Finished!");
 
+	}
+
+	private void writeScriptingCalls(
+			List<ScriptingEngineCall> scriptEngineCalls, String string) {
+		
+		FileWriter csv = null;
+		String line;
+		
+		try{
+			csv = new FileWriter(string);
+			// Header to print Types
+			csv.append(Constants.SUB_HEADER_OUTPUT_TYPES);
+			
+			for (ScriptingEngineCall call : scriptEngineCalls) {
+				line = (
+						call.getFile() + Constants.COMMA_DELIMITER +
+						call.getMethod() + Constants.COMMA_DELIMITER +
+						call.getStartLine() + Constants.COMMA_DELIMITER + 
+						call.getEndLine() + Constants.COMMA_DELIMITER +
+						Constants.NEW_LINE
+						).toString();
+				
+				csv.append(line);
+			}
+			
+			csv.flush();
+			csv.close();
+			
+		}catch(IOException e){
+			System.out.println("Erro to Writer CSV !!!");
+			e.getStackTrace();
+		}
 	}
 
 	private File createOutputDir(String nameDir) {

@@ -48,7 +48,6 @@ public class Parser {
 		return contents;
 	}
 
-	
 	public CompilationUnit parse(File file) {
 
 		char[] contents = null;
@@ -63,7 +62,28 @@ public class Parser {
 		ASTParser parser = ASTParser.newParser(AST.JLS4);
 		parser.setKind(ASTParser.K_COMPILATION_UNIT);
 		parser.setSource(contents);
+	
+		final CompilationUnit cu = (CompilationUnit) parser.createAST(null);
+		return cu;
+	}
+	
+	public CompilationUnit parse(File file, String[] classpath, String[] sourcepath) {
 
+		char[] contents = null;
+
+		try {
+			contents = this.readFileToString(file);
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		ASTParser parser = ASTParser.newParser(AST.JLS4);
+		parser.setKind(ASTParser.K_COMPILATION_UNIT);
+		parser.setResolveBindings(true);
+		parser.setEnvironment(classpath, sourcepath, new String[] { "UTF-8" }, true);
+		parser.setSource(contents);
+	
 		final CompilationUnit cu = (CompilationUnit) parser.createAST(null);
 		return cu;
 	}

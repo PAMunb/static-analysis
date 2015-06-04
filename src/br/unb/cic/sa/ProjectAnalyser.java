@@ -47,8 +47,7 @@ public class ProjectAnalyser implements Callable<CollectedData> {
 				
 		CompilationUnit compilationUnit = null;
 	
-		for (String file : IO.listFiles(project.getFilePath(),
-				new String[] { "java" })) {
+		for (String file : IO.listFiles(project.getFilePath(), new String[] { "java" })) {
 			try {
 				// fazer um parser de cada arquivo.java encontrado no projeto
 				compilationUnit = Parser.Instance().parse(new File(file));

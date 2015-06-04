@@ -21,9 +21,8 @@ public class CollectedData {
 	private List<Switch> switchWithString;
 	private List<Try> trys;
 	private List<Try> tryWithSimilarityCatch;
+	private List<ScriptingEngineCall> scriptingEngineCalls;
 	
-	
-
 	private List<Method> methods;
 	private List<Method> methodWithVargs;
 	private List<Type> types;
@@ -44,6 +43,8 @@ public class CollectedData {
 		
 		this.types = new ArrayList<Type>();
 		this.paramTypes = new ArrayList<Type>();
+		
+		scriptingEngineCalls = new ArrayList<ScriptingEngineCall>();
 		
 		this.nameFile = new ArrayList<String>();
 		this.numberOfSwitchStatement = 0;
@@ -204,6 +205,14 @@ public class CollectedData {
 	public List<String> getError() {
 		return analysisError;
 	}
+	
+	public void addScriptingEngineCall(ScriptingEngineCall s) {
+		this.scriptingEngineCalls.add(s);
+	}
+	
+	public List<ScriptingEngineCall> getScriptEngineCalls() {
+		return scriptingEngineCalls;
+	}
 
 // ################ Clear ########################
 	public void cleanData(){
@@ -226,6 +235,7 @@ public class CollectedData {
 		this.paramTypes.clear();
 		this.switchs.clear();
 		this.switchWithString.clear();
+		this.scriptingEngineCalls.clear();
 	}
 
 }

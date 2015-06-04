@@ -1,5 +1,6 @@
 package br.unb.cic.sa.util;
 
+
 public interface Constants {
 	
 	/**
@@ -13,6 +14,8 @@ public interface Constants {
 	String CSV_PARAMTYPE = "parameterizedTypes.csv";
 	String CSV_SWITCH = "switch.csv";
 	String CSV_SWITCH_WITH_STRING = "switchWithString.csv";
+	String CSV_SCRIPTING_CALLS = "scriptingCalls.csv";
+
 	
 	String PROJECT_NAME = "Project Name";
 	String VERSION_PROJECT = "Version Project";
@@ -94,7 +97,7 @@ public interface Constants {
 			Constants.START_NUMEBER_LINE + Constants.COMMA_DELIMITER +
 			Constants.END_NUMEBER_LINE + Constants.COMMA_DELIMITER +
 			Constants.NEW_LINE;
-
+	
 	
 //	Constants.TRY_STATEMENT_WITH_CATCH_SIMILARITY + Constants.COMMA_DELIMITER +
 //	Constants.START_NUMEBER_LINE + Constants.COMMA_DELIMITER+
