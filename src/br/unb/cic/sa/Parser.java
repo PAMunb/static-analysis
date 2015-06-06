@@ -4,7 +4,9 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Map;
 
+import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.jdt.core.dom.AST;
 import org.eclipse.jdt.core.dom.ASTParser;
 import org.eclipse.jdt.core.dom.CompilationUnit;
@@ -60,7 +62,14 @@ public class Parser {
 		}
 		
 		ASTParser parser = ASTParser.newParser(AST.JLS4);
+		
+		Map<String, String> options = JavaCore.getOptions();
+		options.put(JavaCore.COMPILER_COMPLIANCE, JavaCore.VERSION_1_7);
+		options.put(JavaCore.COMPILER_CODEGEN_TARGET_PLATFORM, JavaCore.VERSION_1_7);
+		options.put(JavaCore.COMPILER_SOURCE, JavaCore.VERSION_1_7);
+		
 		parser.setKind(ASTParser.K_COMPILATION_UNIT);
+		parser.setCompilerOptions(options);
 		parser.setSource(contents);
 	
 		final CompilationUnit cu = (CompilationUnit) parser.createAST(null);

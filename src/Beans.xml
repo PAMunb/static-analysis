@@ -24,7 +24,7 @@
 		<property name="listVisitors">
 			<list>
 				<ref bean="forVisitor"/>
-				<ref bean="ifVisitor"/>
+				<!--  ref bean="ifVisitor"/-->
 				<ref bean="tsVisitor"/>
 				<ref bean="mdVisitor"/>
 				<ref bean="typeVisitor"/>

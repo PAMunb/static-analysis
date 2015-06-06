@@ -2,7 +2,6 @@ package br.unb.cic.sa.visitors;
 
 import org.eclipse.jdt.core.dom.Expression;
 import org.eclipse.jdt.core.dom.IfStatement;
-import org.eclipse.jdt.core.dom.StructuralPropertyDescriptor;
 
 
 public class IfVisitor extends Visitor{
