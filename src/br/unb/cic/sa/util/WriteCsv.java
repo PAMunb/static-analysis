@@ -7,22 +7,25 @@ import java.util.List;
 
 import br.unb.cic.sa.model.CollectedData;
 import br.unb.cic.sa.model.Method;
-import br.unb.cic.sa.model.ScriptingEngineCall;
 import br.unb.cic.sa.model.Project;
+import br.unb.cic.sa.model.ScriptingEngineCall;
 import br.unb.cic.sa.model.Switch;
 import br.unb.cic.sa.model.Try;
-import br.unb.cic.sa.model.Type;
+import br.unb.cic.sa.model.ClassDeclaration;
+import br.unb.cic.sa.model.Variable;
 
 public class WriteCsv {
 
 	private File dir;
 	private FileWriter csvMethods;
-	private FileWriter csvParamMethods;
 	private FileWriter csvMethodsVargs;
+	private FileWriter csvParamMethods;
 	private FileWriter csvTry;
 	private FileWriter csvTysSimilarCatch;
-	private FileWriter csvType;
-	private FileWriter csvParamtype;
+	private FileWriter csvTypes;
+	private FileWriter csvParamtypes;
+	private FileWriter csvVariables;
+	private FileWriter csvParamVariables;
 	private FileWriter csvSwitch;
 	private FileWriter csvSwithWithString;
 	private FileWriter csvError;
@@ -41,6 +44,11 @@ public class WriteCsv {
 					+ Constants.CSV_METHOD_WITH_VARGS);
 			csvMethodsVargs.append(Constants.HEADER_OUTPUT_METHODS_CSV);
 			csvMethodsVargs.flush();
+			
+			csvParamMethods = new FileWriter(dir + "/"
+					+ Constants.CSV_PARAM_METHODS);
+			csvParamMethods.append(Constants.HEADER_OUTPUT_METHODS_CSV);
+			csvParamMethods.flush();
 
 			csvTry = new FileWriter(dir + "/" + Constants.CSV_TRYS);
 			csvTry.append(Constants.HEADER_OUTPUT_TRY);
@@ -51,13 +59,22 @@ public class WriteCsv {
 			csvTysSimilarCatch.append(Constants.HEADER_OUTPUT_TRY);
 			csvTysSimilarCatch.flush();
 
-			csvType = new FileWriter(dir + "/" + Constants.CSV_TYPE);
-			csvType.append(Constants.HEADER_OUTPUT_TYPES);
-			csvType.flush();
+			csvTypes = new FileWriter(dir + "/" + Constants.CSV_TYPE);
+			csvTypes.append(Constants.HEADER_OUTPUT_TYPES);
+			csvTypes.flush();
 
-			csvParamtype = new FileWriter(dir + "/" + Constants.CSV_PARAMTYPE);
-			csvParamtype.append(Constants.HEADER_OUTPUT_TYPES);
-			csvParamtype.flush();
+			csvParamtypes = new FileWriter(dir + "/" + Constants.CSV_PARAM_TYPE);
+			csvParamtypes.append(Constants.HEADER_OUTPUT_TYPES);
+			csvParamtypes.flush();
+			
+			csvVariables = new FileWriter(dir + "/" + Constants.CSV_VARIABLES);
+			csvVariables.append(Constants.HEADER_OUTPUT_VARIABLES);
+			csvVariables.flush();
+			
+			csvParamVariables = new FileWriter(dir + "/" 
+					+ Constants.CSV_PARAM_VARIABLES);
+			csvParamVariables.append(Constants.HEADER_OUTPUT_VARIABLES);
+			csvParamVariables.flush();
 
 			csvSwitch = new FileWriter(dir + "/" + Constants.CSV_SWITCH);
 			csvSwitch.append(Constants.HEADER_OUTPUT_SWITCH);
@@ -88,13 +105,13 @@ public class WriteCsv {
 		if (collectedData.getTypeDeclarations().size() > 0) {
 			this.write(
 					types(collectedData.getTypeDeclarations(),
-							collectedData.getProject()), csvType);
+							collectedData.getProject()), csvTypes);
 		}
 
 		if (collectedData.getParamTypes().size() > 0) {
 			this.write(
 					types(collectedData.getParamTypes(),
-							collectedData.getProject()), csvParamtype);
+							collectedData.getProject()), csvParamtypes);
 		}
 
 		if (collectedData.getMethods().size() > 0) {
@@ -103,10 +120,29 @@ public class WriteCsv {
 							collectedData.getProject()), csvMethods);
 		}
 
-		if (collectedData.getMethodWithVargs().size() > 0)
+		if (collectedData.getMethodWithVargs().size() > 0) {
 			this.write(
 					methods(collectedData.getMethodWithVargs(),
 							collectedData.getProject()), csvMethodsVargs);
+		}
+		
+		if (collectedData.getParameterizedMethods().size() > 0) {
+			this.write(
+					methods(collectedData.getParameterizedMethods(),
+							collectedData.getProject()), csvParamMethods);
+		}
+		
+		if (collectedData.getVariablesDeclarations().size() > 0) {
+			this.write(
+					variables(collectedData.getVariablesDeclarations(),
+							collectedData.getProject()), csvVariables);
+		}
+		
+		if (collectedData.getParamVariables().size() > 0) {
+			this.write(
+					variables(collectedData.getParamVariables(),
+							collectedData.getProject()), csvParamVariables);
+		}
 
 		if (collectedData.getTrys().size() > 0) {
 			this.write(
@@ -206,16 +242,31 @@ public class WriteCsv {
 		return sb;
 	}
 
-	private StringBuilder types(List<Type> types, Project project) {
+	private StringBuilder types(List<ClassDeclaration> types, Project project) {
 		StringBuilder sb = new StringBuilder();
 
-		types.forEach(ts -> sb.append(ts.getName() + Constants.COMMA_DELIMITER
-				+ ts.getFile() + Constants.COMMA_DELIMITER + ts.getStartLine()
+		types.forEach(ts -> sb.append(ts.getName() 
+				+ Constants.COMMA_DELIMITER + ts.getFile()
+				+ Constants.COMMA_DELIMITER + ts.getSuperClass()
+				+ Constants.COMMA_DELIMITER + ts.getIntefaces()
+				+ Constants.COMMA_DELIMITER + ts.getStartLine()
 				+ Constants.COMMA_DELIMITER + ts.getEndLine()
 				+ Constants.COMMA_DELIMITER + project.getProjectName()
 				+ Constants.COMMA_DELIMITER + project.getProjectRevision()
 				+ Constants.COMMA_DELIMITER + Constants.NEW_LINE));
 
+		return sb;
+	}
+	
+	private StringBuilder variables(List<Variable> variables, Project project) {
+		StringBuilder sb = new StringBuilder();
+		
+		variables.forEach(ts -> sb.append(ts.getName() + Constants.COMMA_DELIMITER
+				+ ts.getFile() + Constants.COMMA_DELIMITER + ts.getType()
+				+ Constants.COMMA_DELIMITER + project.getProjectName()
+				+ Constants.COMMA_DELIMITER + project.getProjectRevision()
+				+ Constants.COMMA_DELIMITER + Constants.NEW_LINE));
+		
 		return sb;
 	}
 
@@ -269,10 +320,13 @@ public class WriteCsv {
 		try {
 			csvMethods.close();
 			csvMethodsVargs.close();
+			csvParamMethods.close();
 			csvTry.close();
 			csvTysSimilarCatch.close();
-			csvType.close();
-			csvParamtype.close();
+			csvTypes.close();
+			csvParamtypes.close();
+			csvVariables.close();
+			csvParamVariables.close();
 			csvSwitch.close();
 			csvSwithWithString.close();
 			csvError.close();

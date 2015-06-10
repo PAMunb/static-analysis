@@ -1,20 +1,20 @@
 package br.unb.cic.sa.model;
 
+import org.eclipse.jdt.core.dom.Type;
+
 public class Variable {
 	
 	private String file;
 	private String name;
-	private int startLine;
-	private int endLine;
+	private Type type;
 	
 	public Variable(){
 		
 	}
-	public Variable(String file, String name, int startLine, int endLine){
+	public Variable(String file, String name, Type type){
 		this.file = file;
 		this.name = name;
-		this.startLine = startLine;
-		this.endLine = endLine;
+		this.type = type;
 	}
 	
 	public String getName() {
@@ -32,21 +32,29 @@ public class Variable {
 	public void setFile(String file) {
 		this.file = file;
 	}
-
-	public int getStartLine() {
-		return startLine;
+	
+	public Type getType() {
+		return type;
+	}
+	
+	public void setType(Type type){
+		this.type = type;
 	}
 
-	public void setStartLine(int startLine) {
-		this.startLine = startLine;
-	}
-
-	public int getEndLine() {
-		return endLine;
-	}
-
-	public void setEndLine(int endLine) {
-		this.endLine = endLine;
-	}
+//	public int getStartLine() {
+//		return startLine;
+//	}
+//
+//	public void setStartLine(int startLine) {
+//		this.startLine = startLine;
+//	}
+//
+//	public int getEndLine() {
+//		return endLine;
+//	}
+//
+//	public void setEndLine(int endLine) {
+//		this.endLine = endLine;
+//	}
 
 }

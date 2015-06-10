@@ -18,8 +18,8 @@ public class CollectedData {
 	private List<Method> methods;
 	private List<Method> methodWithVargs;
 	private List<Method> paramMethods;
-	private List<Type> types;
-	private List<Type> paramTypes;
+	private List<ClassDeclaration> types;
+	private List<ClassDeclaration> paramTypes;
 	private List<Variable> variables;
 	private List<Variable> paramVariables;
 
@@ -36,8 +36,8 @@ public class CollectedData {
 		this.methods = new ArrayList<Method>();
 		this.methodWithVargs = new ArrayList<Method>();
 		
-		this.types = new ArrayList<Type>();
-		this.paramTypes = new ArrayList<Type>();
+		this.types = new ArrayList<ClassDeclaration>();
+		this.paramTypes = new ArrayList<ClassDeclaration>();
 		
 		scriptingEngineCalls = new ArrayList<ScriptingEngineCall>();
 		
@@ -139,19 +139,19 @@ public class CollectedData {
 	}
 
 	// ############### TypeDeclarations ####################
-	public void addType(Type type) {
+	public void addType(ClassDeclaration type) {
 		this.types.add(type);
 	}
 
-	public List<Type> getTypeDeclarations() {
+	public List<ClassDeclaration> getTypeDeclarations() {
 		return this.types;
 	}
 
-	public void addParameterizedType(Type type) {
+	public void addParameterizedType(ClassDeclaration type) {
 		this.paramTypes.add(type);
 	}
 
-	public List<Type> getParamTypes() {
+	public List<ClassDeclaration> getParamTypes() {
 		return this.paramTypes;
 	}
 	
