@@ -7,14 +7,27 @@ public class Project {
 	private String projectName;
 	private String projectRevision;
 	private String filePath;
+	private int loc;
 
 	
-	public Project(String projectName, String projectRevision, String filePath){
+//	ProjectName, Version, Path, Files,Language,Blank,Comment,Code
+	public Project(String projectName, String projectRevision, String filePath, int loc){
 		this.projectName = projectName;
 		this.projectRevision = projectRevision;
 		this.filePath = filePath;
+		this.loc = loc;
 	}
 	
+
+	public int getLoc() {
+		return loc;
+	}
+
+
+	public void setLoc(int loc) {
+		this.loc = loc;
+	}
+
 
 	public String getProjectName() {
 		return projectName;

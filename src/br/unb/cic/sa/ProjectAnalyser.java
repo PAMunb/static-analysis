@@ -40,6 +40,7 @@ public class ProjectAnalyser implements Callable<CollectedData> {
 	public CollectedData call() throws Exception {
 		
 		this.collectionProject.cleanData();
+		
 		this.collectionProject.setProject(project);
 		
 		CompilationUnit compilationUnit = null;
@@ -71,22 +72,8 @@ public class ProjectAnalyser implements Callable<CollectedData> {
 			}
 			
 			
-			// Visitors
-			
-//			TryStatementVisitor tsVisitor = new TryStatementVisitor(compilationUnit, file, collectionProject);
-//			MethodDeclarationVisitor mdVisitor = new MethodDeclarationVisitor(compilationUnit, file, collectionProject);
-						
-			
-			//Add visitors to search them statements in parser of each project file
-//			compilationUnit.accept(tsVisitor);
-//			compilationUnit.accept(mdVisitor);
-			
-//			compilationUnit.accept(enumVisitor);
-			
 			//Add name each file name in collecation
 			collectionProject.addNameFile(file);
-			
-	
 
 		}
 		

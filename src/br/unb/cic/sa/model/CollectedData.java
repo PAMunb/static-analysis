@@ -6,6 +6,7 @@ import java.util.List;
 public class CollectedData {
 
 	private Project project;
+	
 	private int numberOfStatements;
 
 	private List<String> analysisError;
@@ -57,9 +58,9 @@ public class CollectedData {
 	}
 
 	public CollectedData(String projectName, String projectRevision,
-			String filePath) {
+			String filePath, int totalLineCode) {
 		this();// call the default construct
-		this.project = new Project(projectName, projectRevision, filePath);
+		this.project = new Project(projectName, projectRevision, filePath, totalLineCode);
 	}
 
 	public void setProject(Project project) {
@@ -77,6 +78,7 @@ public class CollectedData {
 	public String getNameFile(int position) {
 		return this.nameFile.get(position);
 	}
+	
 
 	// ############################## Switch Block  ###################################
 	public void addSwitch(Switch s) {
@@ -202,15 +204,18 @@ public class CollectedData {
 		this.numberOfStatements = 0;
 		this.analysisError.clear();
 		this.trys.clear();
-		this.tryWithSimilarityCatch.clear();
-
-		this.methods.clear();
-		this.methodWithVargs.clear();
-		this.types.clear();
-		this.paramTypes.clear();
 		this.switchs.clear();
 		this.switchWithString.clear();
 		this.scriptingEngineCalls.clear();
+		this.nameFile.clear();;
+		this.tryWithSimilarityCatch.clear();
+		this.methods.clear();
+		this.methodWithVargs.clear();
+		this.paramMethods.clear();
+		this.types.clear();
+		this.paramTypes.clear();
+		this.variables.clear();
+		this.paramVariables.clear();
 	}
 
 }

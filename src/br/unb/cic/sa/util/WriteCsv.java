@@ -178,7 +178,6 @@ public class WriteCsv {
 			this.writeScriptingCalls(collectedData.getScriptEngineCalls(), dir.getAbsoluteFile() + "/" + Constants.CSV_SCRIPTING_CALLS);
 		}
 		
-		
 		System.out.println("Finished!");
 
 	}
