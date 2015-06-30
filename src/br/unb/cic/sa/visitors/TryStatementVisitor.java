@@ -1,6 +1,5 @@
 package br.unb.cic.sa.visitors;
 
-import org.eclipse.jdt.core.dom.ASTVisitor;
 import org.eclipse.jdt.core.dom.CompilationUnit;
 import org.eclipse.jdt.core.dom.TryStatement;
 
@@ -44,27 +43,23 @@ public class TryStatementVisitor extends Visitor implements IVisitor{
 	@Override
 	public boolean visit(TryStatement node) {
 		//add all try block to collection
-		this.collection.addTry(new Try(this.file, unit
+		
+		Try t = new Try(this.file, unit
 				.getLineNumber(node.getStartPosition()), unit
 				.getLineNumber(node.getStartPosition()
-						+ node.getLength())));
+						+ node.getLength()));
+		
+		this.collection.addTry(t);
 		
 		if(node.resources().size()>0){
-			System.out.println("Try with Resources in "+this.file);			
-			System.out.println("Start:"+unit.getLineNumber(node.getStartPosition()) +
-								"End:"+ unit.getLineNumber(node.getStartPosition() + node.getLength()));
-			
+			this.collection.addTryResource(t);
 		}
 		
 		// add try block in collection only if has similars catchs
 		if (node.catchClauses().size() > 1) {
 
 			if (this.check.check(node.catchClauses())){
-
-				this.collection.addTryWithSimilartyCatch(new Try(this.file, unit
-						.getLineNumber(node.getStartPosition()), unit
-						.getLineNumber(node.getStartPosition()
-								+ node.getLength())));
+				this.collection.addTryWithSimilartyCatch(t);
 			}
 
 		}

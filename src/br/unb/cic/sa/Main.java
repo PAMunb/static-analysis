@@ -1,5 +1,7 @@
 package br.unb.cic.sa;
 
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.util.List;
 
 import org.springframework.context.ApplicationContext;
@@ -14,6 +16,7 @@ public class Main {
 
 	
 	public static void main(String[] args) {
+	
 		
 		String projectsDir = "/home/thiago/git/Ant/";
 		
@@ -73,5 +76,4 @@ public class Main {
 			e.printStackTrace();
 		}
 	}
-
 }

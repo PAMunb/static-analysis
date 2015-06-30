@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.List;
 
 import br.unb.cic.sa.model.CollectedData;
+import br.unb.cic.sa.model.LambdaExp;
 import br.unb.cic.sa.model.Method;
 import br.unb.cic.sa.model.Project;
 import br.unb.cic.sa.model.ScriptingEngineCall;
@@ -17,10 +18,12 @@ import br.unb.cic.sa.model.Variable;
 public class WriteCsv {
 
 	private File dir;
+	private FileWriter csvLambdaExpression;
 	private FileWriter csvMethods;
 	private FileWriter csvMethodsVargs;
 	private FileWriter csvParamMethods;
 	private FileWriter csvTry;
+	private FileWriter csvTryResource;
 	private FileWriter csvTysSimilarCatch;
 	private FileWriter csvTypes;
 	private FileWriter csvParamtypes;
@@ -35,6 +38,10 @@ public class WriteCsv {
 		dir = this.createOutputDir(Constants.CSV_OUTPUT_DIT);
 
 		try {
+			
+			csvLambdaExpression = new FileWriter(dir + "/" + Constants.CSV_LAMBDA_EXPRESSION);
+			csvLambdaExpression.append(Constants.HEADER_OUTPUT_LAMBDA_EXPRESSION);
+			csvLambdaExpression.flush();
 
 			csvMethods = new FileWriter(dir + "/" + Constants.CSV_METHODS);
 			csvMethods.append(Constants.HEADER_OUTPUT_METHODS_CSV);
@@ -53,6 +60,10 @@ public class WriteCsv {
 			csvTry = new FileWriter(dir + "/" + Constants.CSV_TRYS);
 			csvTry.append(Constants.HEADER_OUTPUT_TRY);
 			csvTry.flush();
+			
+			csvTryResource = new FileWriter(dir + "/" + Constants.CSV_TRY_RESOURCE);
+			csvTryResource.append(Constants.HEADER_OUTPUT_TRY);
+			csvTryResource.flush();
 
 			csvTysSimilarCatch = new FileWriter(dir + "/"
 					+ Constants.CSV_TRY_WITH_SIMILAR_CATCH);
@@ -102,6 +113,12 @@ public class WriteCsv {
 				+ collectedData.getProject().getProjectName() + " Version "
 				+ collectedData.getProject().getProjectRevision()+ " ...");
 
+		if(collectedData.getLambdaExp().size() > 0){
+			this.write(
+					this.lambadaExpression(collectedData.getLambdaExp(), 
+											collectedData.getProject()), csvLambdaExpression);
+		}
+		
 		if (collectedData.getTypeDeclarations().size() > 0) {
 			this.write(
 					types(collectedData.getTypeDeclarations(),
@@ -148,6 +165,12 @@ public class WriteCsv {
 			this.write(
 					trys(collectedData.getTrys(), collectedData.getProject()),
 					csvTry);
+		}
+		
+		if (collectedData.getTrysResource().size() > 0) {
+			this.write(
+					trys(collectedData.getTrysResource(), collectedData.getProject()),
+					csvTryResource);
 		}
 
 		if (collectedData.getTryWithSimilartyCatch().size() > 0) {
@@ -269,11 +292,23 @@ public class WriteCsv {
 		return sb;
 	}
 
+	private StringBuilder lambadaExpression(List<LambdaExp> lambdaExp, Project project) {
+		StringBuilder sb = new StringBuilder();
+
+		lambdaExp.forEach(l -> sb.append(
+				l.getFile() + Constants.COMMA_DELIMITER + l.getStartLine()
+				+ Constants.COMMA_DELIMITER + l.getEndLine()
+				+ Constants.COMMA_DELIMITER + project.getProjectName()
+				+ Constants.COMMA_DELIMITER + project.getProjectRevision()
+				+ Constants.COMMA_DELIMITER + Constants.NEW_LINE));
+
+		return sb;
+	}
+	
 	private StringBuilder trys(List<Try> trys, Project project) {
 		StringBuilder sb = new StringBuilder();
 
-		trys.forEach(t -> sb.append(Constants.EMPTY + Constants.COMMA_DELIMITER
-				+ t.getFile() + Constants.COMMA_DELIMITER + t.getStartLine()
+		trys.forEach(t -> sb.append(t.getFile() + Constants.COMMA_DELIMITER + t.getStartLine()
 				+ Constants.COMMA_DELIMITER + t.getEndLine()
 				+ Constants.COMMA_DELIMITER + project.getProjectName()
 				+ Constants.COMMA_DELIMITER + project.getProjectRevision()

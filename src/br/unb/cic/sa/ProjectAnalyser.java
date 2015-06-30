@@ -1,5 +1,6 @@
 package br.unb.cic.sa;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.util.List;
 import java.util.concurrent.Callable;
@@ -46,7 +47,7 @@ public class ProjectAnalyser implements Callable<CollectedData> {
 		CompilationUnit compilationUnit = null;
 	
 		for (String file : IO.listFiles(project.getFilePath(), new String[] { "java" })) {
-			try {
+			try{
 				// fazer um parser de cada arquivo.java encontrado no projeto
 				compilationUnit = Parser.Instance().parse(new File(file));
 								
@@ -56,6 +57,7 @@ public class ProjectAnalyser implements Callable<CollectedData> {
 				}
 
 			} catch (Throwable e) {
+				System.out.println(e.getMessage());
 				this.collectionProject.addError(e.getMessage() + " parsing file "+ file);
 				continue;
 			}

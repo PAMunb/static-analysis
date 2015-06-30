@@ -10,9 +10,11 @@ public class CollectedData {
 	private int numberOfStatements;
 
 	private List<String> analysisError;
+	private List<LambdaExp> lbdexps;
 	private List<Switch> switchs;
 	private List<Switch> switchWithString;
 	private List<Try> trys;
+	private List<Try> trysResource;
 	private List<Try> tryWithSimilarityCatch;
 	private List<ScriptingEngineCall> scriptingEngineCalls;
 	
@@ -29,9 +31,11 @@ public class CollectedData {
 	public CollectedData() {
 		this.analysisError = new ArrayList<String>();
 
+		this.lbdexps = new ArrayList<>();
 		this.switchs = new ArrayList<>();
 		this.switchWithString = new ArrayList<>();
 		this.trys = new ArrayList<Try>();
+		this.trysResource = new ArrayList<>();
 		this.tryWithSimilarityCatch = new ArrayList<Try>();
 		
 		this.methods = new ArrayList<Method>();
@@ -79,6 +83,17 @@ public class CollectedData {
 		return this.nameFile.get(position);
 	}
 	
+	
+
+	// ############################## Lambda Exp Block  ###################################
+	public void addLambdaExp(LambdaExp l) {
+		this.lbdexps.add(l);
+	}
+
+	public List<LambdaExp> getLambdaExp() {
+		return this.lbdexps;
+	}
+
 
 	// ############################## Switch Block  ###################################
 	public void addSwitch(Switch s) {
@@ -104,6 +119,14 @@ public class CollectedData {
 
 	public List<Try> getTrys() {
 		return this.trys;
+	}
+	
+	public void addTryResource(Try t) {
+		this.trysResource.add(t);
+	}
+
+	public List<Try> getTrysResource() {
+		return this.trysResource;
 	}
 
 	public void addTryWithSimilartyCatch(Try tryWithSimilarityCatch) {
@@ -203,7 +226,9 @@ public class CollectedData {
 	public void cleanData() {
 		this.numberOfStatements = 0;
 		this.analysisError.clear();
+		this.lbdexps.clear();
 		this.trys.clear();
+		this.trysResource.clear();
 		this.switchs.clear();
 		this.switchWithString.clear();
 		this.scriptingEngineCalls.clear();
