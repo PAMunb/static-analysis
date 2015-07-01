@@ -5,6 +5,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
 
+import br.unb.cic.sa.model.ClassDeclaration;
 import br.unb.cic.sa.model.CollectedData;
 import br.unb.cic.sa.model.LambdaExp;
 import br.unb.cic.sa.model.Method;
@@ -12,7 +13,6 @@ import br.unb.cic.sa.model.Project;
 import br.unb.cic.sa.model.ScriptingEngineCall;
 import br.unb.cic.sa.model.Switch;
 import br.unb.cic.sa.model.Try;
-import br.unb.cic.sa.model.ClassDeclaration;
 import br.unb.cic.sa.model.Variable;
 
 public class WriteCsv {

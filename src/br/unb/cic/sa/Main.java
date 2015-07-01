@@ -1,7 +1,5 @@
 package br.unb.cic.sa;
 
-import java.io.FileInputStream;
-import java.io.IOException;
 import java.util.List;
 
 import org.springframework.context.ApplicationContext;
@@ -18,20 +16,20 @@ public class Main {
 	public static void main(String[] args) {
 	
 		
-		String projectsDir = "/home/thiago/git/Ant/";
+//		String projectsDir = "/home/static-analysis/Documentos/projetos/spring-framework/";
 		
-		try{
-			
-			String command = "python Cloc.py "+ projectsDir ;
-			Process p = Runtime.getRuntime().exec(command, null);
-
-	        p.waitFor();
-			p.destroy();
-			
-		}catch(Exception e){
-			System.out.println(e.getMessage());
-			e.getStackTrace();
-		}
+//		try{
+//			
+//			String command = "python Cloc.py "+ projectsDir ;
+//			Process p = Runtime.getRuntime().exec(command, null);
+//
+//	        p.waitFor();
+//			p.destroy();
+//			
+//		}catch(Exception e){
+//			System.out.println(e.getMessage());
+//			e.getStackTrace();
+//		}
 
 		String pathCsv = "input.csv";
 		ReadCsv rcsv = new ReadCsv(pathCsv);

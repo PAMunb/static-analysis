@@ -1,7 +1,6 @@
 package br.unb.cic.sa.visitors;
 
 import org.eclipse.jdt.core.dom.CompilationUnit;
-import org.eclipse.jdt.internal.compiler.ast.ForeachStatement;
 
 import br.unb.cic.sa.model.CollectedData;
 
