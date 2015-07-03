@@ -5,8 +5,8 @@
 	<artifactId>br.unb.cic</artifactId>
 	<version>1.0.0</version>
 	<build>
-		<sourceDirectory>/home/static-analysis/Documentos/static-analysis/src</sourceDirectory>
-		<testSourceDirectory>/home/static-analysis/Documentos/static-analysis/src-tests</testSourceDirectory>
+		<sourceDirectory>//home/thiago/git/static-analysis/src</sourceDirectory>
+		<testSourceDirectory>/home/thiago/git/static-analysis/src-tests</testSourceDirectory>
 		<resources>
 			<resource>
 				<directory>src</directory>

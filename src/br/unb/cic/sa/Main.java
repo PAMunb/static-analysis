@@ -14,22 +14,21 @@ public class Main {
 
 	
 	public static void main(String[] args) {
-	
 		
-//		String projectsDir = "/home/static-analysis/Documentos/projetos/spring-framework/";
+		final String projectsDir = System.getenv("PROJECTS");
 		
-//		try{
-//			
-//			String command = "python Cloc.py "+ projectsDir ;
-//			Process p = Runtime.getRuntime().exec(command, null);
-//
-//	        p.waitFor();
-//			p.destroy();
-//			
-//		}catch(Exception e){
-//			System.out.println(e.getMessage());
-//			e.getStackTrace();
-//		}
+		try{
+			
+			String command = "python Cloc.py "+ projectsDir ;
+			Process p = Runtime.getRuntime().exec(command, null);
+
+	        p.waitFor();
+			p.destroy();
+			
+		}catch(Exception e){
+			System.out.println(e.getMessage());
+			e.getStackTrace();
+		}
 
 		String pathCsv = "input.csv";
 		ReadCsv rcsv = new ReadCsv(pathCsv);
