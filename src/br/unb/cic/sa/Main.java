@@ -12,24 +12,23 @@ import br.unb.cic.sa.util.WriteCsv;
 
 public class Main {
 
-	
+	 
 	public static void main(String[] args) {
-	
 		
-//		String projectsDir = "/home/static-analysis/Documentos/projetos/spring-framework/";
-		
-//		try{
-//			
-//			String command = "python Cloc.py "+ projectsDir ;
-//			Process p = Runtime.getRuntime().exec(command, null);
-//
-//	        p.waitFor();
-//			p.destroy();
-//			
-//		}catch(Exception e){
-//			System.out.println(e.getMessage());
-//			e.getStackTrace();
-//		}
+		final String projectsDir = System.getenv("PROJECTS");
+		System.out.println(projectsDir);
+		try{
+			
+			String command = "python Cloc.py "+ projectsDir;
+			Process p = Runtime.getRuntime().exec(command, null);
+
+	        p.waitFor();
+			p.destroy();
+			
+		}catch(Exception e){
+			System.out.println(e.getMessage());
+			e.getStackTrace();
+		}
 
 		String pathCsv = "input.csv";
 		ReadCsv rcsv = new ReadCsv(pathCsv);
