@@ -1,39 +1,12 @@
 package br.unb.cic.sa.model;
 
-public class LambdaExp {
+public class LambdaExp extends AbsStatementModel{
 
-	private String file;
-	private int startLine;
-	private int endLine;
 	
 	public LambdaExp(String file, int startLine, int endLine){
-		this.file = file;
-		this.startLine = startLine;
-		this.endLine = endLine;
-	}
-
-	public String getFile() {
-		return file;
-	}
-
-	public void setFile(String file) {
-		this.file = file;
-	}
-
-	public int getStartLine() {
-		return startLine;
-	}
-
-	public void setStartLine(int startLine) {
-		this.startLine = startLine;
-	}
-
-	public int getEndLine() {
-		return endLine;
-	}
-
-	public void setEndLine(int endLine) {
-		this.endLine = endLine;
+		this.setFile(file);
+		this.setStartLine(startLine);
+		this.setEndLine(endLine);
 	}
 	
 }

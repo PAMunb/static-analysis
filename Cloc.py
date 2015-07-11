@@ -1,6 +1,5 @@
 import os, re, commands, sys
 
-
 def openFile():
 	f = open('input.csv', 'w+')
 	return f
@@ -17,35 +16,30 @@ def listVersionProjects(directory):
 	return dirs
 	
 
-def execCloc(project, dirs, file):
+def execCloc(projectName, pathProject, version):
+
+	comando = "cloc  --match-f='^*.java' "+ pathProject+" --csv "
+	conteudo = commands.getoutput(comando)
 	
-	#f.write("ProjectName, Version, Path, Files,Language,Blank,Comment,Code,\n")
+	#explodir a saida do cloc na quebra de linha
+	csv = conteudo.split('\n')
+	loc = 0
+	for row in csv:
+		if "Java" in row:
+			loc = row.split(',')[-1]
+			break
 
-	for dir in dirs:
-		
-		projectName = project
-		#print "Project name",projectName
+	#print projectName, version, loc
 
-		comando = "cloc --match-f='^*.java' "+ dir + " --csv"
-		conteudo = commands.getoutput(comando)
-		
-		#explodir a saida do cloc na quebra de linha
-		csv = conteudo.split('\n')
+	print projectName+";"+ version+";"+pathProject+";"+str(loc)+";"
+	file.write(projectName+";"+ version+";"+pathProject+";"+str(loc)+";\n")
 
-		#capturar o total da linhas de codigo da saida csv 
-		loc = (csv[-1]).split(',')[-1]
-
-		# explodir o nome do diretorio pelo '-' e capturar os numeros que sao os da versao
-		version = dir.split('-')[2]
-		#print "Version", version
-
-		file.write(projectName+","+ version+","+os.path.abspath(dir)+","+loc+",\n")
-		#print os.path.abspath(dir)+", "+csv[-1]
+	return loc
 
 
 if __name__ == "__main__":
 
-	defaultDir = '/home/thiago/git/Ant/'
+	defaultDir = '/home/thiago/git/Projetos/'
 
 	#diretorio que contem os projetos a serem computados pelo cloc.
 	pathDir = ''
@@ -64,12 +58,17 @@ if __name__ == "__main__":
 
 
 	projects = listProjects(pathDir)
-	print projects
 
+	#print projects
+	loc = 0
 	for project in projects:
-		pathProject = pathDir+"/"+project+"/"
-		versionProjects = listVersionProjects(pathProject)
-		versionProjects.sort()
-		execCloc(project, versionProjects, file)
+		allVersionProjects = listProjects(defaultDir+project)
+		allVersionProjects.sort()
+
+		for version in allVersionProjects:
+			pathProject = pathDir+project+"/"+version+"/"
+			loc += int(execCloc(project, pathProject, version))
+
+	#print "Total Lines of Code:", loc
 
 	closeFile(file)
