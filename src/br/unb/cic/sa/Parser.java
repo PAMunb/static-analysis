@@ -69,6 +69,7 @@ public class Parser {
 		options.put(JavaCore.COMPILER_SOURCE, JavaCore.VERSION_1_8);
 		
 		parser.setKind(ASTParser.K_COMPILATION_UNIT);
+		parser.setResolveBindings(true);
 		parser.setCompilerOptions(options);
 		parser.setSource(contents);
 	

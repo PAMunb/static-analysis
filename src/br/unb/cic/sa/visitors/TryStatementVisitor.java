@@ -7,7 +7,7 @@ import br.unb.cic.sa.model.CollectedData;
 import br.unb.cic.sa.model.Try;
 import br.unb.cic.sa.similarity.CatchSimilarityInTryBlock;
 
-public class TryStatementVisitor extends Visitor implements IVisitor{
+public class TryStatementVisitor extends Visitor{
 
 
 	

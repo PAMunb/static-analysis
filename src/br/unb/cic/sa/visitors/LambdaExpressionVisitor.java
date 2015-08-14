@@ -4,7 +4,7 @@ import org.eclipse.jdt.core.dom.LambdaExpression;
 
 import br.unb.cic.sa.model.LambdaExp;
 
-public class LambdaExpressionVisitor extends Visitor implements IVisitor{
+public class LambdaExpressionVisitor extends Visitor{
 
 	@Override
 	public boolean visit(LambdaExpression node) {

@@ -7,6 +7,7 @@ import java.util.List;
 
 import br.unb.cic.sa.model.ClassDeclaration;
 import br.unb.cic.sa.model.CollectedData;
+import br.unb.cic.sa.model.If;
 import br.unb.cic.sa.model.LambdaExp;
 import br.unb.cic.sa.model.Method;
 import br.unb.cic.sa.model.Project;
@@ -18,6 +19,7 @@ import br.unb.cic.sa.model.Variable;
 public class WriteCsv {
 
 	private File dir;
+	private FileWriter csvIfString;
 	private FileWriter csvLambdaExpression;
 	private FileWriter csvMethods;
 	private FileWriter csvMethodsVargs;
@@ -38,6 +40,10 @@ public class WriteCsv {
 		dir = this.createOutputDir(Constants.CSV_OUTPUT_DIT);
 
 		try {
+			
+			csvIfString = new FileWriter(dir + "/" + Constants.CSV_IF_STRING);
+			csvIfString.append(Constants.HEADER_OUTPUT_IF_STRING);
+			csvIfString.flush();
 			
 			csvLambdaExpression = new FileWriter(dir + "/" + Constants.CSV_LAMBDA_EXPRESSION);
 			csvLambdaExpression.append(Constants.HEADER_OUTPUT_LAMBDA_EXPRESSION);
@@ -113,6 +119,12 @@ public class WriteCsv {
 				+ collectedData.getProject().getProjectName() + " Version "
 				+ collectedData.getProject().getProjectRevision()+ " ...");
 
+		if(collectedData.getIfString().size() > 0){
+			this.write(
+					this.ifs(collectedData.getIfString(),
+										collectedData.getProject()), csvIfString);
+		}
+		
 		if(collectedData.getLambdaExp().size() > 0){
 			this.write(
 					this.lambadaExpression(collectedData.getLambdaExp(), 
@@ -249,6 +261,19 @@ public class WriteCsv {
 
 		return outputDir;
 
+	}
+	
+	
+	private StringBuilder ifs(List<If> i, Project project) {
+		StringBuilder sb = new StringBuilder();
+
+		i.forEach(t -> sb.append(t.getFile() + Constants.COMMA_DELIMITER + t.getStartLine()
+				+ Constants.COMMA_DELIMITER + t.getEndLine()
+				+ Constants.COMMA_DELIMITER + project.getProjectName()
+				+ Constants.COMMA_DELIMITER + project.getProjectRevision()
+				+ Constants.COMMA_DELIMITER + Constants.NEW_LINE));
+
+		return sb;
 	}
 
 	private StringBuilder methods(List<Method> methods, Project project) {

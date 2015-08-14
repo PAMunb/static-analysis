@@ -9,6 +9,7 @@ public class CollectedData {
 	
 	private int numberOfStatements;
 
+	private List<If> ifString;
 	private List<String> analysisError;
 	private List<LambdaExp> lbdexps;
 	private List<Switch> switchs;
@@ -34,6 +35,9 @@ public class CollectedData {
 		this.lbdexps = new ArrayList<>();
 		this.switchs = new ArrayList<>();
 		this.switchWithString = new ArrayList<>();
+		
+		this.ifString = new ArrayList<>();
+		
 		this.trys = new ArrayList<Try>();
 		this.trysResource = new ArrayList<>();
 		this.tryWithSimilarityCatch = new ArrayList<Try>();
@@ -81,6 +85,16 @@ public class CollectedData {
 
 	public String getNameFile(int position) {
 		return this.nameFile.get(position);
+	}
+	
+	
+	// ############################## If String Block  ###################################
+	public void addIfString(If i){
+		this.ifString.add(i);
+	}
+	
+	public List<If> getIfString(){
+		return this.ifString;
 	}
 	
 	
@@ -226,6 +240,7 @@ public class CollectedData {
 	public void cleanData() {
 		this.numberOfStatements = 0;
 		this.analysisError.clear();
+		this.ifString.clear();
 		this.lbdexps.clear();
 		this.trys.clear();
 		this.trysResource.clear();

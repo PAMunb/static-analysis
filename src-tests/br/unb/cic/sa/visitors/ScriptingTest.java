@@ -1,16 +1,5 @@
 package br.unb.cic.sa.visitors;
 
-import java.io.File;
-
-import javax.script.ScriptEngine;
-import javax.script.ScriptEngineManager;
-import javax.script.ScriptException;
-
-import org.eclipse.jdt.core.dom.CompilationUnit;
-import org.junit.Test;
-
-import br.unb.cic.sa.Parser;
-import br.unb.cic.sa.model.CollectedData;
 
 public class ScriptingTest {
 
