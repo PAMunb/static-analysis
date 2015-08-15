@@ -45,6 +45,8 @@ public class TryStatementsTest {
 	public void listTrys() {
 		assertEquals(3, collection.getTrys().size());
 		assertEquals(2, collection.getTryWithSimilartyCatch().size());
+		assertEquals(3, collection.getTrys().size());
+		assertEquals(2, collection.getTryWithSimilartyCatch().size());
 	}
 	
 	@Test
