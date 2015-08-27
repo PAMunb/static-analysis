@@ -6,7 +6,7 @@ import org.eclipse.jdt.core.dom.SwitchStatement;
 
 import br.unb.cic.sa.model.Switch;
 
-public class SwitchStatementVisitor extends Visitor implements IVisitor {
+public class SwitchStatementVisitor extends Visitor{
 
 		@Override
 	public boolean visit(SwitchStatement node) {

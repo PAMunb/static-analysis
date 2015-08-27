@@ -3,7 +3,6 @@ package br.unb.cic.sa.visitors;
 import static org.junit.Assert.assertEquals;
 
 import java.io.File;
-import java.util.List;
 
 import org.eclipse.jdt.core.dom.ASTVisitor;
 import org.eclipse.jdt.core.dom.CompilationUnit;
@@ -13,50 +12,44 @@ import org.junit.Test;
 
 import br.unb.cic.sa.Parser;
 import br.unb.cic.sa.model.CollectedData;
-import br.unb.cic.sa.model.Try;
 
-public class TryStatementsTest {
+public class SwitchStringTest {
 
 	private Parser parser;
 	private CompilationUnit unit;
 	private CollectedData collection;
-	private IVisitor tsVisitor;
+	private IVisitor SwitchString;
 
 	@Before
 	public void Infra() {
-		String file = "src-tests/br/unb/cic/sa/infra/TrysInfra.java";
+		String file = "src-tests/br/unb/cic/sa/infra/Switch.java";
 		parser = Parser.Instance();
 		unit = parser.parse(new File(file));
 		collection = new CollectedData();
 		
-		tsVisitor.setColletion(collection);
-		tsVisitor.setFile(file);
-		tsVisitor.setUnit(unit);
+		SwitchString.setUnit(unit);
+		SwitchString.setFile(file);
+		SwitchString.setColletion(collection);
 	}
 
 	@Before
 	public void acceptVisitor() {
-		unit.accept((ASTVisitor) tsVisitor);
+		unit.accept((ASTVisitor) SwitchString);
 	}
 
 	@After
 	public void tearDown() {
 		collection.cleanData();
 	}
-
+	
 	@Test
-	public void listTrys() {
-		assertEquals(3, collection.getTrys().size());
-		assertEquals(2, collection.getTryWithSimilartyCatch().size());
-		assertEquals(3, collection.getTrys().size());
-		assertEquals(2, collection.getTryWithSimilartyCatch().size());
+	public void ListSwitchs() {
+		assertEquals(3, collection.getSwitch().size());
 	}
 	
 	@Test
-	public void listTryWithSimilarCatch(){
-		List<Try> trys = collection.getTryWithSimilartyCatch();
-		assertEquals(2, trys.size());
+	public void ListSwitchString(){
+		assertEquals(2, collection.getSwitchWithString().size());
 	}
-	
 
 }

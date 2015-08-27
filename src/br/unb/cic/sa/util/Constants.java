@@ -7,7 +7,7 @@ public interface Constants {
 	 * Csv Files Output
 	 */
 	
-	String CSV_IF_STRING = "ifString.csv";
+	String CSV_OPPORTUNITIES_SWITCH_STRING = "opportunitiesSwitchString.csv";
 	String CSV_LAMBDA_EXPRESSION = "lambda.csv";
 	String CSV_METHODS = "methods.csv";
 	String CSV_METHOD_WITH_VARGS = "methodVargs.csv";
@@ -23,6 +23,8 @@ public interface Constants {
 	String CSV_SWITCH_WITH_STRING = "switchWithString.csv";
 	String CSV_SCRIPTING_CALLS = "scriptingCalls.csv";
 	String CSV_OUTPUT_DIT = "OutputCSV";
+	String CSV_OUTPUT_OPPORTUNITIES_LAMBDA_EXP = "opportunitiesLambdaExp.csv";
+	
 	String CSV_ERROR = "error.csv";
 	
 	String PROJECT_NAME = "Project Name";
@@ -77,7 +79,7 @@ public interface Constants {
 	
 
 	
-	String HEADER_OUTPUT_IF_STRING = 
+	String HEADER_OUTPUT_OPPORTUNITIES_SWITCH_STRING = 
 			Constants.FILE + Constants.COMMA_DELIMITER +
 			Constants.START_NUMEBER_LINE + Constants.COMMA_DELIMITER +
 			Constants.END_NUMEBER_LINE + Constants.COMMA_DELIMITER +
@@ -140,6 +142,16 @@ public interface Constants {
 			Constants.PROJECT_NAME + Constants.COMMA_DELIMITER +
 			Constants.VERSION_PROJECT + Constants.COMMA_DELIMITER +
 			Constants.NEW_LINE;
+	
+	
+	String HEADER_OUTPUT_OPPORTUNITIES_LAMBDA_EXP = 
+			Constants.FILE + Constants.COMMA_DELIMITER +
+			Constants.START_NUMEBER_LINE + Constants.COMMA_DELIMITER +
+			Constants.END_NUMEBER_LINE + Constants.COMMA_DELIMITER +
+			Constants.PROJECT_NAME + Constants.COMMA_DELIMITER +
+			Constants.VERSION_PROJECT + Constants.COMMA_DELIMITER +
+			Constants.NEW_LINE;
+	
 	
 	String HEADER_ERROR = 
 			Constants.ERROR + Constants.COMMA_DELIMITER +

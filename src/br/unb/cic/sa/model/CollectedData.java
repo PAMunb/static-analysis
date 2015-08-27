@@ -9,7 +9,7 @@ public class CollectedData {
 	
 	private int numberOfStatements;
 
-	private List<If> ifString;
+	private List<OpportunitieSwitchString> opportunitiesSwichString;
 	private List<String> analysisError;
 	private List<LambdaExp> lbdexps;
 	private List<Switch> switchs;
@@ -26,6 +26,8 @@ public class CollectedData {
 	private List<ClassDeclaration> paramTypes;
 	private List<Variable> variables;
 	private List<Variable> paramVariables;
+	
+	private List<OpportunitiesLambdaExp> opportunitesLambdaExp;
 
 	private List<String> nameFile;
 
@@ -36,7 +38,7 @@ public class CollectedData {
 		this.switchs = new ArrayList<>();
 		this.switchWithString = new ArrayList<>();
 		
-		this.ifString = new ArrayList<>();
+		this.opportunitiesSwichString = new ArrayList<>();
 		
 		this.trys = new ArrayList<Try>();
 		this.trysResource = new ArrayList<>();
@@ -60,6 +62,8 @@ public class CollectedData {
 		this.variables = new ArrayList<>();
 		this.paramVariables = new ArrayList<>();
 		this.nameFile = new ArrayList<>();
+		
+		this.opportunitesLambdaExp = new ArrayList<>();
 
 		this.numberOfStatements = 0;
 
@@ -89,12 +93,12 @@ public class CollectedData {
 	
 	
 	// ############################## If String Block  ###################################
-	public void addIfString(If i){
-		this.ifString.add(i);
+	public void addOpportunitieSwichString(OpportunitieSwitchString i){
+		this.opportunitiesSwichString.add(i);
 	}
 	
-	public List<If> getIfString(){
-		return this.ifString;
+	public List<OpportunitieSwitchString> getOpportunitieSwichString(){
+		return this.opportunitiesSwichString;
 	}
 	
 	
@@ -236,11 +240,23 @@ public class CollectedData {
 		return scriptingEngineCalls;
 	}
 
+	
+	
+	// ############### Opportunities Lambda Expressions ####################
+	public void addOpportunitiesLambdaExp(OpportunitiesLambdaExp o){
+		this.opportunitesLambdaExp.add(o);
+	}
+	
+	public List<OpportunitiesLambdaExp> getOpportunitiesLambdaExp(){
+		return this.opportunitesLambdaExp;
+	}
+	
+	
 	// ################ Clear ########################
 	public void cleanData() {
 		this.numberOfStatements = 0;
 		this.analysisError.clear();
-		this.ifString.clear();
+		this.opportunitiesSwichString.clear();
 		this.lbdexps.clear();
 		this.trys.clear();
 		this.trysResource.clear();
@@ -256,6 +272,7 @@ public class CollectedData {
 		this.paramTypes.clear();
 		this.variables.clear();
 		this.paramVariables.clear();
+		this.opportunitesLambdaExp.clear();
 	}
 
 }

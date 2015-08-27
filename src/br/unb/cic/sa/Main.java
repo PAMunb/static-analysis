@@ -11,24 +11,24 @@ import br.unb.cic.sa.util.ReadCsv;
 import br.unb.cic.sa.util.WriteCsv;
 
 public class Main {
-
 	 
 	public static void main(String[] args) {
 		
-		final String projectsDir = System.getenv("PROJECTS");
-		System.out.println(projectsDir);
-		try{
-			
-			String command = "python Cloc.py "+ projectsDir;
-			Process p = Runtime.getRuntime().exec(command, null);
-
-	        p.waitFor();
-			p.destroy();
-			
-		}catch(Exception e){
-			System.out.println(e.getMessage());
-			e.getStackTrace();
-		}
+		
+//		final String projectsDir = System.getenv("PROJECTS");
+//		System.out.println(projectsDir);
+//		try{
+//			
+//			String command = "python Cloc.py "+ projectsDir;
+//			Process p = Runtime.getRuntime().exec(command, null);
+//
+//	        p.waitFor();
+//			p.destroy();
+//			
+//		}catch(Exception e){
+//			System.out.println(e.getMessage());
+//			e.getStackTrace();
+//		}
 
 		String pathCsv = "input.csv";
 		ReadCsv rcsv = new ReadCsv(pathCsv);
@@ -51,19 +51,15 @@ public class Main {
 		
 		writer.close();
 		
-		
 		System.out.println("TotalLoc: "+ totalLoc);
 	}
 
 	private static void execute(ProjectAnalyser pa, Project project, WriteCsv writer){
 //		analysis each project
 		pa.setProject(project);
-
-		System.out.println("Project has "+project.getLoc() + " loc.");
 		
 		try {
 			CollectedData data = pa.call();
-			System.out.println("Project:"+data.getProject().getProjectName()+  " Total line code:"+data.getProject().getLoc());
 			writer.writeCsv(data);
 			data.cleanData();
 

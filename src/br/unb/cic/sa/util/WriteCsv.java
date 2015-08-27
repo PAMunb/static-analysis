@@ -7,9 +7,10 @@ import java.util.List;
 
 import br.unb.cic.sa.model.ClassDeclaration;
 import br.unb.cic.sa.model.CollectedData;
-import br.unb.cic.sa.model.If;
+import br.unb.cic.sa.model.OpportunitieSwitchString;
 import br.unb.cic.sa.model.LambdaExp;
 import br.unb.cic.sa.model.Method;
+import br.unb.cic.sa.model.OpportunitiesLambdaExp;
 import br.unb.cic.sa.model.Project;
 import br.unb.cic.sa.model.ScriptingEngineCall;
 import br.unb.cic.sa.model.Switch;
@@ -33,6 +34,7 @@ public class WriteCsv {
 	private FileWriter csvParamVariables;
 	private FileWriter csvSwitch;
 	private FileWriter csvSwithWithString;
+	private FileWriter csvOpportunitiesLambdaExp;
 	private FileWriter csvError;
 
 	public WriteCsv() {
@@ -41,8 +43,8 @@ public class WriteCsv {
 
 		try {
 			
-			csvIfString = new FileWriter(dir + "/" + Constants.CSV_IF_STRING);
-			csvIfString.append(Constants.HEADER_OUTPUT_IF_STRING);
+			csvIfString = new FileWriter(dir + "/" + Constants.CSV_OPPORTUNITIES_SWITCH_STRING);
+			csvIfString.append(Constants.HEADER_OUTPUT_OPPORTUNITIES_SWITCH_STRING);
 			csvIfString.flush();
 			
 			csvLambdaExpression = new FileWriter(dir + "/" + Constants.CSV_LAMBDA_EXPRESSION);
@@ -101,6 +103,11 @@ public class WriteCsv {
 					+ Constants.CSV_SWITCH_WITH_STRING);
 			csvSwithWithString.append(Constants.HEADER_OUTPUT_SWITCH);
 			csvSwithWithString.flush();
+			
+			
+			csvOpportunitiesLambdaExp = new FileWriter(dir + "/" + Constants.CSV_OUTPUT_OPPORTUNITIES_LAMBDA_EXP);
+			csvOpportunitiesLambdaExp.append(Constants.HEADER_OUTPUT_OPPORTUNITIES_LAMBDA_EXP);
+			csvOpportunitiesLambdaExp.flush();
 
 			csvError = new FileWriter(dir + "/" + Constants.CSV_ERROR);
 			csvError.append(Constants.HEADER_ERROR);
@@ -118,10 +125,12 @@ public class WriteCsv {
 		System.out.println("Generating output file project "
 				+ collectedData.getProject().getProjectName() + " Version "
 				+ collectedData.getProject().getProjectRevision()+ " ...");
+		
+		System.out.println("LOC: "+collectedData.getProject().getLoc());
 
-		if(collectedData.getIfString().size() > 0){
+		if(collectedData.getOpportunitieSwichString().size() > 0){
 			this.write(
-					this.ifs(collectedData.getIfString(),
+					this.ifs(collectedData.getOpportunitieSwichString(),
 										collectedData.getProject()), csvIfString);
 		}
 		
@@ -213,7 +222,16 @@ public class WriteCsv {
 			this.writeScriptingCalls(collectedData.getScriptEngineCalls(), dir.getAbsoluteFile() + "/" + Constants.CSV_SCRIPTING_CALLS);
 		}
 		
-		System.out.println("Finished!");
+		
+		if (collectedData.getOpportunitiesLambdaExp().size() > 0) {
+			this.write(
+					opportunitiesLambdaExp(collectedData.getOpportunitiesLambdaExp(), collectedData.getProject()),
+					csvOpportunitiesLambdaExp);
+		}
+
+		
+		
+		System.out.println("Finished!\n");
 
 	}
 
@@ -264,7 +282,7 @@ public class WriteCsv {
 	}
 	
 	
-	private StringBuilder ifs(List<If> i, Project project) {
+	private StringBuilder ifs(List<OpportunitieSwitchString> i, Project project) {
 		StringBuilder sb = new StringBuilder();
 
 		i.forEach(t -> sb.append(t.getFile() + Constants.COMMA_DELIMITER + t.getStartLine()
@@ -342,6 +360,20 @@ public class WriteCsv {
 		return sb;
 	}
 
+	
+	private StringBuilder opportunitiesLambdaExp(List<OpportunitiesLambdaExp> op, Project project) {
+		StringBuilder sb = new StringBuilder();
+
+		op.forEach(t -> sb.append(t.getFile() + Constants.COMMA_DELIMITER + t.getStartLine()
+				+ Constants.COMMA_DELIMITER + t.getEndLine()
+				+ Constants.COMMA_DELIMITER + project.getProjectName()
+				+ Constants.COMMA_DELIMITER + project.getProjectRevision()
+				+ Constants.COMMA_DELIMITER + Constants.NEW_LINE));
+
+		return sb;
+	}
+	
+	
 	private StringBuilder switchs(List<Switch> switchs, Project project) {
 		StringBuilder sb = new StringBuilder();
 
@@ -388,6 +420,7 @@ public class WriteCsv {
 			csvParamVariables.close();
 			csvSwitch.close();
 			csvSwithWithString.close();
+			csvOpportunitiesLambdaExp.close();
 			csvError.close();
 		} catch (IOException e) {
 			e.printStackTrace();

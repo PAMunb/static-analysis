@@ -1,44 +1,14 @@
 package br.unb.cic.sa.visitors;
 
-import org.eclipse.jdt.core.dom.CompilationUnit;
 import org.eclipse.jdt.core.dom.TryStatement;
 
-import br.unb.cic.sa.model.CollectedData;
 import br.unb.cic.sa.model.Try;
 import br.unb.cic.sa.similarity.CatchSimilarityInTryBlock;
 
 public class TryStatementVisitor extends Visitor{
 
-
+	private CatchSimilarityInTryBlock check = new CatchSimilarityInTryBlock();
 	
-	private CatchSimilarityInTryBlock check;
-	
-	public TryStatementVisitor(){
-		super();
-		this.check = new CatchSimilarityInTryBlock();
-	}
-	
-	
-	public TryStatementVisitor(CompilationUnit unit, String file, CollectedData collection) {
-		super(unit, file, collection);
-		this.check = new CatchSimilarityInTryBlock();
-	}
-	
-
-	@Override
-	public void setUnit(CompilationUnit unit) {
-		this.unit = unit;
-	}
-	@Override
-	public void setColletion(CollectedData colletion) {
-		this.collection = colletion;
-	}
-	
-	@Override
-	public void setFile(String file) {
-		this.file = file;
-	}
-
 
 	@Override
 	public boolean visit(TryStatement node) {
