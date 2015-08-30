@@ -16,6 +16,7 @@
 	<bean id="scVisitor" class="br.unb.cic.sa.visitors.ScriptingVisitor"/>
 	<bean id="opportunitiesSwichStringVisitor" class="br.unb.cic.sa.visitors.OpportunitiesSwitchStringVisitor"/>
 	<bean id="opportunitiesLambdaExpVisitor" class="br.unb.cic.sa.visitors.OpportunitiesLambdaExpVisitor"/>
+	<bean id="anonymousClass" class="br.unb.cic.sa.visitors.AnonymousClassVisitor"/>
 	<bean id="varVisitor" class="br.unb.cic.sa.visitors.VariableDeclarationVisitor"/>
 	<bean id="lambdaVisitor" class="br.unb.cic.sa.visitors.LambdaExpressionVisitor"/>
 
@@ -24,6 +25,7 @@
 	<bean id="pa" class="br.unb.cic.sa.ProjectAnalyser">
 		<property name="listVisitors">
 			<list>
+			    <ref bean="anonymousClass"/>
 				<ref bean="opportunitiesLambdaExpVisitor"/>
 				<ref bean="opportunitiesSwichStringVisitor"/>
 				<ref bean="tsVisitor"/>

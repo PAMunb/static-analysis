@@ -28,6 +28,8 @@ public class CollectedData {
 	private List<Variable> paramVariables;
 	
 	private List<OpportunitiesLambdaExp> opportunitesLambdaExp;
+	private List<AnonymousClass> anonymousClass;
+	
 
 	private List<String> nameFile;
 
@@ -39,6 +41,7 @@ public class CollectedData {
 		this.switchWithString = new ArrayList<>();
 		
 		this.opportunitiesSwichString = new ArrayList<>();
+		this.anonymousClass = new ArrayList<>();
 		
 		this.trys = new ArrayList<Try>();
 		this.trysResource = new ArrayList<>();
@@ -50,7 +53,7 @@ public class CollectedData {
 		this.types = new ArrayList<ClassDeclaration>();
 		this.paramTypes = new ArrayList<ClassDeclaration>();
 		
-		scriptingEngineCalls = new ArrayList<ScriptingEngineCall>();
+		this.scriptingEngineCalls = new ArrayList<ScriptingEngineCall>();
 		
 		this.nameFile = new ArrayList<String>();
 		this.tryWithSimilarityCatch = new ArrayList<>();
@@ -101,6 +104,16 @@ public class CollectedData {
 		return this.opportunitiesSwichString;
 	}
 	
+	
+	
+	// ############################## Anonymous Class Block  ###################################
+	public void addAnonymousClass(AnonymousClass a){
+		this.anonymousClass.add(a);
+	}
+	
+	public List<AnonymousClass> getAnonymousClass(){
+		return this.anonymousClass;
+	}
 	
 
 	// ############################## Lambda Exp Block  ###################################
@@ -273,6 +286,7 @@ public class CollectedData {
 		this.variables.clear();
 		this.paramVariables.clear();
 		this.opportunitesLambdaExp.clear();
+		this.anonymousClass.clear();
 	}
 
 }

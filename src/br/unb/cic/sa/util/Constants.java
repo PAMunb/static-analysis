@@ -7,6 +7,7 @@ public interface Constants {
 	 * Csv Files Output
 	 */
 	
+	String CSV_ANONYMOUS_CLASS = "anonymousClass.csv";
 	String CSV_OPPORTUNITIES_SWITCH_STRING = "opportunitiesSwitchString.csv";
 	String CSV_LAMBDA_EXPRESSION = "lambda.csv";
 	String CSV_METHODS = "methods.csv";
@@ -78,6 +79,14 @@ public interface Constants {
 	String TYPE_OF_VARIABLE = "Type of variable";
 	
 
+	
+	String HEADER_OUTPUT_ANONYMOUS_CLASS = 	
+			Constants.FILE + Constants.COMMA_DELIMITER +
+			Constants.START_NUMEBER_LINE + Constants.COMMA_DELIMITER +
+			Constants.END_NUMEBER_LINE + Constants.COMMA_DELIMITER +
+			Constants.PROJECT_NAME + Constants.COMMA_DELIMITER +
+			Constants.VERSION_PROJECT + Constants.COMMA_DELIMITER +
+			Constants.NEW_LINE;
 	
 	String HEADER_OUTPUT_OPPORTUNITIES_SWITCH_STRING = 
 			Constants.FILE + Constants.COMMA_DELIMITER +

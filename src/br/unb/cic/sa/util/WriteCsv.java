@@ -5,6 +5,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
 
+import br.unb.cic.sa.model.AnonymousClass;
 import br.unb.cic.sa.model.ClassDeclaration;
 import br.unb.cic.sa.model.CollectedData;
 import br.unb.cic.sa.model.OpportunitieSwitchString;
@@ -20,6 +21,7 @@ import br.unb.cic.sa.model.Variable;
 public class WriteCsv {
 
 	private File dir;
+	private FileWriter csvAnonymousClass;
 	private FileWriter csvIfString;
 	private FileWriter csvLambdaExpression;
 	private FileWriter csvMethods;
@@ -42,6 +44,10 @@ public class WriteCsv {
 		dir = this.createOutputDir(Constants.CSV_OUTPUT_DIT);
 
 		try {
+			
+			csvAnonymousClass = new FileWriter(dir + "/" + Constants.CSV_ANONYMOUS_CLASS);
+			csvAnonymousClass.append(Constants.HEADER_OUTPUT_ANONYMOUS_CLASS);
+			csvAnonymousClass.flush();
 			
 			csvIfString = new FileWriter(dir + "/" + Constants.CSV_OPPORTUNITIES_SWITCH_STRING);
 			csvIfString.append(Constants.HEADER_OUTPUT_OPPORTUNITIES_SWITCH_STRING);
@@ -228,12 +234,33 @@ public class WriteCsv {
 					opportunitiesLambdaExp(collectedData.getOpportunitiesLambdaExp(), collectedData.getProject()),
 					csvOpportunitiesLambdaExp);
 		}
+		
+		
+		if (collectedData.getAnonymousClass().size() > 0) {
+			this.write(
+					anonymousClass(collectedData.getAnonymousClass(), collectedData.getProject()),
+					csvAnonymousClass);
+		}
 
-		
-		
 		System.out.println("Finished!\n");
 
 	}
+	
+	
+	
+	private StringBuilder anonymousClass(List<AnonymousClass> a, Project project) {
+		StringBuilder sb = new StringBuilder();
+
+		a.forEach(t -> sb.append(t.getFile() + Constants.COMMA_DELIMITER + t.getStartLine()
+				+ Constants.COMMA_DELIMITER + t.getEndLine()
+				+ Constants.COMMA_DELIMITER + project.getProjectName()
+				+ Constants.COMMA_DELIMITER + project.getProjectRevision()
+				+ Constants.COMMA_DELIMITER + Constants.NEW_LINE));
+
+		return sb;
+	}
+	
+	
 
 	private void writeScriptingCalls(
 			List<ScriptingEngineCall> scriptEngineCalls, String string) {
@@ -409,10 +436,15 @@ public class WriteCsv {
 
 	public void close() {
 		try {
+			
+			csvAnonymousClass.close();
+			csvIfString.close();
+			csvLambdaExpression.close();
 			csvMethods.close();
 			csvMethodsVargs.close();
 			csvParamMethods.close();
 			csvTry.close();
+			csvTryResource.close();
 			csvTysSimilarCatch.close();
 			csvTypes.close();
 			csvParamtypes.close();
@@ -422,6 +454,7 @@ public class WriteCsv {
 			csvSwithWithString.close();
 			csvOpportunitiesLambdaExp.close();
 			csvError.close();
+			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
