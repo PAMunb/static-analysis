@@ -361,14 +361,33 @@ Based in this examples we have interessed to research cases like this to find re
 
 
 \section{Related work}
-Trabalho do PARNIN e possivel primeiro trabalho de uso de lambda 
+After a release of a new language feature, manifold studies are published related to use and benefits of it. This section gives an overview of researches about Generics and Lambda Expression.
 
-In our reserch, we found some work related to the use of lambda expressions in Java, focusing in comparisons with constructions in Scala Language cite(work\_lambda1) , efficiency gains cite(work\_lambda2), etc but none of this works investigating real adoption in projects.
+\subsection{Generics claims and empirical studies}
 
-\textbf{Here is a releted Lambda}\\
-We choose 15 projects with the last public release in 2015 second \cite{openlogic}. This projects are \textit{ActiviteMQ}, \textit{Ant}, \textit{Log4j}, \textit{Maven}, \textit{Tomcat}, \textit{Eclipse}, \textit{Hibernate}, \textit{JasperReports}, \textit{Jenkins}, \textit{Jetty}, \textit{MyFaces}, \textit{ProtgreeSql-JDBC}, \textit{SonarQube}, \textit{Spring}, \textit{Wildfly}.\\
+There are two basic types of works about Generics, the first one explore claims about its use in several contexts, and the benefits it brings. The second type performs empirical studies and tries to verify the claims and hypothesis made by some of the articles in the first type.
+As the question we want answered is related to the use of this feature by developers a decade after its release, we'll give a breef only in a few works on empirical study.
 
-The Static Analyses has a visitor to search to EnhacedForStatment that is large possiblity to elaborate a refactoring because this loop was apprimorated to work with Collection like this we founded XXXX cases  in more that XXXX LOC analysed. Based this inside this cases we do a sample random second \textbf{cite{Artigo Sampling}} XXX cases to analysis.\\
+{\color{blue} mencionar Mining Billions of AST Nodes to Study Actual and
+Potential Usage of Java Language Features }
+
+The aforementioned \textit{ 
+Java Generics Adoption: How New Features are
+Introduced, Championed, or Ignored
+} empirical study about the use of Generics in open source communities is the main result we have related to Java Generics use until now. Several claims were tested in 20 ``most used'' projects at that time, but their focus were only in three of these projects: JEDIT, ECLIPSE-CS and SQUIRREL-SQL.
+Their study concluded that Generics wasn't being used in a relevant manner.
+{\color{blue} mencionar outros estudos que citam este trabalho }.
+Our goal is to replicate part of this study and avaliate if, even a few years later, the use of Generics is still restricted to either hold or traverse collections of objects in a type safe manner, or if developers are using it more broadly.
+
+\subsection{Lambda Expressions}
+
+We found only a few works related to Java Lambda Expressions in our research, and they are focused in measuring performance of this feature~\cite{} or making comparisons with Scala constructs~\cite{}, among others. But none of these works investigates real adoption of Lambda Expressions by developers.
+
+%In our reserch, we found some work related to the use of lambda expressions in Java, focusing in comparisons with constructions in Scala Language cite(work\_lambda1) , efficiency gains cite(work\_lambda2), etc but none of this works investigating real adoption in projects.
+
+%We choose 15 projects with the last public release in 2015 second \cite{openlogic}. This projects are \textit{ActiviteMQ}, \textit{Ant}, \textit{Log4j}, \textit{Maven}, \textit{Tomcat}, \textit{Eclipse}, \textit{Hibernate}, \textit{JasperReports}, \textit{Jenkins}, \textit{Jetty}, \textit{MyFaces}, \textit{ProtgreeSql-JDBC}, \textit{SonarQube}, \textit{Spring}, \textit{Wildfly}.
+
+%The Static Analyses has a visitor to search to EnhacedForStatment that is large possiblity to elaborate a refactoring because this loop was apprimorated to work with Collection like this we founded XXXX cases  in more that XXXX LOC analysed. Based this inside this cases we do a sample random second \textbf{cite{Artigo Sampling}} XXX cases to analysis.
 
 \section{Investigation}
 
