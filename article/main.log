@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2015/dev/Debian) (preloaded format=pdflatex 2015.8.14)  24 SEP 2015 10:43
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2015/dev/Debian) (preloaded format=pdflatex 2015.9.19)  25 SEP 2015 13:58
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -375,47 +375,124 @@ Overfull \hbox (5.07458pt too wide) in paragraph at lines 281--289
 (/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2014/09/06 1.5e listings language file
 )
-Overfull \hbox (10.43767pt too wide) in paragraph at lines 341--342
-\T1/aer/m/n/9 that al-low us to write a bet-ter code about collections-processi
-ng
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 341--342
+Underfull \hbox (badness 10000) in paragraph at lines 338--339
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 343--344
+Underfull \hbox (badness 10000) in paragraph at lines 340--341
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 360--361
+Overfull \hbox (3.94049pt too wide) in paragraph at lines 357--361
+\T1/aer/bx/n/9 RQ2: \T1/aer/m/n/9 There are any con-struc-tion with Lambda in a
+ projects? 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 357--361
+
+ []
+
+[2]
+Underfull \hbox (badness 10000) in paragraph at lines 395--396
 
  []
 
 
-LaTeX Warning: Citation `openlogic' on page \thepage  undefined on input line 3
-69.
+LaTeX Warning: Citation `R' on page \thepage  undefined on input line 403.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 368--370
+Underfull \hbox (badness 10000) in paragraph at lines 403--404
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 405--406
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 371--372
+Underfull \hbox (badness 10000) in paragraph at lines 411--412
 
  []
 
-[2] (./main.bbl)
-LaTeX Font Info:    Try loading font information for T1+aett on input line 444.
+Package epstopdf Info: Source file: <lambdaTest.eps>
+(epstopdf)                    date: 2015-09-25 10:42:49
+(epstopdf)                    size: 8395 bytes
+(epstopdf)             Output file: <lambdaTest-eps-converted-to.pdf>
+(epstopdf)                    date: 2015-09-25 10:43:00
+(epstopdf)                    size: 11793 bytes
+(epstopdf)             Command: <repstopdf --outfile=lambdaTest-eps-converted-t
+o.pdf lambdaTest.eps>
+(epstopdf)             \includegraphics on input line 415.
+Package epstopdf Info: Output file is already uptodate.
+<lambdaTest-eps-converted-to.pdf, id=19, 342.27875pt x 152.57pt>
+File: lambdaTest-eps-converted-to.pdf Graphic file (type pdf)
+
+<use lambdaTest-eps-converted-to.pdf>
+Package pdftex.def Info: lambdaTest-eps-converted-to.pdf used on input line 415
+.
+(pdftex.def)             Requested size: 302.40308pt x 134.80444pt.
+
+Overfull \hbox (62.40308pt too wide) in paragraph at lines 415--417
+ [] 
+ []
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+Overfull \hbox (2.95906pt too wide) in paragraph at lines 420--421
+\T1/aer/m/n/9 por-tu-ni-ties to refac-tor-ing it-er-a-tion in Col-lec-tions wit
+h Stream
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 420--421
+
+ []
+
+Package epstopdf Info: Source file: <lamdaOpport.eps>
+(epstopdf)                    date: 2015-09-25 13:50:11
+(epstopdf)                    size: 9486 bytes
+(epstopdf)             Output file: <lamdaOpport-eps-converted-to.pdf>
+(epstopdf)                    date: 2015-09-25 13:50:13
+(epstopdf)                    size: 12690 bytes
+(epstopdf)             Command: <repstopdf --outfile=lamdaOpport-eps-converted-
+to.pdf lamdaOpport.eps>
+(epstopdf)             \includegraphics on input line 424.
+Package epstopdf Info: Output file is already uptodate.
+<lamdaOpport-eps-converted-to.pdf, id=20, 606.265pt x 345.29pt>
+File: lamdaOpport-eps-converted-to.pdf Graphic file (type pdf)
+
+<use lamdaOpport-eps-converted-to.pdf>
+Package pdftex.def Info: lamdaOpport-eps-converted-to.pdf used on input line 42
+4.
+(pdftex.def)             Requested size: 277.20154pt x 157.87642pt.
+
+Overfull \hbox (37.20154pt too wide) in paragraph at lines 424--426
+ [] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 433--434
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 435--436
+
+ []
+
+[3 <./lambdaTest-eps-converted-to.pdf> <./lamdaOpport-eps-converted-to.pdf>]
+(./main.bbl)
+LaTeX Font Info:    Try loading font information for T1+aett on input line 493.
 
  (/usr/share/texlive/texmf-dist/tex/latex/ae/t1aett.fd
 File: t1aett.fd 1997/11/16 Font definitions for T1/aett.
-)
-(./main.bbl) [3] (./main.aux)
+) (./main.bbl) [4] (./main.aux)
 
 LaTeX Warning: There were undefined references.
 
@@ -424,10 +501,10 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 4574 strings out of 493105
- 60931 string characters out of 6137072
- 212448 words of memory out of 5000000
- 7914 multiletter control sequences out of 15000+600000
+ 4600 strings out of 493105
+ 61348 string characters out of 6137072
+ 211468 words of memory out of 5000000
+ 7925 multiletter control sequences out of 15000+600000
  54950 words of font info for 73 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  41i,11n,74p,773b,1101s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -443,10 +520,10 @@ usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/te
 xlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dis
 t/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/u
 rw/times/utmri8a.pfb>
-Output written on main.pdf (3 pages, 159721 bytes).
+Output written on main.pdf (4 pages, 183398 bytes).
 PDF statistics:
- 63 PDF objects out of 1000 (max. 8388607)
- 45 compressed objects within 1 object stream
+ 85 PDF objects out of 1000 (max. 8388607)
+ 59 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 11 words of extra memory for PDF output out of 10000 (max. 10000000)
 
