@@ -7,7 +7,6 @@ import org.eclipse.jdt.core.dom.InfixExpression;
 import org.eclipse.jdt.core.dom.StringLiteral;
 
 import br.unb.cic.sa.model.CollectedData;
-import br.unb.cic.sa.model.If;
 
 public class IfVisitor extends Visitor {
 	InfixExpression infix;
@@ -29,10 +28,7 @@ public class IfVisitor extends Visitor {
 		node.getThenStatement();
 		System.out.println("Expression:" + node.getExpression());
 
-		return super.visit(node);
-	}
-
-		infix = null;
+		InfixExpression infix = null;
 		
 		Expression expression = node.getExpression();
 				
@@ -58,9 +54,9 @@ public class IfVisitor extends Visitor {
 			System.out.println();
 
 			
-			this.collection.addIfString(new If(this.file,
-					unit.getLineNumber(node.getStartPosition()),
-					unit.getLineNumber(node.getStartPosition()+node.getLength())));
+//			this.collection.addIfString(new If(this.file,
+//					unit.getLineNumber(node.getStartPosition()),
+//					unit.getLineNumber(node.getStartPosition()+node.getLength())));
 		}
 		
 	}

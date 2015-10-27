@@ -7,13 +7,10 @@ import java.util.List;
 
 import br.unb.cic.sa.model.ClassDeclaration;
 import br.unb.cic.sa.model.CollectedData;
-import br.unb.cic.sa.model.OpportunitieSwitchString;
 import br.unb.cic.sa.model.LambdaExp;
 import br.unb.cic.sa.model.Method;
-<<<<<<< HEAD
-=======
+import br.unb.cic.sa.model.OpportunitieSwitchString;
 import br.unb.cic.sa.model.OpportunitiesLambdaExp;
->>>>>>> 5c829d5be2621753c96d70cc431e73d535215a53
 import br.unb.cic.sa.model.Project;
 import br.unb.cic.sa.model.ScriptingEngineCall;
 import br.unb.cic.sa.model.Switch;
