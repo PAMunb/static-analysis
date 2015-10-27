@@ -1,6 +1,0 @@
-Method,Package,Start in line,End in line,
-doInBackground,/home/thiago/ProjetosUnb/MMAndroid/src/br/unb/mobileMedia/util/LoadImageCache.java,220,229,
-doInBackground,/home/thiago/ProjetosUnb/MMAndroid/src/br/unb/mobileMedia/core/view/AudioSelectFragment.java,238,252,
-doInBackground,/home/thiago/ProjetosUnb/MMAndroid/src/br/unb/mobileMedia/MMUnBActivity.java,256,265,
-doInBackground,/home/thiago/ProjetosUnb/MMAndroid/src/br/unb/mobileMedia/playlist/PlayListEditorFragment.java,248,269,
-doInBackground,/home/thiago/ProjetosUnb/MMAndroid/src/br/unb/mobileMedia/playlist/MusicSelectFragment.java,192,210,

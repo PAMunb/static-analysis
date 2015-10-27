@@ -24,6 +24,8 @@ public class CollectedData {
 	private List<Variable> paramVariables;
 
 	private List<String> nameFile;
+	
+	private List<AnnonymousInnerClass> aics;
 
 	public CollectedData() {
 		this.analysisError = new ArrayList<String>();
@@ -39,7 +41,7 @@ public class CollectedData {
 		this.types = new ArrayList<Type>();
 		this.paramTypes = new ArrayList<Type>();
 		
-		scriptingEngineCalls = new ArrayList<ScriptingEngineCall>();
+		this.scriptingEngineCalls = new ArrayList<ScriptingEngineCall>();
 		
 		this.nameFile = new ArrayList<String>();
 		this.tryWithSimilarityCatch = new ArrayList<>();
@@ -53,6 +55,8 @@ public class CollectedData {
 		this.nameFile = new ArrayList<>();
 
 		this.numberOfStatements = 0;
+		
+		aics = new ArrayList<>();
 
 	}
 
@@ -110,6 +114,16 @@ public class CollectedData {
 
 	public List<Try> getTryWithSimilartyCatch() {
 		return this.tryWithSimilarityCatch;
+	}
+	
+	// Annonymous Inner Classes 
+	
+	public void addAnnonymousInnerClass(AnnonymousInnerClass aic) {
+		aics.add(aic);
+	}
+	
+	public List<AnnonymousInnerClass> getAICS() {
+		return aics;
 	}
 
 	// ######################## MethodDeclaration ############################
@@ -211,6 +225,7 @@ public class CollectedData {
 		this.switchs.clear();
 		this.switchWithString.clear();
 		this.scriptingEngineCalls.clear();
+		this.aics.clear();
 	}
 
 }

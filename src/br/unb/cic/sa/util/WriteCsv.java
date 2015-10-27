@@ -7,8 +7,8 @@ import java.util.List;
 
 import br.unb.cic.sa.model.CollectedData;
 import br.unb.cic.sa.model.Method;
-import br.unb.cic.sa.model.ScriptingEngineCall;
 import br.unb.cic.sa.model.Project;
+import br.unb.cic.sa.model.ScriptingEngineCall;
 import br.unb.cic.sa.model.Switch;
 import br.unb.cic.sa.model.Try;
 import br.unb.cic.sa.model.Type;
@@ -26,6 +26,7 @@ public class WriteCsv {
 	private FileWriter csvSwitch;
 	private FileWriter csvSwithWithString;
 	private FileWriter csvError;
+	private FileWriter csvAnnonymousInnerClasses;
 
 	public WriteCsv() {
 
@@ -67,6 +68,9 @@ public class WriteCsv {
 					+ Constants.CSV_SWITCH_WITH_STRING);
 			csvSwithWithString.append(Constants.HEADER_OUTPUT_SWITCH);
 			csvSwithWithString.flush();
+			
+			csvAnnonymousInnerClasses = new FileWriter(dir + "/" + Constants.AIC_FILE);
+			
 
 			csvError = new FileWriter(dir + "/" + Constants.CSV_ERROR);
 			csvError.append(Constants.HEADER_ERROR);

@@ -71,6 +71,7 @@ public class Parser {
 		parser.setKind(ASTParser.K_COMPILATION_UNIT);
 		parser.setCompilerOptions(options);
 		parser.setSource(contents);
+		parser.setResolveBindings(true);
 	
 		final CompilationUnit cu = (CompilationUnit) parser.createAST(null);
 		return cu;
