@@ -17,11 +17,8 @@
 	<bean id="opportunitiesSwichStringVisitor" class="br.unb.cic.sa.visitors.OpportunitiesSwitchStringVisitor"/>
 	<bean id="opportunitiesLambdaExpVisitor" class="br.unb.cic.sa.visitors.OpportunitiesLambdaExpVisitor"/>
 	<bean id="varVisitor" class="br.unb.cic.sa.visitors.VariableDeclarationVisitor"/>
-<<<<<<< HEAD
 	<bean id="aicVisitor" class="br.unb.cic.sa.visitors.AICVisitor"/>
-=======
 	<bean id="lambdaVisitor" class="br.unb.cic.sa.visitors.LambdaExpressionVisitor"/>
->>>>>>> 5c829d5be2621753c96d70cc431e73d535215a53
 
 	<bean id="collection" class="br.unb.cic.sa.model.CollectedData"/>
 
@@ -37,11 +34,8 @@
 				<ref bean="enVisitor"/>
 				<ref bean="scVisitor"/>
 				<ref bean="varVisitor"/>
-<<<<<<< HEAD
 				<ref bean="aicVisitor"/>
-=======
 				<ref bean="lambdaVisitor"/>
->>>>>>> 5c829d5be2621753c96d70cc431e73d535215a53
 			</list>
 		</property>
 		

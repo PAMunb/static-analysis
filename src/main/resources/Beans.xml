@@ -17,6 +17,7 @@
 	<bean id="opportunitiesSwichStringVisitor" class="br.unb.cic.sa.visitors.OpportunitiesSwitchStringVisitor"/>
 	<bean id="opportunitiesLambdaExpVisitor" class="br.unb.cic.sa.visitors.OpportunitiesLambdaExpVisitor"/>
 	<bean id="varVisitor" class="br.unb.cic.sa.visitors.VariableDeclarationVisitor"/>
+	<bean id="aicVisitor" class="br.unb.cic.sa.visitors.AICVisitor"/>
 	<bean id="lambdaVisitor" class="br.unb.cic.sa.visitors.LambdaExpressionVisitor"/>
 
 	<bean id="collection" class="br.unb.cic.sa.model.CollectedData"/>
@@ -27,13 +28,14 @@
 <!-- 				<ref bean="opportunitiesLambdaExpVisitor"/> -->
 <!-- 				<ref bean="opportunitiesSwichStringVisitor"/> -->
 				<ref bean="tsVisitor"/>
-<!-- 				<ref bean="mdVisitor"/> -->
-<!-- 				<ref bean="typeVisitor"/> -->
-<!-- 				<ref bean="swVisitor"/> -->
-<!-- 				<ref bean="enVisitor"/> -->
-<!-- 				<ref bean="scVisitor"/> -->
-<!-- 				<ref bean="varVisitor"/> -->
-<!-- 				<ref bean="lambdaVisitor"/> -->
+				<ref bean="mdVisitor"/>
+				<ref bean="typeVisitor"/>
+				<ref bean="swVisitor"/>
+				<ref bean="enVisitor"/>
+				<ref bean="scVisitor"/>
+				<ref bean="varVisitor"/>
+				<ref bean="aicVisitor"/>
+				<ref bean="lambdaVisitor"/>
 			</list>
 		</property>
 		

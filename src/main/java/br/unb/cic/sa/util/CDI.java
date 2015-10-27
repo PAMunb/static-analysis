@@ -9,7 +9,7 @@ public class CDI {
 	private ApplicationContext ctx;
 	
 	private CDI(){ 
-		ctx = new ClassPathXmlApplicationContext("Beans.xml");
+		ctx = new ClassPathXmlApplicationContext("main/resources/Beans.xml");
 	}
 	
 	public static CDI Instance(){

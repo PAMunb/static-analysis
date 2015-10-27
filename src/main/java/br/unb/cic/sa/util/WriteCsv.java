@@ -7,9 +7,9 @@ import java.util.List;
 
 import br.unb.cic.sa.model.ClassDeclaration;
 import br.unb.cic.sa.model.CollectedData;
-import br.unb.cic.sa.model.OpportunitieSwitchString;
 import br.unb.cic.sa.model.LambdaExp;
 import br.unb.cic.sa.model.Method;
+import br.unb.cic.sa.model.OpportunitieSwitchString;
 import br.unb.cic.sa.model.OpportunitiesLambdaExp;
 import br.unb.cic.sa.model.Project;
 import br.unb.cic.sa.model.ScriptingEngineCall;
@@ -36,6 +36,7 @@ public class WriteCsv {
 	private FileWriter csvSwithWithString;
 	private FileWriter csvOpportunitiesLambdaExp;
 	private FileWriter csvError;
+	private FileWriter csvAnnonymousInnerClasses;
 
 	public WriteCsv() {
 
@@ -103,6 +104,8 @@ public class WriteCsv {
 					+ Constants.CSV_SWITCH_WITH_STRING);
 			csvSwithWithString.append(Constants.HEADER_OUTPUT_SWITCH);
 			csvSwithWithString.flush();
+			
+			csvAnnonymousInnerClasses = new FileWriter(dir + "/" + Constants.AIC_FILE);
 			
 			
 			csvOpportunitiesLambdaExp = new FileWriter(dir + "/" + Constants.CSV_OUTPUT_OPPORTUNITIES_LAMBDA_EXP);

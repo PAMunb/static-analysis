@@ -75,7 +75,6 @@ public class Parser {
 		parser.setResolveBindings(true);
 		parser.setCompilerOptions(options);
 		parser.setSource(contents);
-
 		final CompilationUnit cu = (CompilationUnit) parser.createAST(null);
 		return cu;
 	}

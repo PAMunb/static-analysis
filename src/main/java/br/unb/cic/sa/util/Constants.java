@@ -30,6 +30,8 @@ public interface Constants {
 	String PROJECT_NAME = "ProjectName";
 	String VERSION_PROJECT = "VersionProject";
 	
+	String AIC_FILE = "aics.csv";
+	String AIC_HEADER = "file; start; end; p1; p2; p3; p4";
 	
 	String EMPTY = "#";
 	String COMMA_DELIMITER = ";";
@@ -163,6 +165,7 @@ public interface Constants {
 			Constants.PROJECT_NAME + Constants.COMMA_DELIMITER + 
 			Constants.NEW_LINE;
 	String SUB_HEADER_OUTPUT_SCRIPTING_CALLS = "file, method, start, end";
+	
 	
 //	Constants.TRY_STATEMENT_WITH_CATCH_SIMILARITY + Constants.COMMA_DELIMITER +
 //	Constants.START_NUMEBER_LINE + Constants.COMMA_DELIMITER+
