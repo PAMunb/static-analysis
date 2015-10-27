@@ -5,26 +5,39 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
 
+import br.unb.cic.sa.model.ClassDeclaration;
 import br.unb.cic.sa.model.CollectedData;
+import br.unb.cic.sa.model.OpportunitieSwitchString;
+import br.unb.cic.sa.model.LambdaExp;
 import br.unb.cic.sa.model.Method;
+<<<<<<< HEAD
+=======
+import br.unb.cic.sa.model.OpportunitiesLambdaExp;
+>>>>>>> 5c829d5be2621753c96d70cc431e73d535215a53
 import br.unb.cic.sa.model.Project;
 import br.unb.cic.sa.model.ScriptingEngineCall;
 import br.unb.cic.sa.model.Switch;
 import br.unb.cic.sa.model.Try;
-import br.unb.cic.sa.model.Type;
+import br.unb.cic.sa.model.Variable;
 
 public class WriteCsv {
 
 	private File dir;
+	private FileWriter csvIfString;
+	private FileWriter csvLambdaExpression;
 	private FileWriter csvMethods;
-	private FileWriter csvParamMethods;
 	private FileWriter csvMethodsVargs;
+	private FileWriter csvParamMethods;
 	private FileWriter csvTry;
+	private FileWriter csvTryResource;
 	private FileWriter csvTysSimilarCatch;
-	private FileWriter csvType;
-	private FileWriter csvParamtype;
+	private FileWriter csvTypes;
+	private FileWriter csvParamtypes;
+	private FileWriter csvVariables;
+	private FileWriter csvParamVariables;
 	private FileWriter csvSwitch;
 	private FileWriter csvSwithWithString;
+	private FileWriter csvOpportunitiesLambdaExp;
 	private FileWriter csvError;
 	private FileWriter csvAnnonymousInnerClasses;
 
@@ -33,6 +46,14 @@ public class WriteCsv {
 		dir = this.createOutputDir(Constants.CSV_OUTPUT_DIT);
 
 		try {
+			
+			csvIfString = new FileWriter(dir + "/" + Constants.CSV_OPPORTUNITIES_SWITCH_STRING);
+			csvIfString.append(Constants.HEADER_OUTPUT_OPPORTUNITIES_SWITCH_STRING);
+			csvIfString.flush();
+			
+			csvLambdaExpression = new FileWriter(dir + "/" + Constants.CSV_LAMBDA_EXPRESSION);
+			csvLambdaExpression.append(Constants.HEADER_OUTPUT_LAMBDA_EXPRESSION);
+			csvLambdaExpression.flush();
 
 			csvMethods = new FileWriter(dir + "/" + Constants.CSV_METHODS);
 			csvMethods.append(Constants.HEADER_OUTPUT_METHODS_CSV);
@@ -42,23 +63,41 @@ public class WriteCsv {
 					+ Constants.CSV_METHOD_WITH_VARGS);
 			csvMethodsVargs.append(Constants.HEADER_OUTPUT_METHODS_CSV);
 			csvMethodsVargs.flush();
+			
+			csvParamMethods = new FileWriter(dir + "/"
+					+ Constants.CSV_PARAM_METHODS);
+			csvParamMethods.append(Constants.HEADER_OUTPUT_METHODS_CSV);
+			csvParamMethods.flush();
 
 			csvTry = new FileWriter(dir + "/" + Constants.CSV_TRYS);
 			csvTry.append(Constants.HEADER_OUTPUT_TRY);
 			csvTry.flush();
+			
+			csvTryResource = new FileWriter(dir + "/" + Constants.CSV_TRY_RESOURCE);
+			csvTryResource.append(Constants.HEADER_OUTPUT_TRY);
+			csvTryResource.flush();
 
 			csvTysSimilarCatch = new FileWriter(dir + "/"
 					+ Constants.CSV_TRY_WITH_SIMILAR_CATCH);
 			csvTysSimilarCatch.append(Constants.HEADER_OUTPUT_TRY);
 			csvTysSimilarCatch.flush();
 
-			csvType = new FileWriter(dir + "/" + Constants.CSV_TYPE);
-			csvType.append(Constants.HEADER_OUTPUT_TYPES);
-			csvType.flush();
+			csvTypes = new FileWriter(dir + "/" + Constants.CSV_TYPE);
+			csvTypes.append(Constants.HEADER_OUTPUT_TYPES);
+			csvTypes.flush();
 
-			csvParamtype = new FileWriter(dir + "/" + Constants.CSV_PARAMTYPE);
-			csvParamtype.append(Constants.HEADER_OUTPUT_TYPES);
-			csvParamtype.flush();
+			csvParamtypes = new FileWriter(dir + "/" + Constants.CSV_PARAM_TYPE);
+			csvParamtypes.append(Constants.HEADER_OUTPUT_TYPES);
+			csvParamtypes.flush();
+			
+			csvVariables = new FileWriter(dir + "/" + Constants.CSV_VARIABLES);
+			csvVariables.append(Constants.HEADER_OUTPUT_VARIABLES);
+			csvVariables.flush();
+			
+			csvParamVariables = new FileWriter(dir + "/" 
+					+ Constants.CSV_PARAM_VARIABLES);
+			csvParamVariables.append(Constants.HEADER_OUTPUT_VARIABLES);
+			csvParamVariables.flush();
 
 			csvSwitch = new FileWriter(dir + "/" + Constants.CSV_SWITCH);
 			csvSwitch.append(Constants.HEADER_OUTPUT_SWITCH);
@@ -71,6 +110,10 @@ public class WriteCsv {
 			
 			csvAnnonymousInnerClasses = new FileWriter(dir + "/" + Constants.AIC_FILE);
 			
+			
+			csvOpportunitiesLambdaExp = new FileWriter(dir + "/" + Constants.CSV_OUTPUT_OPPORTUNITIES_LAMBDA_EXP);
+			csvOpportunitiesLambdaExp.append(Constants.HEADER_OUTPUT_OPPORTUNITIES_LAMBDA_EXP);
+			csvOpportunitiesLambdaExp.flush();
 
 			csvError = new FileWriter(dir + "/" + Constants.CSV_ERROR);
 			csvError.append(Constants.HEADER_ERROR);
@@ -88,17 +131,31 @@ public class WriteCsv {
 		System.out.println("Generating output file project "
 				+ collectedData.getProject().getProjectName() + " Version "
 				+ collectedData.getProject().getProjectRevision()+ " ...");
+		
+		System.out.println("LOC: "+collectedData.getProject().getLoc());
 
+		if(collectedData.getOpportunitieSwichString().size() > 0){
+			this.write(
+					this.ifs(collectedData.getOpportunitieSwichString(),
+										collectedData.getProject()), csvIfString);
+		}
+		
+		if(collectedData.getLambdaExp().size() > 0){
+			this.write(
+					this.lambadaExpression(collectedData.getLambdaExp(), 
+											collectedData.getProject()), csvLambdaExpression);
+		}
+		
 		if (collectedData.getTypeDeclarations().size() > 0) {
 			this.write(
 					types(collectedData.getTypeDeclarations(),
-							collectedData.getProject()), csvType);
+							collectedData.getProject()), csvTypes);
 		}
 
 		if (collectedData.getParamTypes().size() > 0) {
 			this.write(
 					types(collectedData.getParamTypes(),
-							collectedData.getProject()), csvParamtype);
+							collectedData.getProject()), csvParamtypes);
 		}
 
 		if (collectedData.getMethods().size() > 0) {
@@ -107,15 +164,40 @@ public class WriteCsv {
 							collectedData.getProject()), csvMethods);
 		}
 
-		if (collectedData.getMethodWithVargs().size() > 0)
+		if (collectedData.getMethodWithVargs().size() > 0) {
 			this.write(
 					methods(collectedData.getMethodWithVargs(),
 							collectedData.getProject()), csvMethodsVargs);
+		}
+		
+		if (collectedData.getParameterizedMethods().size() > 0) {
+			this.write(
+					methods(collectedData.getParameterizedMethods(),
+							collectedData.getProject()), csvParamMethods);
+		}
+		
+		if (collectedData.getVariablesDeclarations().size() > 0) {
+			this.write(
+					variables(collectedData.getVariablesDeclarations(),
+							collectedData.getProject()), csvVariables);
+		}
+		
+		if (collectedData.getParamVariables().size() > 0) {
+			this.write(
+					variables(collectedData.getParamVariables(),
+							collectedData.getProject()), csvParamVariables);
+		}
 
 		if (collectedData.getTrys().size() > 0) {
 			this.write(
 					trys(collectedData.getTrys(), collectedData.getProject()),
 					csvTry);
+		}
+		
+		if (collectedData.getTrysResource().size() > 0) {
+			this.write(
+					trys(collectedData.getTrysResource(), collectedData.getProject()),
+					csvTryResource);
 		}
 
 		if (collectedData.getTryWithSimilartyCatch().size() > 0) {
@@ -147,7 +229,15 @@ public class WriteCsv {
 		}
 		
 		
-		System.out.println("Finished!");
+		if (collectedData.getOpportunitiesLambdaExp().size() > 0) {
+			this.write(
+					opportunitiesLambdaExp(collectedData.getOpportunitiesLambdaExp(), collectedData.getProject()),
+					csvOpportunitiesLambdaExp);
+		}
+
+		
+		
+		System.out.println("Finished!\n");
 
 	}
 
@@ -196,6 +286,19 @@ public class WriteCsv {
 		return outputDir;
 
 	}
+	
+	
+	private StringBuilder ifs(List<OpportunitieSwitchString> i, Project project) {
+		StringBuilder sb = new StringBuilder();
+
+		i.forEach(t -> sb.append(t.getFile() + Constants.COMMA_DELIMITER + t.getStartLine()
+				+ Constants.COMMA_DELIMITER + t.getEndLine()
+				+ Constants.COMMA_DELIMITER + project.getProjectName()
+				+ Constants.COMMA_DELIMITER + project.getProjectRevision()
+				+ Constants.COMMA_DELIMITER + Constants.NEW_LINE));
+
+		return sb;
+	}
 
 	private StringBuilder methods(List<Method> methods, Project project) {
 		StringBuilder sb = new StringBuilder();
@@ -210,11 +313,14 @@ public class WriteCsv {
 		return sb;
 	}
 
-	private StringBuilder types(List<Type> types, Project project) {
+	private StringBuilder types(List<ClassDeclaration> types, Project project) {
 		StringBuilder sb = new StringBuilder();
 
-		types.forEach(ts -> sb.append(ts.getName() + Constants.COMMA_DELIMITER
-				+ ts.getFile() + Constants.COMMA_DELIMITER + ts.getStartLine()
+		types.forEach(ts -> sb.append(ts.getName() 
+				+ Constants.COMMA_DELIMITER + ts.getFile()
+				+ Constants.COMMA_DELIMITER + ts.getSuperClass()
+				+ Constants.COMMA_DELIMITER + ts.getIntefaces()
+				+ Constants.COMMA_DELIMITER + ts.getStartLine()
 				+ Constants.COMMA_DELIMITER + ts.getEndLine()
 				+ Constants.COMMA_DELIMITER + project.getProjectName()
 				+ Constants.COMMA_DELIMITER + project.getProjectRevision()
@@ -222,12 +328,36 @@ public class WriteCsv {
 
 		return sb;
 	}
+	
+	private StringBuilder variables(List<Variable> variables, Project project) {
+		StringBuilder sb = new StringBuilder();
+		
+		variables.forEach(ts -> sb.append(ts.getName() + Constants.COMMA_DELIMITER
+				+ ts.getFile() + Constants.COMMA_DELIMITER + ts.getType()
+				+ Constants.COMMA_DELIMITER + project.getProjectName()
+				+ Constants.COMMA_DELIMITER + project.getProjectRevision()
+				+ Constants.COMMA_DELIMITER + Constants.NEW_LINE));
+		
+		return sb;
+	}
 
+	private StringBuilder lambadaExpression(List<LambdaExp> lambdaExp, Project project) {
+		StringBuilder sb = new StringBuilder();
+
+		lambdaExp.forEach(l -> sb.append(
+				l.getFile() + Constants.COMMA_DELIMITER + l.getStartLine()
+				+ Constants.COMMA_DELIMITER + l.getEndLine()
+				+ Constants.COMMA_DELIMITER + project.getProjectName()
+				+ Constants.COMMA_DELIMITER + project.getProjectRevision()
+				+ Constants.COMMA_DELIMITER + Constants.NEW_LINE));
+
+		return sb;
+	}
+	
 	private StringBuilder trys(List<Try> trys, Project project) {
 		StringBuilder sb = new StringBuilder();
 
-		trys.forEach(t -> sb.append(Constants.EMPTY + Constants.COMMA_DELIMITER
-				+ t.getFile() + Constants.COMMA_DELIMITER + t.getStartLine()
+		trys.forEach(t -> sb.append(t.getFile() + Constants.COMMA_DELIMITER + t.getStartLine()
 				+ Constants.COMMA_DELIMITER + t.getEndLine()
 				+ Constants.COMMA_DELIMITER + project.getProjectName()
 				+ Constants.COMMA_DELIMITER + project.getProjectRevision()
@@ -236,6 +366,20 @@ public class WriteCsv {
 		return sb;
 	}
 
+	
+	private StringBuilder opportunitiesLambdaExp(List<OpportunitiesLambdaExp> op, Project project) {
+		StringBuilder sb = new StringBuilder();
+
+		op.forEach(t -> sb.append(t.getFile() + Constants.COMMA_DELIMITER + t.getStartLine()
+				+ Constants.COMMA_DELIMITER + t.getEndLine()
+				+ Constants.COMMA_DELIMITER + project.getProjectName()
+				+ Constants.COMMA_DELIMITER + project.getProjectRevision()
+				+ Constants.COMMA_DELIMITER + Constants.NEW_LINE));
+
+		return sb;
+	}
+	
+	
 	private StringBuilder switchs(List<Switch> switchs, Project project) {
 		StringBuilder sb = new StringBuilder();
 
@@ -273,12 +417,16 @@ public class WriteCsv {
 		try {
 			csvMethods.close();
 			csvMethodsVargs.close();
+			csvParamMethods.close();
 			csvTry.close();
 			csvTysSimilarCatch.close();
-			csvType.close();
-			csvParamtype.close();
+			csvTypes.close();
+			csvParamtypes.close();
+			csvVariables.close();
+			csvParamVariables.close();
 			csvSwitch.close();
 			csvSwithWithString.close();
+			csvOpportunitiesLambdaExp.close();
 			csvError.close();
 		} catch (IOException e) {
 			e.printStackTrace();

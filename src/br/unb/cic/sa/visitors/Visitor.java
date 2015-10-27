@@ -36,4 +36,6 @@ public class Visitor extends ASTVisitor implements IVisitor {
 	public void setFile(String file) {
 		this.file = file;
 	}
+	
+	
 }

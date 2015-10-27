@@ -14,18 +14,22 @@
 	<bean id="swVisitor" class="br.unb.cic.sa.visitors.SwitchStatementVisitor"/>
 	<bean id="enVisitor" class="br.unb.cic.sa.visitors.EnumDeclarationVisitor"/>
 	<bean id="scVisitor" class="br.unb.cic.sa.visitors.ScriptingVisitor"/>
-	<bean id="ifVisitor" class="br.unb.cic.sa.visitors.IfVisitor"/>
-	<bean id="forVisitor" class="br.unb.cic.sa.visitors.ForVisitor"/>
+	<bean id="opportunitiesSwichStringVisitor" class="br.unb.cic.sa.visitors.OpportunitiesSwitchStringVisitor"/>
+	<bean id="opportunitiesLambdaExpVisitor" class="br.unb.cic.sa.visitors.OpportunitiesLambdaExpVisitor"/>
 	<bean id="varVisitor" class="br.unb.cic.sa.visitors.VariableDeclarationVisitor"/>
+<<<<<<< HEAD
 	<bean id="aicVisitor" class="br.unb.cic.sa.visitors.AICVisitor"/>
+=======
+	<bean id="lambdaVisitor" class="br.unb.cic.sa.visitors.LambdaExpressionVisitor"/>
+>>>>>>> 5c829d5be2621753c96d70cc431e73d535215a53
 
 	<bean id="collection" class="br.unb.cic.sa.model.CollectedData"/>
 
 	<bean id="pa" class="br.unb.cic.sa.ProjectAnalyser">
 		<property name="listVisitors">
 			<list>
-				<ref bean="forVisitor"/>
-				<!--  ref bean="ifVisitor"/-->
+				<ref bean="opportunitiesLambdaExpVisitor"/>
+				<ref bean="opportunitiesSwichStringVisitor"/>
 				<ref bean="tsVisitor"/>
 				<ref bean="mdVisitor"/>
 				<ref bean="typeVisitor"/>
@@ -33,7 +37,11 @@
 				<ref bean="enVisitor"/>
 				<ref bean="scVisitor"/>
 				<ref bean="varVisitor"/>
+<<<<<<< HEAD
 				<ref bean="aicVisitor"/>
+=======
+				<ref bean="lambdaVisitor"/>
+>>>>>>> 5c829d5be2621753c96d70cc431e73d535215a53
 			</list>
 		</property>
 		

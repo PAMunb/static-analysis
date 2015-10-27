@@ -6,7 +6,6 @@ import java.util.List;
 import org.junit.Assert;
 import org.junit.Test;
 
-import br.unb.cic.sa.util.IO;
 
 public class IOTest{
 	

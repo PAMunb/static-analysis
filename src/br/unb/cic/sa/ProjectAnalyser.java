@@ -40,12 +40,13 @@ public class ProjectAnalyser implements Callable<CollectedData> {
 	public CollectedData call() throws Exception {
 		
 		this.collectionProject.cleanData();
+		
 		this.collectionProject.setProject(project);
 		
 		CompilationUnit compilationUnit = null;
 	
 		for (String file : IO.listFiles(project.getFilePath(), new String[] { "java" })) {
-			try {
+			try{
 				// fazer um parser de cada arquivo.java encontrado no projeto
 				compilationUnit = Parser.Instance().parse(new File(file));
 								
@@ -55,6 +56,7 @@ public class ProjectAnalyser implements Callable<CollectedData> {
 				}
 
 			} catch (Throwable e) {
+				System.out.println(e.getMessage());
 				this.collectionProject.addError(e.getMessage() + " parsing file "+ file);
 				continue;
 			}
@@ -71,22 +73,8 @@ public class ProjectAnalyser implements Callable<CollectedData> {
 			}
 			
 			
-			// Visitors
-			
-//			TryStatementVisitor tsVisitor = new TryStatementVisitor(compilationUnit, file, collectionProject);
-//			MethodDeclarationVisitor mdVisitor = new MethodDeclarationVisitor(compilationUnit, file, collectionProject);
-						
-			
-			//Add visitors to search them statements in parser of each project file
-//			compilationUnit.accept(tsVisitor);
-//			compilationUnit.accept(mdVisitor);
-			
-//			compilationUnit.accept(enumVisitor);
-			
 			//Add name each file name in collecation
 			collectionProject.addNameFile(file);
-			
-	
 
 		}
 		

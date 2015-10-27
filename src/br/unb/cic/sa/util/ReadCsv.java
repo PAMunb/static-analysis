@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.unb.cic.sa.model.Project;
-
 public class ReadCsv {
 
 	private String pathCsv;
@@ -34,8 +33,9 @@ public class ReadCsv {
 
 			String line = "";
 			while ((line = br.readLine()) != null) {
-				String[] lineSplit = line.split(",");
-				projects.add(new Project(lineSplit[0], lineSplit[1],lineSplit[2]));
+//				ProjectName, Version, Path, Files,Language,Blank,Comment,Code
+				String[] lineSplit = line.split(Constants.COMMA_DELIMITER);
+				projects.add(new Project(lineSplit[0], lineSplit[1],lineSplit[2], new Integer(lineSplit[3])));
 			}
 
 		} catch (IOException e) {

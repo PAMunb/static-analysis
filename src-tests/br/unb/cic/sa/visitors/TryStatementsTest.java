@@ -28,7 +28,10 @@ public class TryStatementsTest {
 		parser = Parser.Instance();
 		unit = parser.parse(new File(file));
 		collection = new CollectedData();
-		tsVisitor = new TryStatementVisitor(unit, file, collection);
+		
+		tsVisitor.setColletion(collection);
+		tsVisitor.setFile(file);
+		tsVisitor.setUnit(unit);
 	}
 
 	@Before
@@ -43,6 +46,8 @@ public class TryStatementsTest {
 
 	@Test
 	public void listTrys() {
+		assertEquals(3, collection.getTrys().size());
+		assertEquals(2, collection.getTryWithSimilartyCatch().size());
 		assertEquals(3, collection.getTrys().size());
 		assertEquals(2, collection.getTryWithSimilartyCatch().size());
 	}

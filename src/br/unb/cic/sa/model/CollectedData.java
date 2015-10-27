@@ -6,22 +6,28 @@ import java.util.List;
 public class CollectedData {
 
 	private Project project;
+	
 	private int numberOfStatements;
 
+	private List<OpportunitieSwitchString> opportunitiesSwichString;
 	private List<String> analysisError;
+	private List<LambdaExp> lbdexps;
 	private List<Switch> switchs;
 	private List<Switch> switchWithString;
 	private List<Try> trys;
+	private List<Try> trysResource;
 	private List<Try> tryWithSimilarityCatch;
 	private List<ScriptingEngineCall> scriptingEngineCalls;
 	
 	private List<Method> methods;
 	private List<Method> methodWithVargs;
 	private List<Method> paramMethods;
-	private List<Type> types;
-	private List<Type> paramTypes;
+	private List<ClassDeclaration> types;
+	private List<ClassDeclaration> paramTypes;
 	private List<Variable> variables;
 	private List<Variable> paramVariables;
+	
+	private List<OpportunitiesLambdaExp> opportunitesLambdaExp;
 
 	private List<String> nameFile;
 	
@@ -30,16 +36,21 @@ public class CollectedData {
 	public CollectedData() {
 		this.analysisError = new ArrayList<String>();
 
+		this.lbdexps = new ArrayList<>();
 		this.switchs = new ArrayList<>();
 		this.switchWithString = new ArrayList<>();
+		
+		this.opportunitiesSwichString = new ArrayList<>();
+		
 		this.trys = new ArrayList<Try>();
+		this.trysResource = new ArrayList<>();
 		this.tryWithSimilarityCatch = new ArrayList<Try>();
 		
 		this.methods = new ArrayList<Method>();
 		this.methodWithVargs = new ArrayList<Method>();
 		
-		this.types = new ArrayList<Type>();
-		this.paramTypes = new ArrayList<Type>();
+		this.types = new ArrayList<ClassDeclaration>();
+		this.paramTypes = new ArrayList<ClassDeclaration>();
 		
 		this.scriptingEngineCalls = new ArrayList<ScriptingEngineCall>();
 		
@@ -53,6 +64,8 @@ public class CollectedData {
 		this.variables = new ArrayList<>();
 		this.paramVariables = new ArrayList<>();
 		this.nameFile = new ArrayList<>();
+		
+		this.opportunitesLambdaExp = new ArrayList<>();
 
 		this.numberOfStatements = 0;
 		
@@ -61,9 +74,9 @@ public class CollectedData {
 	}
 
 	public CollectedData(String projectName, String projectRevision,
-			String filePath) {
+			String filePath, int totalLineCode) {
 		this();// call the default construct
-		this.project = new Project(projectName, projectRevision, filePath);
+		this.project = new Project(projectName, projectRevision, filePath, totalLineCode);
 	}
 
 	public void setProject(Project project) {
@@ -81,6 +94,28 @@ public class CollectedData {
 	public String getNameFile(int position) {
 		return this.nameFile.get(position);
 	}
+	
+	
+	// ############################## If String Block  ###################################
+	public void addOpportunitieSwichString(OpportunitieSwitchString i){
+		this.opportunitiesSwichString.add(i);
+	}
+	
+	public List<OpportunitieSwitchString> getOpportunitieSwichString(){
+		return this.opportunitiesSwichString;
+	}
+	
+	
+
+	// ############################## Lambda Exp Block  ###################################
+	public void addLambdaExp(LambdaExp l) {
+		this.lbdexps.add(l);
+	}
+
+	public List<LambdaExp> getLambdaExp() {
+		return this.lbdexps;
+	}
+
 
 	// ############################## Switch Block  ###################################
 	public void addSwitch(Switch s) {
@@ -106,6 +141,14 @@ public class CollectedData {
 
 	public List<Try> getTrys() {
 		return this.trys;
+	}
+	
+	public void addTryResource(Try t) {
+		this.trysResource.add(t);
+	}
+
+	public List<Try> getTrysResource() {
+		return this.trysResource;
 	}
 
 	public void addTryWithSimilartyCatch(Try tryWithSimilarityCatch) {
@@ -153,19 +196,19 @@ public class CollectedData {
 	}
 
 	// ############### TypeDeclarations ####################
-	public void addType(Type type) {
+	public void addType(ClassDeclaration type) {
 		this.types.add(type);
 	}
 
-	public List<Type> getTypeDeclarations() {
+	public List<ClassDeclaration> getTypeDeclarations() {
 		return this.types;
 	}
 
-	public void addParameterizedType(Type type) {
+	public void addParameterizedType(ClassDeclaration type) {
 		this.paramTypes.add(type);
 	}
 
-	public List<Type> getParamTypes() {
+	public List<ClassDeclaration> getParamTypes() {
 		return this.paramTypes;
 	}
 	
@@ -211,21 +254,43 @@ public class CollectedData {
 		return scriptingEngineCalls;
 	}
 
+	
+	
+	// ############### Opportunities Lambda Expressions ####################
+	public void addOpportunitiesLambdaExp(OpportunitiesLambdaExp o){
+		this.opportunitesLambdaExp.add(o);
+	}
+	
+	public List<OpportunitiesLambdaExp> getOpportunitiesLambdaExp(){
+		return this.opportunitesLambdaExp;
+	}
+	
+	
 	// ################ Clear ########################
 	public void cleanData() {
 		this.numberOfStatements = 0;
 		this.analysisError.clear();
+		this.opportunitiesSwichString.clear();
+		this.lbdexps.clear();
 		this.trys.clear();
+		this.trysResource.clear();
+		this.switchs.clear();
+		this.switchWithString.clear();
+		this.scriptingEngineCalls.clear();
+		this.nameFile.clear();;
 		this.tryWithSimilarityCatch.clear();
-
 		this.methods.clear();
 		this.methodWithVargs.clear();
+		this.paramMethods.clear();
 		this.types.clear();
 		this.paramTypes.clear();
 		this.switchs.clear();
 		this.switchWithString.clear();
 		this.scriptingEngineCalls.clear();
 		this.aics.clear();
+		this.variables.clear();
+		this.paramVariables.clear();
+		this.opportunitesLambdaExp.clear();
 	}
 
 }

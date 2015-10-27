@@ -12,7 +12,7 @@ public class IOTest {
 
 	@Test
 	public void testListFiles(){
-		try {
+		try {	
 			List<String> files = IO.listFiles("/home/thiago/git/static-analysis/src/br/unb/cic/sa/util", new String[]{"java"});
 			Assert.assertEquals(4, files.size());
 			
@@ -31,6 +31,7 @@ public class IOTest {
 	@Test
 	public void testListFilesWithoutFilters() {
 		try {
+
 			List<String> files = IO.listFiles("/home/thiago/git/static-analysis/src/br/unb/cic/sa/util", new String[]{});
 			
 			Assert.assertEquals(4, files.size());
