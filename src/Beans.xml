@@ -24,16 +24,16 @@
 	<bean id="pa" class="br.unb.cic.sa.ProjectAnalyser">
 		<property name="listVisitors">
 			<list>
-				<ref bean="opportunitiesLambdaExpVisitor"/>
-				<ref bean="opportunitiesSwichStringVisitor"/>
+<!-- 				<ref bean="opportunitiesLambdaExpVisitor"/> -->
+<!-- 				<ref bean="opportunitiesSwichStringVisitor"/> -->
 				<ref bean="tsVisitor"/>
-				<ref bean="mdVisitor"/>
-				<ref bean="typeVisitor"/>
-				<ref bean="swVisitor"/>
-				<ref bean="enVisitor"/>
-				<ref bean="scVisitor"/>
-				<ref bean="varVisitor"/>
-				<ref bean="lambdaVisitor"/>
+<!-- 				<ref bean="mdVisitor"/> -->
+<!-- 				<ref bean="typeVisitor"/> -->
+<!-- 				<ref bean="swVisitor"/> -->
+<!-- 				<ref bean="enVisitor"/> -->
+<!-- 				<ref bean="scVisitor"/> -->
+<!-- 				<ref bean="varVisitor"/> -->
+<!-- 				<ref bean="lambdaVisitor"/> -->
 			</list>
 		</property>
 		

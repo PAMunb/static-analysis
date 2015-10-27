@@ -27,8 +27,8 @@ public interface Constants {
 	
 	String CSV_ERROR = "error.csv";
 	
-	String PROJECT_NAME = "Project Name";
-	String VERSION_PROJECT = "Version Project";
+	String PROJECT_NAME = "ProjectName";
+	String VERSION_PROJECT = "VersionProject";
 	
 	
 	String EMPTY = "#";
@@ -36,8 +36,8 @@ public interface Constants {
 	String NEW_LINE = "\n";
 	String ERROR = "Error";
 	
-	String START_NUMEBER_LINE = "Start in line";
-	String END_NUMEBER_LINE = "End in line";
+	String START_NUMEBER_LINE = "StartLine";
+	String END_NUMEBER_LINE = "EndLine";
 	String NUMBER_TOTAL_LINE_IN_PROJECT = "Total lines in project";
 	String NUMBER_TOTAL_OF_STATEMENTS = "Total Statements";
 	String NUMBER_OF_TRYSTATEMENTS = "Total TryStatements";
@@ -45,6 +45,9 @@ public interface Constants {
 	String NUMBER_OF_TYPE_DECLARATION = "Total Types";
 	String NUMBER_OF_PARAMETERIZED_TYPES = "Total Parameterized Types";
 	String NUMBER_TOTAL_LINES_OF_CODE = "Total lines of code";
+	String LOC_TOTAL = "LOC_TOTAL";
+	String LOC_AFTER_REFACTORING = "LOC_AFTER_REFACTORING";
+	String LOC_BEFORE_REFACTORING = "LOC_BEFORE_REFACTORING";
 	
 	String SUPERCLASS = "Super Class";
 	String INTERFACES = "Interfaces";
@@ -129,6 +132,8 @@ public interface Constants {
 			Constants.FILE + Constants.COMMA_DELIMITER +
 			Constants.START_NUMEBER_LINE + Constants.COMMA_DELIMITER +
 			Constants.END_NUMEBER_LINE + Constants.COMMA_DELIMITER +
+			Constants.LOC_BEFORE_REFACTORING + Constants.COMMA_DELIMITER +
+			Constants.LOC_AFTER_REFACTORING + Constants.COMMA_DELIMITER +
 			Constants.PROJECT_NAME + Constants.COMMA_DELIMITER +
 			Constants.VERSION_PROJECT + Constants.COMMA_DELIMITER +
 			Constants.NEW_LINE;

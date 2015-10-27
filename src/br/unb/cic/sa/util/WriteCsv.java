@@ -351,11 +351,15 @@ public class WriteCsv {
 	private StringBuilder trys(List<Try> trys, Project project) {
 		StringBuilder sb = new StringBuilder();
 
-		trys.forEach(t -> sb.append(t.getFile() + Constants.COMMA_DELIMITER + t.getStartLine()
-				+ Constants.COMMA_DELIMITER + t.getEndLine()
-				+ Constants.COMMA_DELIMITER + project.getProjectName()
-				+ Constants.COMMA_DELIMITER + project.getProjectRevision()
-				+ Constants.COMMA_DELIMITER + Constants.NEW_LINE));
+		trys.forEach(t -> sb.append(
+				  t.getFile()                  + Constants.COMMA_DELIMITER 
+				+ t.getStartLine()             + Constants.COMMA_DELIMITER 
+				+ t.getEndLine()               + Constants.COMMA_DELIMITER 
+				+ t.getLocBeforeRefactoring()  + Constants.COMMA_DELIMITER
+				+ t.getLocAfterRefactoring()   + Constants.COMMA_DELIMITER
+				+ project.getProjectName()	   + Constants.COMMA_DELIMITER
+				+ project.getProjectRevision() + Constants.COMMA_DELIMITER 
+				+ Constants.NEW_LINE));
 
 		return sb;
 	}
