@@ -24,6 +24,8 @@ public interface Constants {
 	String CSV_SCRIPTING_CALLS = "scriptingCalls.csv";
 	String CSV_OUTPUT_DIT = "OutputCSV";
 	String CSV_OUTPUT_OPPORTUNITIES_LAMBDA_EXP = "opportunitiesLambdaExp.csv";
+	String CSV_OUTPUT_ENHANCED_FOR = "enhancedFor.csv";
+
 	
 	String CSV_ERROR = "error.csv";
 	

@@ -13,6 +13,7 @@ import org.eclipse.jdt.core.dom.ThrowStatement;
 import org.eclipse.jdt.core.dom.VariableDeclarationStatement;
 
 import br.unb.cic.sa.Parser;
+import br.unb.cic.sa.model.OpportunitiesLambdaExp;
 
 public class RICVisitor extends Visitor {
 
@@ -28,17 +29,28 @@ public class RICVisitor extends Visitor {
 	@Override
 	public boolean visit(EnhancedForStatement node) {
 		
+		OpportunitiesLambdaExp o = new OpportunitiesLambdaExp(file, unit
+				.getLineNumber(node.getStartPosition()), unit
+				.getLineNumber(node.getStartPosition()
+						+ node.getLength()));
+		
+		collection.addEnhancedFor(o);
+		
 		String body = node.getBody().toString();
+		
 		if (criteria2(body) && criteria3(body) && criteria4(body)
 				&& criteria5(body) && criteria6(body)){
 			
 			validos++;
+
+			collection.addOpportunitiesLambdaExp(o);
+
 		}
 		
-		
+	
 		return true;
 	}
-	
+
 	
 	
 	/*

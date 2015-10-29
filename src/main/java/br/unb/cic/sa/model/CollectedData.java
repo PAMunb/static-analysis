@@ -28,6 +28,8 @@ public class CollectedData {
 	private List<Variable> paramVariables;
 	
 	private List<OpportunitiesLambdaExp> opportunitesLambdaExp;
+	private List<OpportunitiesLambdaExp> enhancedFor;
+
 
 	private List<String> nameFile;
 	
@@ -66,6 +68,7 @@ public class CollectedData {
 		this.nameFile = new ArrayList<>();
 		
 		this.opportunitesLambdaExp = new ArrayList<>();
+		this.enhancedFor = new ArrayList<>();
 
 		this.numberOfStatements = 0;
 		
@@ -266,6 +269,16 @@ public class CollectedData {
 	}
 	
 	
+	public void addEnhancedFor(OpportunitiesLambdaExp e){
+		this.enhancedFor.add(e);
+	}
+	
+	public List<OpportunitiesLambdaExp> getEnhancedFor(){
+		return this.enhancedFor;
+	}
+	
+	
+	
 	// ################ Clear ########################
 	public void cleanData() {
 		this.numberOfStatements = 0;
@@ -291,6 +304,7 @@ public class CollectedData {
 		this.variables.clear();
 		this.paramVariables.clear();
 		this.opportunitesLambdaExp.clear();
+		this.enhancedFor.clear();
 	}
 
 }

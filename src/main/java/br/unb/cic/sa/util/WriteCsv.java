@@ -35,6 +35,7 @@ public class WriteCsv {
 	private FileWriter csvSwitch;
 	private FileWriter csvSwithWithString;
 	private FileWriter csvOpportunitiesLambdaExp;
+	private FileWriter csvEnhancedFor;
 	private FileWriter csvError;
 	private FileWriter csvAnnonymousInnerClasses;
 
@@ -111,6 +112,11 @@ public class WriteCsv {
 			csvOpportunitiesLambdaExp = new FileWriter(dir + "/" + Constants.CSV_OUTPUT_OPPORTUNITIES_LAMBDA_EXP);
 			csvOpportunitiesLambdaExp.append(Constants.HEADER_OUTPUT_OPPORTUNITIES_LAMBDA_EXP);
 			csvOpportunitiesLambdaExp.flush();
+			
+			
+			csvEnhancedFor = new FileWriter(dir + "/" + Constants.CSV_OUTPUT_ENHANCED_FOR);
+			csvEnhancedFor.append(Constants.HEADER_OUTPUT_OPPORTUNITIES_LAMBDA_EXP);
+			csvEnhancedFor.flush();
 
 			csvError = new FileWriter(dir + "/" + Constants.CSV_ERROR);
 			csvError.append(Constants.HEADER_ERROR);
@@ -230,6 +236,12 @@ public class WriteCsv {
 			this.write(
 					opportunitiesLambdaExp(collectedData.getOpportunitiesLambdaExp(), collectedData.getProject()),
 					csvOpportunitiesLambdaExp);
+		}
+		
+		if (collectedData.getEnhancedFor().size() > 0) {
+			this.write(
+					enhancedFor(collectedData.getEnhancedFor(), collectedData.getProject()),
+					csvEnhancedFor);
 		}
 
 		
@@ -369,6 +381,19 @@ public class WriteCsv {
 
 	
 	private StringBuilder opportunitiesLambdaExp(List<OpportunitiesLambdaExp> op, Project project) {
+		StringBuilder sb = new StringBuilder();
+
+		op.forEach(t -> sb.append(t.getFile() + Constants.COMMA_DELIMITER + t.getStartLine()
+				+ Constants.COMMA_DELIMITER + t.getEndLine()
+				+ Constants.COMMA_DELIMITER + project.getProjectName()
+				+ Constants.COMMA_DELIMITER + project.getProjectRevision()
+				+ Constants.COMMA_DELIMITER + Constants.NEW_LINE));
+
+		return sb;
+	}
+	
+	
+	private StringBuilder enhancedFor(List<OpportunitiesLambdaExp> op, Project project) {
 		StringBuilder sb = new StringBuilder();
 
 		op.forEach(t -> sb.append(t.getFile() + Constants.COMMA_DELIMITER + t.getStartLine()
