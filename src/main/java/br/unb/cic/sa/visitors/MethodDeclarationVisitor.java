@@ -4,7 +4,7 @@ import org.eclipse.jdt.core.dom.MethodDeclaration;
 
 import br.unb.cic.sa.model.Method;
 
-public class MethodDeclarationVisitor extends Visitor implements IVisitor {
+public class MethodDeclarationVisitor extends Visitor<Method>  {
 	@Override
 	public boolean visit(MethodDeclaration node) {
 		Method method = new Method(file, node.getName().toString(),
@@ -12,18 +12,18 @@ public class MethodDeclarationVisitor extends Visitor implements IVisitor {
 				unit.getLineNumber(node.getStartPosition()
 						+ node.getLength()));
 
-		this.collection.addMethods(method);
-		
 		
 		if (node.isVarargs()) {	
-			this.collection.addMethodWithVargs(method);
+			method.setVarArgs(true);
 		}
 		
 		if(!node.isConstructor() && 
 				node.getReturnType2() != null && node.getReturnType2().isParameterizedType()){
-			this.collection.addParameterizedMethod(method);
+			method.setParameterizedMethod(true);
 		}
 
+		this.collectedData.addValue(method);
+		
 		return super.visit(node);
 	}
 }

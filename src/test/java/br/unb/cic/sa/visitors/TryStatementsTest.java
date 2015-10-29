@@ -13,7 +13,7 @@ import org.junit.Test;
 
 import br.unb.cic.sa.Parser;
 import br.unb.cic.sa.model.CollectedData;
-import br.unb.cic.sa.model.Try;
+import br.unb.cic.sa.model.TryStatementData;
 
 public class TryStatementsTest {
 
@@ -54,7 +54,7 @@ public class TryStatementsTest {
 	
 	@Test
 	public void listTryWithSimilarCatch(){
-		List<Try> trys = collection.getTryWithSimilartyCatch();
+		List<TryStatementData> trys = collection.getTryWithSimilartyCatch();
 		assertEquals(2, trys.size());
 	}
 	

@@ -8,6 +8,25 @@
 	
 	<context:annotation-config />
 	
+	<bean id="aicData" class="br.unb.cic.sa.model.CSVData">
+		<property name="outDir" value="output"/>
+		<property name="fileName" value="aic"/>
+		<property name="head" value="project, version, loc, file, start, end, p1, p2, p3, p4"/> 
+	</bean>
+
+	<bean id="tryStatementData" class="br.unb.cic.sa.model.CSVData">
+		<property name="outDir" value="output"/>
+		<property name="fileName" value="tryStatement"/>
+		<property name="head" value="project, version, loc, file, start, end, resource, multiCatch"/> 
+	</bean>
+	
+	<bean id="enumDeclarationData" class="br.unb.cic.sa.model.CSVData">
+		<property name="outDir" value="output"/>
+		<property name="fileName" value="enumDeclaration"/>
+		<property name="head" value="project, version, loc, file, start, end"/> 
+	</bean>
+	
+	<!-- 
 	<bean id="tsVisitor" class="br.unb.cic.sa.visitors.TryStatementVisitor"/>
 	<bean id="mdVisitor" class="br.unb.cic.sa.visitors.MethodDeclarationVisitor"/>
 	<bean id="typeVisitor" class="br.unb.cic.sa.visitors.TypeDeclarationVisitor"/>
@@ -17,16 +36,25 @@
 	<bean id="opportunitiesSwichStringVisitor" class="br.unb.cic.sa.visitors.OpportunitiesSwitchStringVisitor"/>
 	<bean id="opportunitiesLambdaExpVisitor" class="br.unb.cic.sa.visitors.OpportunitiesLambdaExpVisitor"/>
 	<bean id="varVisitor" class="br.unb.cic.sa.visitors.VariableDeclarationVisitor"/>
-	<bean id="aicVisitor" class="br.unb.cic.sa.visitors.AICVisitor"/>
-	<bean id="lambdaVisitor" class="br.unb.cic.sa.visitors.LambdaExpressionVisitor"/>
-
-	<bean id="collection" class="br.unb.cic.sa.model.CollectedData"/>
-
+	-->
+	
+	<bean id="aicVisitor" class="br.unb.cic.sa.visitors.AICVisitor">
+		<property name="collectedData" ref="aicData"/>
+	</bean>
+	
+	<bean id="tryStatementVisitor" class="br.unb.cic.sa.visitors.TryStatementVisitor">
+		<property name="collectedData" ref="tryStatementData"/>
+	</bean>
+	
+	<bean id="enumDeclarationVisitor" class="br.unb.cic.sa.visitors.EnumDeclarationVisitor">
+		<property name="collectedData" ref="enumDeclarationData"/>
+	</bean>
+	
 	<bean id="pa" class="br.unb.cic.sa.ProjectAnalyser">
 		<property name="listVisitors">
 			<list>
-<!-- 				<ref bean="opportunitiesLambdaExpVisitor"/> -->
-<!-- 				<ref bean="opportunitiesSwichStringVisitor"/> -->
+<!-- 			<ref bean="opportunitiesLambdaExpVisitor"/> 
+				<ref bean="opportunitiesSwichStringVisitor"/> 
 				<ref bean="tsVisitor"/>
 				<ref bean="mdVisitor"/>
 				<ref bean="typeVisitor"/>
@@ -34,13 +62,12 @@
 				<ref bean="enVisitor"/>
 				<ref bean="scVisitor"/>
 				<ref bean="varVisitor"/>
-				<ref bean="aicVisitor"/>
-				<ref bean="lambdaVisitor"/>
+ 		        <ref bean="lambdaVisitor"/>
+ -->	
+ 				<ref bean="aicVisitor"/>
+				<ref bean="tryStatementVisitor"/>
+				<ref bean="enumDeclarationVisitor"/>
 			</list>
-		</property>
-		
-		<property name="collectionProject">
-			<ref bean="collection"/>
 		</property>
 	</bean>
 

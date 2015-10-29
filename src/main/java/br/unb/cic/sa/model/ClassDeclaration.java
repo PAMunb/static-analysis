@@ -5,11 +5,7 @@ import java.util.List;
 import org.eclipse.jdt.core.dom.Type;
 
 public class ClassDeclaration extends AbsStatementModel{
-	
-
-	public ClassDeclaration(){
-		
-	}
+		private boolean isParameterized;
 	
 	public ClassDeclaration(String file, String name, Type superClass,
 			List<Type> interfaces, int startLine, int endLine){
@@ -20,5 +16,15 @@ public class ClassDeclaration extends AbsStatementModel{
 		this.setStartLine(startLine);
 		this.setEndLine(endLine);
 	}
+
+	public boolean getParameterized() {
+		return isParameterized;
+	}
+
+	public void setParameterized(boolean isParameterized) {
+		this.isParameterized = isParameterized;
+	}
+	
+	
 	
 }

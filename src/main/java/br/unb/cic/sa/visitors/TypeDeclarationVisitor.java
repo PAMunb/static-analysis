@@ -4,7 +4,7 @@ import org.eclipse.jdt.core.dom.TypeDeclaration;
 
 import br.unb.cic.sa.model.ClassDeclaration;
 
-public class TypeDeclarationVisitor extends Visitor implements IVisitor{
+public class TypeDeclarationVisitor extends Visitor<ClassDeclaration>{
 
 	@Override
 	public boolean visit(TypeDeclaration node) {
@@ -14,12 +14,12 @@ public class TypeDeclarationVisitor extends Visitor implements IVisitor{
 				unit.getLineNumber(node.getStartPosition()),
 				unit.getLineNumber(node.getStartPosition()
 						+ node.getLength()));
-		//add type in collection
-		collection.addType(t);
 		
 		if(!(node.typeParameters().isEmpty())){
-			collection.addParameterizedType(t);
+			t.setParameterized(true);
 		}
+		
+		collectedData.addValue(t);
 		
 		return super.visit(node);
 	}

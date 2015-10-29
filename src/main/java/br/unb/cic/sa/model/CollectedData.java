@@ -14,9 +14,9 @@ public class CollectedData {
 	private List<LambdaExp> lbdexps;
 	private List<Switch> switchs;
 	private List<Switch> switchWithString;
-	private List<Try> trys;
-	private List<Try> trysResource;
-	private List<Try> tryWithSimilarityCatch;
+	private List<TryStatementData> trys;
+	private List<TryStatementData> trysResource;
+	private List<TryStatementData> tryWithSimilarityCatch;
 	private List<ScriptingEngineCall> scriptingEngineCalls;
 	
 	private List<Method> methods;
@@ -31,7 +31,7 @@ public class CollectedData {
 
 	private List<String> nameFile;
 	
-	private List<AnnonymousInnerClass> aics;
+	private List<AnonymousInnerClass> aics;
 
 	public CollectedData() {
 		this.analysisError = new ArrayList<String>();
@@ -42,9 +42,9 @@ public class CollectedData {
 		
 		this.opportunitiesSwichString = new ArrayList<>();
 		
-		this.trys = new ArrayList<Try>();
+		this.trys = new ArrayList<TryStatementData>();
 		this.trysResource = new ArrayList<>();
-		this.tryWithSimilarityCatch = new ArrayList<Try>();
+		this.tryWithSimilarityCatch = new ArrayList<TryStatementData>();
 		
 		this.methods = new ArrayList<Method>();
 		this.methodWithVargs = new ArrayList<Method>();
@@ -135,37 +135,37 @@ public class CollectedData {
 	}
 
 	// ############################ TryStatment Block ################################
-	public void addTry(Try t) {
+	public void addTry(TryStatementData t) {
 		this.trys.add(t);
 	}
 
-	public List<Try> getTrys() {
+	public List<TryStatementData> getTrys() {
 		return this.trys;
 	}
 	
-	public void addTryResource(Try t) {
+	public void addTryResource(TryStatementData t) {
 		this.trysResource.add(t);
 	}
 
-	public List<Try> getTrysResource() {
+	public List<TryStatementData> getTrysResource() {
 		return this.trysResource;
 	}
 
-	public void addTryWithSimilartyCatch(Try tryWithSimilarityCatch) {
+	public void addTryWithSimilartyCatch(TryStatementData tryWithSimilarityCatch) {
 		this.tryWithSimilarityCatch.add(tryWithSimilarityCatch);
 	}
 
-	public List<Try> getTryWithSimilartyCatch() {
+	public List<TryStatementData> getTryWithSimilartyCatch() {
 		return this.tryWithSimilarityCatch;
 	}
 	
 	// Annonymous Inner Classes 
 	
-	public void addAnnonymousInnerClass(AnnonymousInnerClass aic) {
+	public void addAnnonymousInnerClass(AnonymousInnerClass aic) {
 		aics.add(aic);
 	}
 	
-	public List<AnnonymousInnerClass> getAICS() {
+	public List<AnonymousInnerClass> getAICS() {
 		return aics;
 	}
 

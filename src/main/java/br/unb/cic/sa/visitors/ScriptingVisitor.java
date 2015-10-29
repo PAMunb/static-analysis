@@ -5,7 +5,7 @@ import org.eclipse.jdt.core.dom.MethodInvocation;
 import br.unb.cic.sa.model.ScriptingEngineCall;
 
 
-public class ScriptingVisitor extends Visitor implements IVisitor {
+public class ScriptingVisitor extends Visitor<ScriptingEngineCall> {
 
 //	@Override
 //	public boolean visit(FieldDeclaration node) {
@@ -19,12 +19,12 @@ public class ScriptingVisitor extends Visitor implements IVisitor {
 		if(method.equals("getEngineByName")) {
 			if(node.arguments().size() == 1) {
 				ScriptingEngineCall call = new ScriptingEngineCall(file, method, 0, 0);
-				collection.addScriptingEngineCall(call);
+				collectedData.addValue(call);
 			}
 		}
 		else if(method.equals("eval")) {
 			ScriptingEngineCall call = new ScriptingEngineCall(file, method, 0, 0);
-			collection.addScriptingEngineCall(call);
+			collectedData.addValue(call);
 		}
 		
 		return super.visit(node);

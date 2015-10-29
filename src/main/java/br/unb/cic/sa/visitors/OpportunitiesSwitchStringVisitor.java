@@ -8,7 +8,7 @@ import org.eclipse.jdt.core.dom.StringLiteral;
 import br.unb.cic.sa.model.OpportunitieSwitchString;
 
 
-public class OpportunitiesSwitchStringVisitor extends Visitor{
+public class OpportunitiesSwitchStringVisitor extends Visitor<OpportunitieSwitchString>{
 	
 	InfixExpression infix;
 //	PrefixExpression prefix;
@@ -45,7 +45,7 @@ public class OpportunitiesSwitchStringVisitor extends Visitor{
 //			System.out.println();
 
 			
-			this.collection.addOpportunitieSwichString(new OpportunitieSwitchString(this.file,
+			this.collectedData.addValue(new OpportunitieSwitchString(this.file,
 					unit.getLineNumber(node.getStartPosition()),
 					unit.getLineNumber(node.getStartPosition()+node.getLength())));
 		}

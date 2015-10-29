@@ -8,7 +8,7 @@ import org.eclipse.jdt.core.dom.IfStatement;
 import br.unb.cic.sa.Parser;
 import br.unb.cic.sa.model.OpportunitiesLambdaExp;
 
-public class OpportunitiesLambdaExpVisitor extends Visitor {
+public class OpportunitiesLambdaExpVisitor extends Visitor<OpportunitiesLambdaExp> {
 
 	@Override
 	public boolean visit(ForStatement node) {
@@ -29,7 +29,7 @@ public class OpportunitiesLambdaExpVisitor extends Visitor {
 						.getLineNumber(node.getStartPosition()
 								+ node.getLength()));
 				
-				collection.addOpportunitiesLambdaExp(o);
+				collectedData.addValue(o);
 				
 				return true;
 			}
