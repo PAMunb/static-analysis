@@ -1,19 +1,23 @@
 package br.unb.cic.sa.visitors;
 
-import org.eclipse.jdt.core.dom.EnumDeclaration;
+import br.unb.cic.sa.model.EnumDeclaration;
 
-public class EnumDeclarationVisitor extends Visitor implements IVisitor {
+/**
+ * This visitor class collects relevant data about Java Enum declarations.
+ * 
+ * @author rbonifacio
+ */
+public class EnumDeclarationVisitor extends Visitor<EnumDeclaration> {
 
 	@Override
-	public boolean visit(EnumDeclaration node) {
-//		if(node.enumConstants().size()>0){
-//			System.out.println("Enum in "+this.file);	
-//		}
-//		
-//		System.out.println(node.toString());
-				
-		return super.visit(node);
+	public boolean visit(org.eclipse.jdt.core.dom.EnumDeclaration node) {
+
+		EnumDeclaration dec = new EnumDeclaration(this.file, unit.getLineNumber(node.getStartPosition()),
+				unit.getLineNumber(node.getLength() - node.getStartPosition()));
+		
+		collectedData.addValue(dec);
+
+		return true;
 	}
 
-	
 }

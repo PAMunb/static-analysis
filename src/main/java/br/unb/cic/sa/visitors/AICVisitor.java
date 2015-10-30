@@ -6,10 +6,10 @@ import org.eclipse.jdt.core.dom.AnonymousClassDeclaration;
 import org.eclipse.jdt.core.dom.BodyDeclaration;
 import org.eclipse.jdt.core.dom.MethodDeclaration;
 
-import br.unb.cic.sa.model.AnnonymousInnerClass;
+import br.unb.cic.sa.model.AnonymousInnerClass;
 
 
-public class AICVisitor extends Visitor {
+public class AICVisitor extends Visitor<AnonymousInnerClass> {
 
 	static int total = 0;
 	static int validos = 0;
@@ -47,9 +47,9 @@ public class AICVisitor extends Visitor {
 			criteria[2] = false;
 		}
 		
-		AnnonymousInnerClass aic = new AnnonymousInnerClass(file, unit.getLineNumber(node.getStartPosition()), unit.getLineNumber(node.getStartPosition() + node.getLength()));
+		AnonymousInnerClass aic = new AnonymousInnerClass(file, unit.getLineNumber(node.getStartPosition()), unit.getLineNumber(node.getStartPosition() + node.getLength()));
 		
-		collection.addAnnonymousInnerClass(aic);
+		collectedData.addValue(aic);
 		
 		return true;
 	}

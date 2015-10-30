@@ -2,32 +2,31 @@ package br.unb.cic.sa.visitors;
 
 import org.eclipse.jdt.core.dom.StringLiteral;
 import org.eclipse.jdt.core.dom.SwitchCase;
-import org.eclipse.jdt.core.dom.SwitchStatement;
 
-import br.unb.cic.sa.model.Switch;
+import br.unb.cic.sa.model.SwitchStatement;
 
-public class SwitchStatementVisitor extends Visitor{
+/**
+ * This visitor class collects relevant data about the Use of SwitchStatements
+ * 
+ * @author Thiago Cavalcanti / Vinicius Correa / Daniella Angelos
+ */
+public class SwitchStatementVisitor extends Visitor<SwitchStatement>{
 
-		@Override
-	public boolean visit(SwitchStatement node) {
+	@Override
+	public boolean visit(org.eclipse.jdt.core.dom.SwitchStatement node) {
 
-		this.collection.addSwitch(new Switch(this.file, unit.getLineNumber(node
+		SwitchStatement ss = new SwitchStatement(this.file, unit.getLineNumber(node
 				.getStartPosition()), unit.getLineNumber(node
-				.getStartPosition() + node.getLength())));
-
+				.getStartPosition() + node.getLength()));
 		
-		if(node.statements().size()>0){
-		
+		if(node.statements().size() > 0){
 			SwitchCase sc = (SwitchCase) node.statements().get(0);
 			if (sc.getExpression() instanceof StringLiteral) {
-				this.collection
-						.addSwichWithString(new Switch(this.file, unit
-								.getLineNumber(node.getStartPosition()), unit
-								.getLineNumber(node.getStartPosition()
-										+ node.getLength())));
-	
+				ss.setSwitchString(true);
 			}
 		}
+
+		this.collectedData.addValue(ss);
 
 		return super.visit(node);
 	}
