@@ -73,12 +73,15 @@
 		<property name="fileName" value="fieldAndVariableDeclaration"/>
 		<property name="head" value="project, version, loc, file, start, end, name, type, field, parameterized"/> 
 	</bean>	
+	
+	<bean id="enhancedForStatementData" class="br.unb.cic.sa.model.CSVData">
+		<property name="outDir" value="output"/>
+		<property name="fileName" value="enhancedForStatement"/>
+		<property name="head" value="project, version, loc, file, start, end, applyLambda"/> 
+	</bean>	
 		
 	
-<!--
-	<bean id="aicVisitor" class="br.unb.cic.sa.visitors.AICVisitor"/>
-	<bean id="ricVisitor" class="br.unb.cic.sa.visitors.RICVisitor"/>
--->	
+
 	<bean id="aicVisitor" class="br.unb.cic.sa.visitors.AICVisitor">
 		<property name="collectedData" ref="aicData"/>
 	</bean>
@@ -122,14 +125,14 @@
 	<bean id="fieldAndVariableDeclarationVisitor" class="br.unb.cic.sa.visitors.FieldAndVariableDeclarationVisitor">
 		<property name="collectedData" ref="fieldAndVariableDeclarationData"/>
 	</bean>
+
+	<bean id="enhancedForStatementVisitor" class="br.unb.cic.sa.visitors.RICVisitor">
+		<property name="collectedData" ref="enhancedForStatementData"/>
+	</bean>
 	
 	<bean id="pa" class="br.unb.cic.sa.ProjectAnalyser">
 		<property name="listVisitors">
 			<list>
-
-				<!--ref bean="lambdaVisitor"/>
-				<ref bean="ricVisitor"/-->
-
  				<ref bean="aicVisitor"/>
 				<ref bean="tryStatementVisitor"/>
 				<ref bean="enumDeclarationVisitor"/>
@@ -141,6 +144,7 @@
 				<ref bean="scriptingEngineVisitor"/>
 				<ref bean="switchStatementVisitor"/>
 				<ref bean="fieldAndVariableDeclarationVisitor"/>
+				<ref bean="enhancedForStatementVisitor"/>
 			</list>
 		</property>
 	</bean>

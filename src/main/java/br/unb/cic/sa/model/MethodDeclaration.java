@@ -4,7 +4,7 @@ package br.unb.cic.sa.model;
  * This class maintains relevant information about 
  * method declaration. 
  * 
- * @author Thiago Cavalcanti / Rodrigo Bonifacio
+ * @author Thiago Cavalcanti / Vinicius Correa
  */
 public class MethodDeclaration {
 	

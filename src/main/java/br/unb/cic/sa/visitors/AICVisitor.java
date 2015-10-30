@@ -9,6 +9,12 @@ import org.eclipse.jdt.core.dom.MethodDeclaration;
 import br.unb.cic.sa.model.AnonymousInnerClass;
 
 
+/**
+ * This visitor class collects relevant data about the use of 
+ * Anonymous Inner Classes.
+ * 
+ * @author rbonifacio
+ */
 public class AICVisitor extends Visitor<AnonymousInnerClass> {
 
 	static int total = 0;
