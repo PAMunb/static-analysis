@@ -26,6 +26,55 @@
 		<property name="head" value="project, version, loc, file, start, end"/> 
 	</bean>
 	
+	<bean id="typeDeclarationData" class="br.unb.cic.sa.model.CSVData">
+		<property name="outDir" value="output"/>
+		<property name="fileName" value="typeDeclaration"/>
+		<property name="head" value="project, version, loc, file, start, end, name, superClass, interfaces, typeParameters, typeParameterModifiers"/> 
+	</bean>
+	
+	<bean id="lambdaExpressionData" class="br.unb.cic.sa.model.CSVData">
+		<property name="outDir" value="output"/>
+		<property name="fileName" value="lambdaExpression"/>
+		<property name="head" value="project, version, loc, file, start, end, parentMethod"/> 
+	</bean>
+	
+	<bean id="methodDeclarationData" class="br.unb.cic.sa.model.CSVData">
+		<property name="outDir" value="output"/>
+		<property name="fileName" value="methodDeclaration"/>
+		<property name="head" value="project, version, loc, file, start, end, name, varArgs, parameterizedMethod, parameterizedType"/> 
+	</bean>
+
+	<bean id="lambdaExpressionOpportunitiesData" class="br.unb.cic.sa.model.CSVData">
+		<property name="outDir" value="output"/>
+		<property name="fileName" value="lambdaExpressionOpportunities"/>
+		<property name="head" value="project, version, loc, file, start, end"/> 
+	</bean>	
+	
+	<bean id="switchStringOpportunitiesData" class="br.unb.cic.sa.model.CSVData">
+		<property name="outDir" value="output"/>
+		<property name="fileName" value="switchStringOpportunities"/>
+		<property name="head" value="project, version, loc, file, start, end"/> 
+	</bean>
+	
+	<bean id="scriptingEngineData" class="br.unb.cic.sa.model.CSVData">
+		<property name="outDir" value="output"/>
+		<property name="fileName" value="scriptingEngine"/>
+		<property name="head" value="project, version, loc, file, start, end, method"/> 
+	</bean>	
+	
+	<bean id="switchStatementData" class="br.unb.cic.sa.model.CSVData">
+		<property name="outDir" value="output"/>
+		<property name="fileName" value="switchStatement"/>
+		<property name="head" value="project, version, loc, file, start, end, switchString"/> 
+	</bean>	
+	
+	<bean id="fieldAndVariableDeclarationData" class="br.unb.cic.sa.model.CSVData">
+		<property name="outDir" value="output"/>
+		<property name="fileName" value="fieldAndVariableDeclaration"/>
+		<property name="head" value="project, version, loc, file, start, end, name, type, field, parameterized"/> 
+	</bean>	
+		
+	
 	<!-- 
 	<bean id="tsVisitor" class="br.unb.cic.sa.visitors.TryStatementVisitor"/>
 	<bean id="mdVisitor" class="br.unb.cic.sa.visitors.MethodDeclarationVisitor"/>
@@ -50,6 +99,38 @@
 		<property name="collectedData" ref="enumDeclarationData"/>
 	</bean>
 	
+	<bean id="typeDeclarationVisitor" class="br.unb.cic.sa.visitors.TypeDeclarationVisitor">
+		<property name="collectedData" ref="typeDeclarationData"/>
+	</bean>
+
+	<bean id="lambdaExpressionVisitor" class="br.unb.cic.sa.visitors.LambdaExpressionVisitor">
+		<property name="collectedData" ref="lambdaExpressionData"/>
+	</bean>
+	
+	<bean id="methodDeclarationVisitor" class="br.unb.cic.sa.visitors.MethodDeclarationVisitor">
+		<property name="collectedData" ref="methodDeclarationData"/>
+	</bean>
+	
+	<bean id="lambdaExpressionOpportunitiesVisitor" class="br.unb.cic.sa.visitors.LambdaExpressionOpportunitiesVisitor">
+		<property name="collectedData" ref="lambdaExpressionOpportunitiesData"/>
+	</bean>
+	
+	<bean id="switchStringOpportunitiesVisitor" class="br.unb.cic.sa.visitors.SwitchStringOpportunitiesVisitor">
+		<property name="collectedData" ref="switchStringOpportunitiesData"/>
+	</bean>
+	
+	<bean id="scriptingEngineVisitor" class="br.unb.cic.sa.visitors.ScriptingEngineVisitor">
+		<property name="collectedData" ref="scriptingEngineData"/>
+	</bean>
+	
+	<bean id="switchStatementVisitor" class="br.unb.cic.sa.visitors.SwitchStatementVisitor">
+		<property name="collectedData" ref="switchStatementData"/>
+	</bean>
+	
+	<bean id="fieldAndVariableDeclarationVisitor" class="br.unb.cic.sa.visitors.FieldAndVariableDeclarationVisitor">
+		<property name="collectedData" ref="fieldAndVariableDeclarationData"/>
+	</bean>
+	
 	<bean id="pa" class="br.unb.cic.sa.ProjectAnalyser">
 		<property name="listVisitors">
 			<list>
@@ -67,6 +148,15 @@
  				<ref bean="aicVisitor"/>
 				<ref bean="tryStatementVisitor"/>
 				<ref bean="enumDeclarationVisitor"/>
+				<ref bean="typeDeclarationVisitor"/>
+				<ref bean="lambdaExpressionVisitor"/>
+				<ref bean="methodDeclarationVisitor"/>
+				<ref bean="lambdaExpressionOpportunitiesVisitor"/>
+				<ref bean="switchStringOpportunitiesVisitor"/>
+				<ref bean="scriptingEngineVisitor"/>
+				<ref bean="switchStatementVisitor"/>
+				<ref bean="fieldAndVariableDeclarationVisitor"/>
+
 			</list>
 		</property>
 	</bean>

@@ -50,6 +50,11 @@ public class CSVData<T> implements Data<T>{
 	}
 	
 	@Override
+	public int size() {
+		return data == null ? 0 : data.size();
+	}
+	
+	@Override
 	public void export() {
 		try(FileWriter writer = new FileWriter(outDir + "/" + fileName + "-" + System.currentTimeMillis() + ".csv");) 
 		{
@@ -61,6 +66,10 @@ public class CSVData<T> implements Data<T>{
 			}
 			writer.append(str);
 			writer.append("\n");
+			if(data == null) {
+				writer.flush();
+				return;
+			}
 			for(T value : data) {
 				str = new StringBuffer("");
 				
