@@ -26,8 +26,6 @@ public class Parser {
 	private Parser() {
 	}
 
-	private BufferedReader br;
-
 	public static Parser Instance() {
 		if (instance == null)
 			instance = new Parser();
@@ -37,18 +35,24 @@ public class Parser {
 
 	public char[] readFileToString(File file) throws IOException {
 		char[] contents = null;
-		br = new BufferedReader(new FileReader(file));
 
 		StringBuffer sb = new StringBuffer();
 		String line = "";
 
-		while ((line = br.readLine()) != null) {
-			sb.append(line + "\n");
+		
+		try(BufferedReader b = new BufferedReader(new FileReader(file))){
+			
+			while ((line = b.readLine()) != null) {
+				sb.append(line + "\n");
+			}
+			
+			contents = sb.toString().toCharArray();
+			
+		}catch(Exception e) {
+			e.printStackTrace();
 		}
-
-		contents = new char[sb.length()];
-		sb.getChars(0, sb.length() - 1, contents, 0);
-
+		
+		
 		return contents;
 	}
 

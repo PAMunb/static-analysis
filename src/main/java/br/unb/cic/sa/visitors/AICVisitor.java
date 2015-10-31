@@ -19,6 +19,7 @@ public class AICVisitor extends Visitor<AnonymousInnerClass> {
 
 	static int total = 0;
 	static int validos = 0;
+	
 	@Override
 	public boolean visit(AnonymousClassDeclaration node) {
 		List<BodyDeclaration> declarations = node.bodyDeclarations();

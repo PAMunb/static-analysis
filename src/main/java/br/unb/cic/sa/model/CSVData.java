@@ -1,6 +1,16 @@
 package br.unb.cic.sa.model;
 
+/**
+ * To Export data to CSV
+ * 
+ * When finish a single project need call export otherwise throw 
+ * 	java.lang.OutOfMemoryError: GC overhead limit exceeded because has a wide size of data  
+ * 
+ */
+
+import java.io.File;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -54,10 +64,15 @@ public class CSVData<T> implements Data<T>{
 		return data == null ? 0 : data.size();
 	}
 	
-	@Override
-	public void export() {
-		try(FileWriter writer = new FileWriter(outDir + "/" + fileName + "-" + System.currentTimeMillis() + ".csv");) 
-		{
+	
+	private File makeCsv(String[] head) throws IOException{
+		
+		File csv = new File(outDir + "/" + fileName  + ".csv");
+		
+		if(!csv.exists()){
+			csv.createNewFile();
+			FileWriter writer = new FileWriter(csv);
+			
 			StringBuffer str = new StringBuffer("");
 
 			for(String s: head) {
@@ -66,10 +81,24 @@ public class CSVData<T> implements Data<T>{
 			}
 			writer.append(str);
 			writer.append("\n");
+			
+			writer.flush();
+		}
+		
+		return csv;
+	}
+	
+	@Override
+	public void export() {
+		
+		try (FileWriter writer = new FileWriter(this.makeCsv(head), true)){
+		
+			StringBuffer str = new StringBuffer("");
+
 			if(data == null) {
-				writer.flush();
 				return;
 			}
+			
 			for(T value : data) {
 				str = new StringBuffer("");
 				
@@ -84,7 +113,7 @@ public class CSVData<T> implements Data<T>{
 				//writer.append("\n");
 					
 				//reflection code... trying to understand this might lead to a huge headache!!!
-				for(Field f: value.getClass().getDeclaredFields()) {
+				for(Field f: value.getClass().getDeclaredFields()){
 					String fieldName = f.getName();
 					String prefix = "get";
 					
@@ -93,13 +122,12 @@ public class CSVData<T> implements Data<T>{
 					}
 					
 					String methodName = prefix + Character.toUpperCase(fieldName.charAt(0)) + fieldName.substring(1);
-					
+										
 					try {
 						Method m = value.getClass().getDeclaredMethod(methodName);
 						str.append(m.invoke(value));
 						str.append(";");
-					}
-					catch(NoSuchMethodException | IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
+					}catch(NoSuchMethodException | IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
 						throw new RuntimeException("Type " + value.getClass().getName() + " must have a method named " + methodName);
 					}
 				}
@@ -107,6 +135,8 @@ public class CSVData<T> implements Data<T>{
 				writer.append("\n");
 			}
 			writer.flush();
+			
+		
 		}
 		catch(Exception e) {
 			e.printStackTrace();

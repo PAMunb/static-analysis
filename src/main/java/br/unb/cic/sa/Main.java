@@ -23,19 +23,14 @@ public class Main {
 		
 		List<Project> projects = rcsv.readInput();
 		
-		try {
+		try {		
 			projects.stream().forEach(project -> pa.analyse(project));
-			
-			pa.exportData();
-		}
-		catch(Exception t) {
+		}catch(Exception t) {
 			t.printStackTrace();
 		}
 		
 //		Count total of lines of code in each project
 		int totalLoc = projects.parallelStream().mapToInt(Project::getLoc).sum();
-		
-//		writer.close();
 		
 		System.out.println("TotalLoc: "+ totalLoc);
 	}

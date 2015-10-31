@@ -126,9 +126,9 @@
 		<property name="collectedData" ref="fieldAndVariableDeclarationData"/>
 	</bean>
 
-	<bean id="enhancedForStatementVisitor" class="br.unb.cic.sa.visitors.RICVisitor">
-		<property name="collectedData" ref="enhancedForStatementData"/>
-	</bean>
+<!-- 	<bean id="enhancedForStatementVisitor" class="br.unb.cic.sa.visitors.RICVisitor"> -->
+<!-- 		<property name="collectedData" ref="enhancedForStatementData"/> -->
+<!-- 	</bean> -->
 	
 	<bean id="pa" class="br.unb.cic.sa.ProjectAnalyser">
 		<property name="listVisitors">
@@ -144,7 +144,7 @@
 				<ref bean="scriptingEngineVisitor"/>
 				<ref bean="switchStatementVisitor"/>
 				<ref bean="fieldAndVariableDeclarationVisitor"/>
-				<ref bean="enhancedForStatementVisitor"/>
+<!-- 				<ref bean="enhancedForStatementVisitor"/> -->
 			</list>
 		</property>
 	</bean>

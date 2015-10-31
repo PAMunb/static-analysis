@@ -25,27 +25,28 @@ public class ProjectAnalyser  {
 		
 	public void analyse(Project project)  {
 		CompilationUnit compilationUnit = null;
+		
+		System.out.println(project.getProjectName());
 	
 		try{ 
 			List<String> files = IO.listFiles(project.getFilePath(), new String[] { "java" });
 			
 			for (String file : files) {
-					compilationUnit = Parser.Instance().parse(new File(file));
-									
-	//				if (compilationUnit == null) {
-	//					this.collectionProject.addError("Error parsing file " + file);
-	//					continue;
-	//				}
-	
-						
+				
+				compilationUnit = Parser.Instance().parse(new File(file));
+			
 				for(IVisitor visitor : listVisitors){
 					visitor.getCollectedData().setProject(project);
 					visitor.setFile(file);
 					visitor.setUnit(compilationUnit);
 					
 					compilationUnit.accept((ASTVisitor) visitor);
+					
 				}
 			}
+			
+			exportData();
+			
 		}
 		catch(IOException e) {
 			System.out.println(e.getMessage());
@@ -53,10 +54,15 @@ public class ProjectAnalyser  {
 		catch(Exception e) {
 			throw new RuntimeException(e);
 		}
+				
 	}
 	
 	public void exportData() throws Exception {
-		listVisitors.stream().forEach(visitor -> visitor.getCollectedData().export());
+		listVisitors.stream().forEach(visitor -> {
+											visitor.getCollectedData().export();
+											visitor.getCollectedData().clean();
+										});
+		
 	}
 	
 }
