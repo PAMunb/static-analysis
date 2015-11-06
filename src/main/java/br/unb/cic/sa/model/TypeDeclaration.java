@@ -32,7 +32,7 @@ public class TypeDeclaration {
 		this.endLine = endLine;
 	}
 
-	
+		
 	public int getTypeParameters() {
 		return typeParameters;
 	}

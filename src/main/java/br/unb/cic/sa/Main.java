@@ -11,6 +11,21 @@ import br.unb.cic.sa.util.ReadCsv;
 public class Main {
 	 
 	public static void main(String[] args) {
+		
+		try{
+			
+			String command = "python ClearOutput.py ";
+			Process p = Runtime.getRuntime().exec(command, null);
+
+	        p.waitFor();
+			p.destroy();
+			
+		}catch(Exception e){
+			System.out.println(e.getMessage());
+			e.getStackTrace();
+		}
+		
+		
 		String pathCsv = "input.csv";
 		ReadCsv rcsv = new ReadCsv(pathCsv);
 
@@ -34,17 +49,4 @@ public class Main {
 		
 		System.out.println("TotalLoc: "+ totalLoc);
 	}
-
-//	private static void execute(ProjectAnalyser pa, Project project){
-////		analysis each project
-//		pa.setProject(project);
-//		
-//		try {
-//			CollectedData data = pa.call();
-//			data.cleanData();
-//		} catch (Exception e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//	}
 }

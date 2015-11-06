@@ -107,7 +107,7 @@ public class Parser {
 	}
 	
 	
-
+	
 	public Block parse(char[] contents) {
 
 		ASTParser parser = ASTParser.newParser(AST.JLS8);
@@ -126,5 +126,5 @@ public class Parser {
 		return (Block) parser.createAST(null);
 
 	}
-
+	
 }

@@ -13,30 +13,46 @@ public class Project {
 	private String projectName;
 	private String projectRevision;
 	private String filePath;
+	private String typeOfProject;
+	private String before; //To set true if project is before 2004 or set false if is after
 	private int loc;
 
-	public Project(String projectName, String projectRevision, String filePath, int loc){
+	public Project(String typeOfProject, String before, String projectName, String projectRevision, String filePath, int loc){
+		this.typeOfProject = typeOfProject;
+		this.before = before;
 		this.projectName = projectName;
 		this.projectRevision = projectRevision;
 		this.filePath = filePath;
 		this.loc = loc;
 	}
 	
+	public String getTypeOfProject() {
+		return typeOfProject;
+	}
+
+	public void setTypeOfProject(String typeOfProject) {
+		this.typeOfProject = typeOfProject;
+	}
+
+	public String getBefore() {
+		return before;
+	}
+
+	public void setBefore(String before) {
+		this.before = before;
+	}
 
 	public int getLoc() {
 		return loc;
 	}
 
-
 	public void setLoc(int loc) {
 		this.loc = loc;
 	}
 
-
 	public String getProjectName() {
 		return projectName;
 	}
-
 
 	public void setProjectName(String projectName) {
 		this.projectName = projectName;

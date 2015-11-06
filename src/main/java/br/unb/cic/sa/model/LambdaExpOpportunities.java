@@ -11,6 +11,8 @@ public class LambdaExpOpportunities {
 	private String file;
 	private int startLine;
 	private int endLine;
+	private boolean filter;
+	private boolean map;
 	
 	public LambdaExpOpportunities(String file, int startLine, int endLine) {
 		this.file = file;
@@ -41,4 +43,21 @@ public class LambdaExpOpportunities {
 	public void setEndLine(int endLine) {
 		this.endLine = endLine;
 	}
+
+	public boolean isFilter() {
+		return filter;
+	}
+
+	public void setFilter(boolean filter) {
+		this.filter = filter;
+	}
+
+	public boolean isMap() {
+		return map;
+	}
+
+	public void setMap(boolean map) {
+		this.map = map;
+	}
+	
 }
