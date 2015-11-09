@@ -102,18 +102,23 @@ public class CSVData<T> implements Data<T>{
 			for(T value : data) {
 				str = new StringBuffer("");
 				
+				str.append(project.getTypeOfProject());
+				str.append(";");
+				str.append(project.getBefore());
+				str.append(";");
 				str.append(project.getProjectName());
 				str.append(";");
 				str.append(project.getProjectRevision());
 				str.append(";");
-				str.append(project.getLoc());
-				str.append(";");
+//				str.append(project.getLoc());
+//				str.append(";");
 				
 				//writer.append(str);
 				//writer.append("\n");
 					
 				//reflection code... trying to understand this might lead to a huge headache!!!
 				for(Field f: value.getClass().getDeclaredFields()){
+										
 					String fieldName = f.getName();
 					String prefix = "get";
 					

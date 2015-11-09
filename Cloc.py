@@ -39,7 +39,7 @@ def execCloc(projectName, pathProject, version):
 
 if __name__ == "__main__":
 
-	defaultDir = '/home/thiago/git/ProjetosArtigoLambda/'
+	defaultDir = '/home/thiago/git/ProjetosArtigoGenerics/'
 
 	#diretorio que contem os projetos a serem computados pelo cloc.
 	pathDir = ''
@@ -58,7 +58,6 @@ if __name__ == "__main__":
 
 
 	projects = listProjects(pathDir)
-
 	#print projects
 	loc = 0
 	for project in projects:

@@ -11,73 +11,73 @@
 	<bean id="aicData" class="br.unb.cic.sa.model.CSVData">
 		<property name="outDir" value="output"/>
 		<property name="fileName" value="aic"/>
-		<property name="head" value="project, version, loc, file, start, end, p1, p2, p3, p4"/> 
+		<property name="head" value="project, version, file, start, end, p1, p2, p3, p4"/> 
 	</bean>
 
 	<bean id="tryStatementData" class="br.unb.cic.sa.model.CSVData">
 		<property name="outDir" value="output"/>
 		<property name="fileName" value="tryStatement"/>
-		<property name="head" value="project, version, loc, file, start, end, resource, multiCatch"/> 
+		<property name="head" value="project, version, file, start, end, resource, multiCatch"/> 
 	</bean>
 	
 	<bean id="enumDeclarationData" class="br.unb.cic.sa.model.CSVData">
 		<property name="outDir" value="output"/>
 		<property name="fileName" value="enumDeclaration"/>
-		<property name="head" value="project, version, loc, file, start, end"/> 
+		<property name="head" value="project, version, file, start, end"/> 
 	</bean>
 	
 	<bean id="typeDeclarationData" class="br.unb.cic.sa.model.CSVData">
 		<property name="outDir" value="output"/>
 		<property name="fileName" value="typeDeclaration"/>
-		<property name="head" value="project, version, loc, file, start, end, name, superClass, interfaces, typeParameters, typeParameterModifiers"/> 
+		<property name="head" value="tipeProject, before, project, version, file, start, end, name, superClass, interfaces, typeParameters, typeParameterModifiers"/> 
 	</bean>
 	
 	<bean id="lambdaExpressionData" class="br.unb.cic.sa.model.CSVData">
 		<property name="outDir" value="output"/>
 		<property name="fileName" value="lambdaExpression"/>
-		<property name="head" value="project, version, loc, file, start, end, parentMethod"/> 
+		<property name="head" value="project, version, file, start, end, parentMethod"/> 
 	</bean>
 	
 	<bean id="methodDeclarationData" class="br.unb.cic.sa.model.CSVData">
 		<property name="outDir" value="output"/>
 		<property name="fileName" value="methodDeclaration"/>
-		<property name="head" value="project, version, loc, file, start, end, name, varArgs, parameterizedMethod, parameterizedType"/> 
+		<property name="head" value="tipeProject, before, project, version, file, start, end, name, varArgs, parameterizedMethod, parameterizedType"/> 
 	</bean>
 
 	<bean id="lambdaExpressionOpportunitiesData" class="br.unb.cic.sa.model.CSVData">
 		<property name="outDir" value="output"/>
 		<property name="fileName" value="lambdaExpressionOpportunities"/>
-		<property name="head" value="project, version, loc, file, start, end"/> 
+		<property name="head" value="project, version, file, start, end, filter, map"/> 
 	</bean>	
 	
 	<bean id="switchStringOpportunitiesData" class="br.unb.cic.sa.model.CSVData">
 		<property name="outDir" value="output"/>
 		<property name="fileName" value="switchStringOpportunities"/>
-		<property name="head" value="project, version, loc, file, start, end"/> 
+		<property name="head" value="project, version, file, start, end"/> 
 	</bean>
 	
 	<bean id="scriptingEngineData" class="br.unb.cic.sa.model.CSVData">
 		<property name="outDir" value="output"/>
 		<property name="fileName" value="scriptingEngine"/>
-		<property name="head" value="project, version, loc, file, start, end, method"/> 
+		<property name="head" value="project, version, file, start, end, method"/> 
 	</bean>	
 	
 	<bean id="switchStatementData" class="br.unb.cic.sa.model.CSVData">
 		<property name="outDir" value="output"/>
 		<property name="fileName" value="switchStatement"/>
-		<property name="head" value="project, version, loc, file, start, end, switchString"/> 
+		<property name="head" value="project, version, file, start, end, switchString"/> 
 	</bean>	
 	
 	<bean id="fieldAndVariableDeclarationData" class="br.unb.cic.sa.model.CSVData">
 		<property name="outDir" value="output"/>
 		<property name="fileName" value="fieldAndVariableDeclaration"/>
-		<property name="head" value="project, version, loc, file, start, end, name, type, field, parameterized"/> 
+		<property name="head" value="tipeProject, before, project, version, file, start, end, name, type, field, parameterized"/> 
 	</bean>	
 	
 	<bean id="enhancedForStatementData" class="br.unb.cic.sa.model.CSVData">
 		<property name="outDir" value="output"/>
 		<property name="fileName" value="enhancedForStatement"/>
-		<property name="head" value="project, version, loc, file, start, end, applyLambda"/> 
+		<property name="head" value="project, version, file, start, end, applyLambda"/> 
 	</bean>	
 		
 	
@@ -133,18 +133,17 @@
 	<bean id="pa" class="br.unb.cic.sa.ProjectAnalyser">
 		<property name="listVisitors">
 			<list>
- 				<ref bean="aicVisitor"/>
-				<ref bean="tryStatementVisitor"/>
-				<ref bean="enumDeclarationVisitor"/>
+<!--  				<ref bean="aicVisitor"/> -->
+<!-- 				<ref bean="tryStatementVisitor"/> -->
+<!-- 				<ref bean="enumDeclarationVisitor"/> -->
 				<ref bean="typeDeclarationVisitor"/>
-				<ref bean="lambdaExpressionVisitor"/>
+<!-- 				<ref bean="lambdaExpressionVisitor"/> -->
 				<ref bean="methodDeclarationVisitor"/>
-				<ref bean="lambdaExpressionOpportunitiesVisitor"/>
-				<ref bean="switchStringOpportunitiesVisitor"/>
-				<ref bean="scriptingEngineVisitor"/>
-				<ref bean="switchStatementVisitor"/>
+<!-- 				<ref bean="lambdaExpressionOpportunitiesVisitor"/> -->
+<!-- 				<ref bean="switchStringOpportunitiesVisitor"/> -->
+<!-- 				<ref bean="scriptingEngineVisitor"/> -->
+<!-- 				<ref bean="switchStatementVisitor"/> -->
 				<ref bean="fieldAndVariableDeclarationVisitor"/>
-<!-- 				<ref bean="enhancedForStatementVisitor"/> -->
 			</list>
 		</property>
 	</bean>

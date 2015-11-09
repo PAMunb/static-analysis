@@ -34,8 +34,8 @@ public class ReadCsv {
 			String line = "";
 			while ((line = br.readLine()) != null) {
 //				ProjectName, Version, Path, Files,Language,Blank,Comment,Code
-				String[] lineSplit = line.split(Constants.COMMA_DELIMITER);
-				projects.add(new Project(lineSplit[0], lineSplit[1],lineSplit[2], new Integer(lineSplit[3])));
+				String[] lineSplit = line.split(";");
+				projects.add(new Project(lineSplit[0], lineSplit[1], lineSplit[2], lineSplit[3],lineSplit[4], new Integer(lineSplit[5])));
 			}
 
 		} catch (IOException e) {
