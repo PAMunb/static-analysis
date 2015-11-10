@@ -14,6 +14,7 @@ public class MethodDeclaration {
 	private String name;
 	private boolean varArgs;
 	private boolean parameterizedMethod;
+	private boolean synchronizedMethod;
 	private String parameterizdType;
 	
 	public MethodDeclaration(String file, int startLine, int endLine, String name){
@@ -78,4 +79,13 @@ public class MethodDeclaration {
 	public void setParameterizdType(String parameterizdType) {
 		this.parameterizdType = parameterizdType;
 	}
+	
+	public void setSynchronizedMethod(boolean synchronizedMethod) {
+		this.synchronizedMethod = synchronizedMethod;
+	}
+	
+	public boolean isSynchronizedMethod() {
+		return synchronizedMethod;
+	}
+
 }

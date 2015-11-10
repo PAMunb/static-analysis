@@ -1,5 +1,9 @@
 package br.unb.cic.sa.visitors;
 
+import java.util.List;
+
+import org.eclipse.jdt.core.dom.MarkerAnnotation;
+
 import br.unb.cic.sa.model.MethodDeclaration;
 
 /**
@@ -9,12 +13,14 @@ import br.unb.cic.sa.model.MethodDeclaration;
  * @author Thiago Cavalcanti / Vinicius Correa / Daniella Angelos
  */
 public class MethodDeclarationVisitor extends Visitor<MethodDeclaration> {
+	
 	@Override
 	public boolean visit(org.eclipse.jdt.core.dom.MethodDeclaration node) {
 
 		MethodDeclaration method = new MethodDeclaration(file, unit.getLineNumber(node.getStartPosition()),
 				unit.getLineNumber(node.getStartPosition() + node.getLength()), node.getName().toString());
-
+		
+		
 		if (node.isVarargs()) {
 			method.setVarArgs(true);
 		}
@@ -27,8 +33,19 @@ public class MethodDeclarationVisitor extends Visitor<MethodDeclaration> {
 			method.setParameterizdType("none");
 		}
 
+		
+		method.setSynchronizedMethod(Synchronized(node.modifiers()));
+
 		this.collectedData.addValue(method);
 
 		return super.visit(node);
 	}
+	
+	
+	private boolean Synchronized(List<MarkerAnnotation> list){
+		
+		return list.toString().contains("synchronized");
+		
+	}
+	
 }
