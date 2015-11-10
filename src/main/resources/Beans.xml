@@ -41,7 +41,7 @@
 	<bean id="methodDeclarationData" class="br.unb.cic.sa.model.CSVData">
 		<property name="outDir" value="output"/>
 		<property name="fileName" value="methodDeclaration"/>
-		<property name="head" value="typeProject, before, project, version, file, start, end, name, varArgs, parameterizedMethod, parameterizedType"/> 
+		<property name="head" value="typeProject, before, project, version, file, start, end, name, varArgs, parameterizedMethod, synchronized, parameterizedType"/> 
 	</bean>
 
 	<bean id="lambdaExpressionOpportunitiesData" class="br.unb.cic.sa.model.CSVData">

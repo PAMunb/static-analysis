@@ -129,7 +129,7 @@ public class CSVData<T> implements Data<T>{
 					String methodName = prefix + Character.toUpperCase(fieldName.charAt(0)) + fieldName.substring(1);
 										
 					try {
-						Method m = value.getClass().getDeclaredMethod(methodName);
+						Method m = value.getClass().getDeclaredMethod(methodName);						
 						str.append(m.invoke(value));
 						str.append(";");
 					}catch(NoSuchMethodException | IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
@@ -138,6 +138,7 @@ public class CSVData<T> implements Data<T>{
 				}
 				writer.append(str.toString());
 				writer.append("\n");
+				
 			}
 			writer.flush();
 			

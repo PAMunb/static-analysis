@@ -11,7 +11,7 @@ import br.unb.cic.sa.model.LambdaExp;
  * @author Thiago Cavalcanti / Vinicius Correa
  */
 public class LambdaExpressionVisitor extends Visitor<LambdaExp> {
-
+	
 	@Override
 	public boolean visit(LambdaExpression node) {
 		// add all LambdaExpression to collection
@@ -19,8 +19,11 @@ public class LambdaExpressionVisitor extends Visitor<LambdaExp> {
 		LambdaExp exp = new LambdaExp(this.file, unit.getLineNumber(node.getStartPosition()),
 				unit.getLineNumber(node.getStartPosition() + node.getLength()));
 
-		exp.setParentMethodInvocation(node.getParent().toString());
+//		exp.setParentMethodInvocation(node.getParent().toString());
 
+		exp.setParentMethodInvocation("");
+
+		
 		this.collectedData.addValue(exp);
 
 		return super.visit(node);
