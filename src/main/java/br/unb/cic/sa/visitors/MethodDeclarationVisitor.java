@@ -33,19 +33,19 @@ public class MethodDeclarationVisitor extends Visitor<MethodDeclaration> {
 			method.setParameterizdType("none");
 		}
 
-		
 		method.setSynchronizedMethod(Synchronized(node.modifiers()));
+		
 
 		this.collectedData.addValue(method);
 
 		return super.visit(node);
 	}
-	
-	
+		
 	private boolean Synchronized(List<MarkerAnnotation> list){
 		
 		return list.toString().contains("synchronized");
 		
 	}
+	
 	
 }

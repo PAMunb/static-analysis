@@ -9,6 +9,7 @@ import org.eclipse.jdt.core.dom.ContinueStatement;
 import org.eclipse.jdt.core.dom.EnhancedForStatement;
 import org.eclipse.jdt.core.dom.Expression;
 import org.eclipse.jdt.core.dom.IfStatement;
+import org.eclipse.jdt.core.dom.ImportDeclaration;
 import org.eclipse.jdt.core.dom.InfixExpression;
 import org.eclipse.jdt.core.dom.ReturnStatement;
 import org.eclipse.jdt.core.dom.SingleVariableDeclaration;
@@ -68,6 +69,15 @@ public class LambdaExpressionOpportunitiesVisitor extends Visitor<LambdaExpOppor
 		
 	}
 	
+	
+	@Override
+	public boolean visit(ImportDeclaration node) {
+		
+		System.out.println(node.getName());
+		
+		
+		return true;
+	}
 	
 	
 	/*
