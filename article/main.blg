@@ -1,0 +1,56 @@
+This is BibTeX, Version 0.99d (TeX Live 2015/dev/Debian)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: main.aux
+The style file: abbrv.bst
+Illegal, another \bibstyle command---line 25 of file main.aux
+ : \bibstyle
+ :          {plain}
+I'm skipping whatever remains of this command
+Illegal, another \bibdata command---line 26 of file main.aux
+ : \bibdata
+ :         {references.bib}
+I'm skipping whatever remains of this command
+Database file #1: sigproc.bib
+Warning--I didn't find a database entry for "R"
+You've used 1 entry,
+            2118 wiz_defined-function locations,
+            506 strings with 3941 characters,
+and the built_in function-call counts, 337 in all, are:
+= -- 27
+> -- 23
+< -- 0
++ -- 9
+- -- 8
+* -- 24
+:= -- 66
+add.period$ -- 3
+call.type$ -- 1
+change.case$ -- 6
+chr.to.int$ -- 0
+cite$ -- 1
+duplicate$ -- 12
+empty$ -- 23
+format.name$ -- 8
+if$ -- 65
+int.to.chr$ -- 0
+int.to.str$ -- 1
+missing$ -- 2
+newline$ -- 8
+num.names$ -- 2
+pop$ -- 10
+preamble$ -- 1
+purify$ -- 6
+quote$ -- 0
+skip$ -- 6
+stack$ -- 0
+substring$ -- 5
+swap$ -- 1
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 2
+warning$ -- 0
+while$ -- 2
+width$ -- 2
+write$ -- 13
+(There were 2 error messages)

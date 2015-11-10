@@ -32,6 +32,8 @@ public class MethodDeclarationVisitor extends Visitor<MethodDeclaration> {
 		else {
 			method.setParameterizdType("none");
 		}
+		
+		method.setAnnotations(Annotations(node.modifiers()));
 
 		method.setSynchronizedMethod(Synchronized(node.modifiers()));
 		
@@ -42,10 +44,16 @@ public class MethodDeclarationVisitor extends Visitor<MethodDeclaration> {
 	}
 		
 	private boolean Synchronized(List<MarkerAnnotation> list){
-		
 		return list.toString().contains("synchronized");
-		
 	}
 	
+	private String Annotations(List<MarkerAnnotation> list) {
+		
+		String annotations;
+		if(list.toString().contains("@")) annotations = list.toString();
+		else annotations = "[]";
+		return annotations; 
+		
+	}
 	
 }
