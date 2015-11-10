@@ -133,17 +133,17 @@
 	<bean id="pa" class="br.unb.cic.sa.ProjectAnalyser">
 		<property name="listVisitors">
 			<list>
-<!--  				<ref bean="aicVisitor"/> -->
-<!-- 				<ref bean="tryStatementVisitor"/> -->
-<!-- 				<ref bean="enumDeclarationVisitor"/> -->
+ 				<ref bean="aicVisitor"/>
+				<ref bean="tryStatementVisitor"/>
+				<ref bean="enumDeclarationVisitor"/>
 				<ref bean="typeDeclarationVisitor"/>
-<!-- 				<ref bean="lambdaExpressionVisitor"/> -->
+				<ref bean="lambdaExpressionVisitor"/>
 				<ref bean="methodDeclarationVisitor"/>
-<!-- 				<ref bean="lambdaExpressionOpportunitiesVisitor"/> -->
-<!-- 				<ref bean="switchStringOpportunitiesVisitor"/> -->
-<!-- 				<ref bean="scriptingEngineVisitor"/> -->
-<!-- 				<ref bean="switchStatementVisitor"/> -->
-<!-- 				<ref bean="fieldAndVariableDeclarationVisitor"/> -->
+				<ref bean="lambdaExpressionOpportunitiesVisitor"/>
+				<ref bean="switchStringOpportunitiesVisitor"/>
+				<ref bean="scriptingEngineVisitor"/>
+				<ref bean="switchStatementVisitor"/>
+				<ref bean="fieldAndVariableDeclarationVisitor"/>
 			</list>
 		</property>
 	</bean>
