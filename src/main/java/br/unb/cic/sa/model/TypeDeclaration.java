@@ -21,6 +21,7 @@ public class TypeDeclaration {
 	
 	private int typeParameters;
 	private List<String> typeParameterModifiers;
+	private String annotations;
 	
 	public TypeDeclaration(String file, String name, Type superClass,
 			List<Type> interfaces, int startLine, int endLine){
@@ -99,5 +100,13 @@ public class TypeDeclaration {
 
 	public void setTypeParameterModifiers(List<String> typeParameterModifiers) {
 		this.typeParameterModifiers = typeParameterModifiers;
+	}
+	
+	public String getAnnotations(){
+		return this.annotations;
+	}
+	
+	public void setAnnotations(String annotations) {
+		this.annotations = annotations;
 	}
 }

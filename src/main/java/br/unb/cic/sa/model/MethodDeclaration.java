@@ -16,6 +16,7 @@ public class MethodDeclaration {
 	private boolean parameterizedMethod;
 	private boolean synchronizedMethod;
 	private String parameterizdType;
+	private String annotations;
 	
 	public MethodDeclaration(String file, int startLine, int endLine, String name){
 		this.file = file;
@@ -86,6 +87,14 @@ public class MethodDeclaration {
 	
 	public boolean isSynchronizedMethod() {
 		return synchronizedMethod;
+	}
+	
+	public void setAnnotations(String annotations) {
+		this.annotations = annotations;
+	}
+	
+	public String getAnnotations() {
+		return this.annotations;
 	}
 
 }
