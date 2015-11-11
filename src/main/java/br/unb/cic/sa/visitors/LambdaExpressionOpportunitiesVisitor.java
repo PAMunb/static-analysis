@@ -37,11 +37,17 @@ public class LambdaExpressionOpportunitiesVisitor extends Visitor<LambdaExpOppor
 	static int nExtReference = 0;
 	static int totalFilter = 0;
 	static boolean filter = false;
+	static boolean hasThrow = false;
+	static boolean hasExternalReference = false;
+	static boolean hasBreak = false;
+	static boolean hasReturn = false;
+	static boolean hasContinue = false;
+
 	
 	@Override
 	public boolean visit(EnhancedForStatement node) {
 		
-		boolean criteria[] = new boolean[]{true, true};
+//		boolean criteria[] = new boolean[]{true, true};
 		
 		String body = node.getBody().toString();
 		
@@ -51,18 +57,28 @@ public class LambdaExpressionOpportunitiesVisitor extends Visitor<LambdaExpOppor
 						+ node.getLength()));
 				
 		
-		if (criteria2(body) && criteria3(body) && criteria4(body) && criteria5(body) && criteria6(body)) {
+//		if (criteria2(body) && criteria3(body) && criteria4(body) && criteria5(body) && criteria6(body)) {
 			
 			SingleVariableDeclaration par = node.getParameter();
 
-			criteria[0] = this.detectFilter(body, par);
+			filter = this.detectFilter(body, par);
+			hasThrow = criteria2(body);
+			hasExternalReference = criteria3(body);
+			hasBreak = criteria4(body);
+			hasReturn = criteria5(body);
+			hasContinue = criteria6(body);
 			
-			o.setFilter(criteria[0]);
+			o.setFilter(filter);
+			o.setHasThrow(hasThrow);
+			o.setHasExternalReference(hasExternalReference);
+			o.setHasBreak(hasBreak);
+			o.setHasReturn(hasReturn);
+			o.setHasContinue(hasContinue);
 			
 			collectedData.addValue(o);
 
 			
-		}
+//		}
 		
 		
 		return true;

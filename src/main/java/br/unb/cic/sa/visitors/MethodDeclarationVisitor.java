@@ -32,11 +32,10 @@ public class MethodDeclarationVisitor extends Visitor<MethodDeclaration> {
 		else {
 			method.setParameterizdType("none");
 		}
-		
+			
 		method.setAnnotations(Annotations(node.modifiers()));
 
 		method.setSynchronizedMethod(Synchronized(node.modifiers()));
-		
 
 		this.collectedData.addValue(method);
 
