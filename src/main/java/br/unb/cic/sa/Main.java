@@ -26,7 +26,7 @@ public class Main {
 		}
 		
 		
-		String pathCsv = "inputLambda.csv";
+		String pathCsv = "input.csv";
 		ReadCsv rcsv = new ReadCsv(pathCsv);
 
 		List<String> errors = rcsv.getError();

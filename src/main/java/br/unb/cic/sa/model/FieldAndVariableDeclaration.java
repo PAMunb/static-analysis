@@ -1,5 +1,7 @@
 package br.unb.cic.sa.model;
 
+import java.util.List;
+
 /**
  * This class captures relevant data about 
  * the declaration of fields and variables.
@@ -17,6 +19,9 @@ public class FieldAndVariableDeclaration {
 	
 	private boolean field = false;
 	private boolean parameterized = false;
+	
+	private List<String> typeParameters;
+	private String annotations;
 	
 	public FieldAndVariableDeclaration(String file, int startLine, int endLine, String name, String type){
 		this.file = file;
@@ -81,7 +86,20 @@ public class FieldAndVariableDeclaration {
 	public void setField(boolean field) {
 		this.field = field;
 	}
-	
-	
 
+	public List<String> getTypeParameters() {
+		return typeParameters;
+	}
+
+	public void setTypeParameters(List<String> typeParameters) {
+		this.typeParameters = typeParameters;
+	}
+
+	public String getAnnotations() {
+		return annotations;
+	}
+
+	public void setAnnotations(String annotations) {
+		this.annotations = annotations;
+	}
 }

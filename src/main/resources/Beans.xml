@@ -71,7 +71,7 @@
 	<bean id="fieldAndVariableDeclarationData" class="br.unb.cic.sa.model.CSVData">
 		<property name="outDir" value="output"/>
 		<property name="fileName" value="fieldAndVariableDeclaration"/>
-		<property name="head" value="typeProject, before, project, version, file, start, end, name, type, field, parameterized"/> 
+		<property name="head" value="typeProject, before, project, version, file, start, end, name, type, field, parameterized, annotations"/> 
 	</bean>	
 	
 	<bean id="enhancedForStatementData" class="br.unb.cic.sa.model.CSVData">
@@ -136,25 +136,25 @@
 		<property name="collectedData" ref="importDeclarationData"/>
 	</bean>
 
-<!-- 	<bean id="enhancedForStatementVisitor" class="br.unb.cic.sa.visitors.RICVisitor"> -->
-<!-- 		<property name="collectedData" ref="enhancedForStatementData"/> -->
-<!-- 	</bean> -->
-	
+  <!--   <bean id="enhancedForStatementVisitor" class="br.unb.cic.sa.visitors.RICVisitor">
+		<property name="collectedData" ref="enhancedForStatementData"/>
+	</bean>
+ 	 -->
 	<bean id="pa" class="br.unb.cic.sa.ProjectAnalyser">
 		<property name="listVisitors">
 			<list>
-<!--  				<ref bean="aicVisitor"/> -->
-<!-- 				<ref bean="tryStatementVisitor"/> -->
-<!-- 				<ref bean="enumDeclarationVisitor"/> -->
-<!-- 				<ref bean="typeDeclarationVisitor"/> -->
-<!-- 				<ref bean="lambdaExpressionVisitor"/> -->
-<!-- 				<ref bean="methodDeclarationVisitor"/> -->
+  				<ref bean="aicVisitor"/> 
+ 				<ref bean="tryStatementVisitor"/> 
+ 				<ref bean="enumDeclarationVisitor"/>
+ 				<ref bean="typeDeclarationVisitor"/> 
+ 				<ref bean="lambdaExpressionVisitor"/> 
+ 				<ref bean="methodDeclarationVisitor"/> 
 				<ref bean="lambdaExpressionOpportunitiesVisitor"/>
-<!-- 				<ref bean="switchStringOpportunitiesVisitor"/> -->
-<!-- 				<ref bean="scriptingEngineVisitor"/> -->
-<!-- 				<ref bean="switchStatementVisitor"/> -->
-<!-- 				<ref bean="fieldAndVariableDeclarationVisitor"/> -->
-<!-- 				<ref bean="importDeclarationVisitor"/> -->
+ 				<ref bean="switchStringOpportunitiesVisitor"/> 
+ 				<ref bean="scriptingEngineVisitor"/> 
+ 				<ref bean="switchStatementVisitor"/> 
+ 				<ref bean="fieldAndVariableDeclarationVisitor"/>
+ 				<ref bean="importDeclarationVisitor"/> 
 			</list>
 		</property>
 	</bean>

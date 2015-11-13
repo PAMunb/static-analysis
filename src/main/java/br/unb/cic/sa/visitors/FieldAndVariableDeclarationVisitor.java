@@ -1,10 +1,15 @@
 package br.unb.cic.sa.visitors;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.eclipse.jdt.core.dom.FieldDeclaration;
+import org.eclipse.jdt.core.dom.ParameterizedType;
 import org.eclipse.jdt.core.dom.VariableDeclarationFragment;
 import org.eclipse.jdt.core.dom.VariableDeclarationStatement;
 
 import br.unb.cic.sa.model.FieldAndVariableDeclaration;
+import br.unb.cic.sa.model.ModifyHandler;
 
 /**
  * This visitor class collects relevant data about variable declaration.
@@ -27,8 +32,15 @@ public class FieldAndVariableDeclarationVisitor extends Visitor<FieldAndVariable
 			
 			if (node.getType().isParameterizedType()) {
 				var.setParameterized(true);
+				ParameterizedType pt = (ParameterizedType)node.getType();
+				List<String> pmts =  new ArrayList<>();
+				for(Object e : pt.typeArguments()) {
+					pmts.add(e.toString());
+				}
+				var.setTypeParameters(pmts);
 			}
 		
+			var.setAnnotations(ModifyHandler.listAnnotations(node.modifiers()));
 			this.collectedData.addValue(var);
 		}
 		return super.visit(node);
@@ -48,8 +60,15 @@ public class FieldAndVariableDeclarationVisitor extends Visitor<FieldAndVariable
 			
 			if (node.getType().isParameterizedType()) {
 				var.setParameterized(true);
+				ParameterizedType pt = (ParameterizedType)node.getType();
+				List<String> pmts =  new ArrayList<>();
+				for(Object e : pt.typeArguments()) {
+					pmts.add(e.toString());
+				}
+				var.setTypeParameters(pmts);
 			}
-		
+			var.setAnnotations(ModifyHandler.listAnnotations(node.modifiers()));
+			
 			this.collectedData.addValue(var);
 		}
 		return super.visit(node);

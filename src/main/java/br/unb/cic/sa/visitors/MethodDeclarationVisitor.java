@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.eclipse.jdt.core.dom.MarkerAnnotation;
 
+import br.unb.cic.sa.model.ModifyHandler;
 import br.unb.cic.sa.model.MethodDeclaration;
 
 /**
@@ -33,26 +34,14 @@ public class MethodDeclarationVisitor extends Visitor<MethodDeclaration> {
 			method.setParameterizdType("none");
 		}
 			
-		method.setAnnotations(Annotations(node.modifiers()));
+		method.setAnnotations(ModifyHandler.listAnnotations((node.modifiers())));
 
-		method.setSynchronizedMethod(Synchronized(node.modifiers()));
+		method.setSynchronizedMethod(ModifyHandler.isSynchronized(node.modifiers()));
 
 		this.collectedData.addValue(method);
 
 		return super.visit(node);
 	}
 		
-	private boolean Synchronized(List<MarkerAnnotation> list){
-		return list.toString().contains("synchronized");
-	}
-	
-	private String Annotations(List<MarkerAnnotation> list) {
-		
-		String annotations;
-		if(list.toString().contains("@")) annotations = list.toString();
-		else annotations = "[]";
-		return annotations; 
-		
-	}
 	
 }
