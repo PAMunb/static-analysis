@@ -71,7 +71,7 @@
 	<bean id="fieldAndVariableDeclarationData" class="br.unb.cic.sa.model.CSVData">
 		<property name="outDir" value="output"/>
 		<property name="fileName" value="fieldAndVariableDeclaration"/>
-		<property name="head" value="typeProject, before, project, version, file, start, end, name, type, field, parameterized, annotations"/> 
+		<property name="head" value="typeProject, before, project, version, file, start, end, name, type, field, parameterized, baseType, typeParameters, annotations"/> 
 	</bean>	
 	
 	<bean id="enhancedForStatementData" class="br.unb.cic.sa.model.CSVData">
@@ -153,7 +153,7 @@
  				<ref bean="switchStringOpportunitiesVisitor"/> 
  				<ref bean="scriptingEngineVisitor"/> 
  				<ref bean="switchStatementVisitor"/> 
- 				<ref bean="fieldAndVariableDeclarationVisitor"/>
+				<ref bean="fieldAndVariableDeclarationVisitor"/>
  				<ref bean="importDeclarationVisitor"/> 
 			</list>
 		</property>
