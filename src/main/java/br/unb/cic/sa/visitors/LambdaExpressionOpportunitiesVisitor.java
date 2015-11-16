@@ -57,30 +57,23 @@ public class LambdaExpressionOpportunitiesVisitor extends Visitor<LambdaExpOppor
 						+ node.getLength()));
 				
 		
-//		if (criteria2(body) && criteria3(body) && criteria4(body) && criteria5(body) && criteria6(body)) {
-			
-			SingleVariableDeclaration par = node.getParameter();
+		SingleVariableDeclaration par = node.getParameter();
 
-			filter = this.detectFilter(body, par);
-			hasThrow = criteria2(body);
-			hasExternalReference = criteria3(body);
-			hasBreak = criteria4(body);
-			hasReturn = criteria5(body);
-			hasContinue = criteria6(body);
-			
-			o.setFilter(filter);
-			o.setHasThrow(hasThrow);
-			o.setHasExternalReference(hasExternalReference);
-			o.setHasBreak(hasBreak);
-			o.setHasReturn(hasReturn);
-			o.setHasContinue(hasContinue);
-			
-			collectedData.addValue(o);
-
-			
-//		}
+		filter = this.detectFilter(body, par);
+		hasThrow = criteria2(body);
+		hasExternalReference = criteria3(body);
+		hasBreak = criteria4(body);
+		hasReturn = criteria5(body);
+		hasContinue = criteria6(body);
 		
+//		o.setFilter(filter);
+//		o.setHasThrow(hasThrow);
+//		o.setHasExternalReference(hasExternalReference);
+//		o.setHasBreak(hasBreak);
+//		o.setHasReturn(hasReturn);
+//		o.setHasContinue(hasContinue);
 		
+		collectedData.addValue(o);
 		return true;
 		
 	}
@@ -88,10 +81,6 @@ public class LambdaExpressionOpportunitiesVisitor extends Visitor<LambdaExpOppor
 	
 	@Override
 	public boolean visit(ImportDeclaration node) {
-		
-//		System.out.println(node.getName());
-		
-		
 		return true;
 	}
 	
@@ -114,11 +103,7 @@ public class LambdaExpressionOpportunitiesVisitor extends Visitor<LambdaExpOppor
 			}
 		});
 
-		if (nThrows > 0) {
-			return false;
-		}
-
-		return true;
+		return nThrows == 0;
 	}
 
 	/*

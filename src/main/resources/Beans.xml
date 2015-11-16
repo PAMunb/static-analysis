@@ -91,7 +91,25 @@
 		<property name="fileName" value="methodCallData"/>
 		<property name="head" value="typeProject, before, project, version, file, name, type, start, end"/> 
 	</bean>	
+	
+	<bean id="existPatternData" class="br.unb.cic.sa.model.CSVData">
+		<property name="outDir" value="output"/>
+		<property name="fileName" value="existPattern"/>
+		<property name="head" value="typeProject, before, project, version, file, name, type, start, end, stmts"/> 
+	</bean>
+	
+	<bean id="filterPatternData" class="br.unb.cic.sa.model.CSVData">
+		<property name="outDir" value="output"/>
+		<property name="fileName" value="filterPattern"/>
+		<property name="head" value="typeProject, before, project, version, file, name, type, start, end, stmts"/> 
+	</bean>
 
+	<bean id="mapPatternData" class="br.unb.cic.sa.model.CSVData">
+		<property name="outDir" value="output"/>
+		<property name="fileName" value="mapPattern"/>
+		<property name="head" value="typeProject, before, project, version, file, name, type, start, end, stmts"/> 
+	</bean>
+	
 	<bean id="aicVisitor" class="br.unb.cic.sa.visitors.AICVisitor">
 		<property name="collectedData" ref="aicData"/>
 	</bean>
@@ -145,6 +163,17 @@
 		<property name="collectedData" ref="methodCallData"/>
 	</bean>
 
+	<bean id="existPatternVisitor" class="br.unb.cic.sa.visitors.ExistPatternVisitor">
+		<property name="collectedData" ref="existPatternData"/>
+	</bean>
+	
+	<bean id="filterPatternVisitor" class="br.unb.cic.sa.visitors.FilterPatternVisitor">
+		<property name="collectedData" ref="filterPatternData"/>
+	</bean>
+	
+	<bean id="mapPatternVisitor" class="br.unb.cic.sa.visitors.MapPatternVisitor">
+		<property name="collectedData" ref="mapPatternData"/>
+	</bean>
   <!--   <bean id="enhancedForStatementVisitor" class="br.unb.cic.sa.visitors.RICVisitor">
 		<property name="collectedData" ref="enhancedForStatementData"/>
 	</bean>
@@ -164,7 +193,11 @@
  				<ref bean="switchStatementVisitor"/> 
 				<ref bean="fieldAndVariableDeclarationVisitor"/>
  				<ref bean="importDeclarationVisitor"/> 
- --> 				<ref bean="methodCallVisitor"/> 
+  				<ref bean="methodCallVisitor"/> -->
+  				<ref bean="existPatternVisitor"/>
+  				<ref bean="filterPatternVisitor"/>
+  				<ref bean="mapPatternVisitor"/>
+
 			</list>
 		</property>
 	</bean>

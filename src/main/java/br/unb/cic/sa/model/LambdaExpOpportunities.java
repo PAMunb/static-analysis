@@ -11,14 +11,16 @@ public class LambdaExpOpportunities {
 	private String file;
 	private int startLine;
 	private int endLine;
-	private boolean filter;
-	private boolean map;
-	private boolean hasThrow;
-	private boolean hasExternalReference;
-	private boolean hasBreak;
-	private boolean hasReturn;
-	private boolean hasContinue;
+	private int statements = 0;
 	
+	//	private boolean filter;
+//	private boolean map;
+//	private boolean hasThrow;
+//	private boolean hasExternalReference;
+//	private boolean hasBreak;
+//	private boolean hasReturn;
+//	private boolean hasContinue;
+//	
 
 	public LambdaExpOpportunities(String file, int startLine, int endLine) {
 		this.file = file;
@@ -50,61 +52,15 @@ public class LambdaExpOpportunities {
 		this.endLine = endLine;
 	}
 
-	public boolean isFilter() {
-		return filter;
+	public int getStatements() {
+		return statements;
 	}
 
-	public void setFilter(boolean filter) {
-		this.filter = filter;
+	public void setStatements(int statements) {
+		this.statements = statements;
 	}
 
-	public boolean isMap() {
-		return map;
-	}
-
-	public void setMap(boolean map) {
-		this.map = map;
-	}
 	
-	public boolean isHasThrow() {
-		return hasThrow;
-	}
-
-	public void setHasThrow(boolean hasThrow) {
-		this.hasThrow = hasThrow;
-	}
-
-	public boolean isHasExternalReference() {
-		return hasExternalReference;
-	}
-
-	public void setHasExternalReference(boolean hasExternalReference) {
-		this.hasExternalReference = hasExternalReference;
-	}
-
-	public boolean isHasBreak() {
-		return hasBreak;
-	}
-
-	public void setHasBreak(boolean hasBreak) {
-		this.hasBreak = hasBreak;
-	}
-
-	public boolean isHasReturn() {
-		return hasReturn;
-	}
-
-	public void setHasReturn(boolean hasReturn) {
-		this.hasReturn = hasReturn;
-	}
-
-	public boolean isHasContinue() {
-		return hasContinue;
-	}
-
-	public void setHasContinue(boolean hasContinue) {
-		this.hasContinue = hasContinue;
-	}
 	
 	
 }
