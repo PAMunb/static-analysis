@@ -38,7 +38,11 @@ public class FieldAndVariableDeclarationVisitor extends Visitor<FieldAndVariable
 					pmts.add(e.toString());
 				}
 				var.setTypeParameters(pmts);
+				var.setBaseType(var.getType().substring(0, var.getType().indexOf('<')));
 			}
+			
+		
+			
 		
 			var.setAnnotations(ModifyHandler.listAnnotations(node.modifiers()));
 			this.collectedData.addValue(var);

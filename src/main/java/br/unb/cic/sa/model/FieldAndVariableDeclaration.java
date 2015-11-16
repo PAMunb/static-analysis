@@ -20,6 +20,7 @@ public class FieldAndVariableDeclaration {
 	private boolean field = false;
 	private boolean parameterized = false;
 	
+	private String baseType;
 	private List<String> typeParameters;
 	private String annotations;
 	
@@ -101,5 +102,13 @@ public class FieldAndVariableDeclaration {
 
 	public void setAnnotations(String annotations) {
 		this.annotations = annotations;
+	}
+
+	public String getBaseType() {
+		return baseType;
+	}
+
+	public void setBaseType(String baseType) {
+		this.baseType = baseType;
 	}
 }

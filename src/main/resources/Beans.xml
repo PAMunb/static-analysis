@@ -86,7 +86,11 @@
 		<property name="head" value="typeProject, before, project, version, file, start, end, import"/> 
 	</bean>	
 		
-	
+	<bean id="methodCallData" class="br.unb.cic.sa.model.CSVData">
+		<property name="outDir" value="output"/>
+		<property name="fileName" value="methodCallData"/>
+		<property name="head" value="typeProject, before, project, version, file, name, type, start, end"/> 
+	</bean>	
 
 	<bean id="aicVisitor" class="br.unb.cic.sa.visitors.AICVisitor">
 		<property name="collectedData" ref="aicData"/>
@@ -135,6 +139,11 @@
 	<bean id="importDeclarationVisitor" class="br.unb.cic.sa.visitors.ImportDeclarationVisitor">
 		<property name="collectedData" ref="importDeclarationData"/>
 	</bean>
+	
+	
+	<bean id="methodCallVisitor" class="br.unb.cic.sa.visitors.MethodCallVisitor">
+		<property name="collectedData" ref="methodCallData"/>
+	</bean>
 
   <!--   <bean id="enhancedForStatementVisitor" class="br.unb.cic.sa.visitors.RICVisitor">
 		<property name="collectedData" ref="enhancedForStatementData"/>
@@ -143,7 +152,7 @@
 	<bean id="pa" class="br.unb.cic.sa.ProjectAnalyser">
 		<property name="listVisitors">
 			<list>
-  				<ref bean="aicVisitor"/> 
+ <!--  				<ref bean="aicVisitor"/> 
  				<ref bean="tryStatementVisitor"/> 
  				<ref bean="enumDeclarationVisitor"/>
  				<ref bean="typeDeclarationVisitor"/> 
@@ -155,6 +164,7 @@
  				<ref bean="switchStatementVisitor"/> 
 				<ref bean="fieldAndVariableDeclarationVisitor"/>
  				<ref bean="importDeclarationVisitor"/> 
+ --> 				<ref bean="methodCallVisitor"/> 
 			</list>
 		</property>
 	</bean>

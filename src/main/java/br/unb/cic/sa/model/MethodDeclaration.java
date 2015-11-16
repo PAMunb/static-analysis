@@ -15,7 +15,7 @@ public class MethodDeclaration {
 	private boolean varArgs;
 	private boolean parameterizedMethod;
 	private boolean synchronizedMethod;
-	private String parameterizdType;
+	private String parameterizedType;
 	private String annotations;
 	
 	public MethodDeclaration(String file, int startLine, int endLine, String name){
@@ -73,12 +73,12 @@ public class MethodDeclaration {
 		this.parameterizedMethod = parameterizedMethod;
 	}
 
-	public String getParameterizdType() {
-		return parameterizdType;
+	public String getParameterizedType() {
+		return parameterizedType;
 	}
 
-	public void setParameterizdType(String parameterizdType) {
-		this.parameterizdType = parameterizdType;
+	public void setParameterizedType(String parameterizedType) {
+		this.parameterizedType = parameterizedType;
 	}
 	
 	public void setSynchronizedMethod(boolean synchronizedMethod) {
@@ -96,5 +96,4 @@ public class MethodDeclaration {
 	public String getAnnotations() {
 		return this.annotations;
 	}
-
 }

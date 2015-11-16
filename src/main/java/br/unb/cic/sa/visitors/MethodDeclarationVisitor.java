@@ -26,12 +26,13 @@ public class MethodDeclarationVisitor extends Visitor<MethodDeclaration> {
 			method.setVarArgs(true);
 		}
 
-		if (!node.isConstructor() && node.getReturnType2() != null && node.getReturnType2().isParameterizedType()) {
+		
+		if (!node.isConstructor() && node.getReturnType2() != null && node.typeParameters().size() > 0) {
 			method.setParameterizedMethod(true);
-			method.setParameterizdType(node.getReturnType2().toString());
+			method.setParameterizedType(node.getReturnType2().toString());
 		}
 		else {
-			method.setParameterizdType("none");
+			method.setParameterizedType("none");
 		}
 			
 		method.setAnnotations(ModifyHandler.listAnnotations((node.modifiers())));
