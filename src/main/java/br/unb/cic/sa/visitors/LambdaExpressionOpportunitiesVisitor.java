@@ -190,16 +190,20 @@ public class LambdaExpressionOpportunitiesVisitor extends Visitor<LambdaExpOppor
 		b.accept(new ASTVisitor() {
 			@Override
 			public boolean visit(ReturnStatement r) {
-				nReturn++;
+				
+				if(r.getExpression() != null && r.getExpression().getNodeType() == ReturnStatement.BOOLEAN_LITERAL){
+					nReturn++;
+				}
+				
 				return true;
 			}
 		});
 
-		if (nReturn > 1) {
-			return false;
+		if (nReturn == 1) {
+			return true;
 		}
 
-		return true;
+		return false;
 
 	}
 
