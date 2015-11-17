@@ -95,19 +95,19 @@
 	<bean id="existPatternData" class="br.unb.cic.sa.model.CSVData">
 		<property name="outDir" value="output"/>
 		<property name="fileName" value="existPattern"/>
-		<property name="head" value="typeProject, before, project, version, file, name, type, start, end, stmts"/> 
+		<property name="head" value="typeProject, before, project, version, file, start, end, stmts"/> 
 	</bean>
 	
 	<bean id="filterPatternData" class="br.unb.cic.sa.model.CSVData">
 		<property name="outDir" value="output"/>
 		<property name="fileName" value="filterPattern"/>
-		<property name="head" value="typeProject, before, project, version, file, name, type, start, end, stmts"/> 
+		<property name="head" value="typeProject, before, project, version, file, start, end, stmts"/> 
 	</bean>
 
 	<bean id="mapPatternData" class="br.unb.cic.sa.model.CSVData">
 		<property name="outDir" value="output"/>
 		<property name="fileName" value="mapPattern"/>
-		<property name="head" value="typeProject, before, project, version, file, name, type, start, end, stmts"/> 
+		<property name="head" value="typeProject, before, project, version, file, start, end, stmts"/> 
 	</bean>
 	
 	<bean id="aicVisitor" class="br.unb.cic.sa.visitors.AICVisitor">
