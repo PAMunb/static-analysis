@@ -110,6 +110,13 @@
 		<property name="head" value="typeProject, before, project, version, file, start, end, stmts"/> 
 	</bean>
 	
+	<bean id="lockData" class="br.unb.cic.sa.model.CSVData">
+		<property name="outDir" value="output"/>
+		<property name="fileName" value="lockData"/>
+		<property name="head" value="typeProject, before, project, version, file, start, end, type, callLock, releaseLock"/> 
+	</bean>
+	
+	
 	<bean id="aicVisitor" class="br.unb.cic.sa.visitors.AICVisitor">
 		<property name="collectedData" ref="aicData"/>
 	</bean>
@@ -174,6 +181,11 @@
 	<bean id="mapPatternVisitor" class="br.unb.cic.sa.visitors.MapPatternVisitor">
 		<property name="collectedData" ref="mapPatternData"/>
 	</bean>
+	
+	<bean id="lockVisitor" class="br.unb.cic.sa.visitors.LockVisitor">
+		<property name="collectedData" ref="lockData"/>
+	</bean>
+	
   <!--   <bean id="enhancedForStatementVisitor" class="br.unb.cic.sa.visitors.RICVisitor">
 		<property name="collectedData" ref="enhancedForStatementData"/>
 	</bean>
@@ -193,11 +205,11 @@
  				<ref bean="switchStatementVisitor"/> 
 				<ref bean="fieldAndVariableDeclarationVisitor"/>
  				<ref bean="importDeclarationVisitor"/> 
-  				<ref bean="methodCallVisitor"/> -->
+  				<ref bean="methodCallVisitor"/> 
   				<ref bean="existPatternVisitor"/>
   				<ref bean="filterPatternVisitor"/>
-  				<ref bean="mapPatternVisitor"/>
-
+  				<ref bean="mapPatternVisitor"/> -->
+				<ref bean="lockVisitor"/>
 			</list>
 		</property>
 	</bean>

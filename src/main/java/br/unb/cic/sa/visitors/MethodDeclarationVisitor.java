@@ -1,11 +1,7 @@
 package br.unb.cic.sa.visitors;
 
-import java.util.List;
-
-import org.eclipse.jdt.core.dom.MarkerAnnotation;
-
-import br.unb.cic.sa.model.ModifyHandler;
 import br.unb.cic.sa.model.MethodDeclaration;
+import br.unb.cic.sa.model.ModifyHandler;
 
 /**
  * This visitor class collects relevant data about the Use of Lambda
