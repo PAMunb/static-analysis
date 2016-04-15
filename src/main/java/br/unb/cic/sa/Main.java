@@ -12,21 +12,21 @@ public class Main {
 	 
 	public static void main(String[] args) {
 		
-		try{
-			
-			String command = "python ClearOutput.py ";
-			Process p = Runtime.getRuntime().exec(command, null);
-
-	        p.waitFor();
-			p.destroy();
-			
-		}catch(Exception e){
-			System.out.println(e.getMessage());
-			e.getStackTrace();
-		}
+//		try{
+//			
+//			String command = "python ClearOutput.py ";
+//			Process p = Runtime.getRuntime().exec(command, null);
+//
+//	        p.waitFor();
+//			p.destroy();
+//			
+//		}catch(Exception e){
+//			System.out.println(e.getMessage());
+//			e.getStackTrace();
+//		}
 		
 		
-		String pathCsv = "inputCassandra.csv";
+		String pathCsv = "input.csv";
 		ReadCsv rcsv = new ReadCsv(pathCsv);
 
 		List<String> errors = rcsv.getError();

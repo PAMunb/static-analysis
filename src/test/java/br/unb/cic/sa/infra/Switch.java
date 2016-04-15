@@ -19,6 +19,8 @@ public class Switch {
 		default:
 			System.out.println("INVALID COLOR CODE");
 		}
+		
+		
 	}
 
 	public String getTypeOfDayWithSwitchStatement(String dayOfWeekArg) {

@@ -193,23 +193,23 @@
 	<bean id="pa" class="br.unb.cic.sa.ProjectAnalyser">
 		<property name="listVisitors">
 			<list>
- <!--  				<ref bean="aicVisitor"/> 
+<!--    				<ref bean="aicVisitor"/>  -->
  				<ref bean="tryStatementVisitor"/> 
- 				<ref bean="enumDeclarationVisitor"/>
- 				<ref bean="typeDeclarationVisitor"/> 
- 				<ref bean="lambdaExpressionVisitor"/> 
- 				<ref bean="methodDeclarationVisitor"/> 
-				<ref bean="lambdaExpressionOpportunitiesVisitor"/>
+<!--  				<ref bean="enumDeclarationVisitor"/> -->
+<!--  				<ref bean="typeDeclarationVisitor"/>  -->
+<!--  				<ref bean="lambdaExpressionVisitor"/>  -->
+<!--  				<ref bean="methodDeclarationVisitor"/>  -->
+<!-- 				<ref bean="lambdaExpressionOpportunitiesVisitor"/> -->
  				<ref bean="switchStringOpportunitiesVisitor"/> 
- 				<ref bean="scriptingEngineVisitor"/> 
- 				<ref bean="switchStatementVisitor"/> 
-				<ref bean="fieldAndVariableDeclarationVisitor"/>
- 				<ref bean="importDeclarationVisitor"/> 
-  				<ref bean="methodCallVisitor"/> 
-  				<ref bean="existPatternVisitor"/>
-  				<ref bean="filterPatternVisitor"/>
-  				<ref bean="mapPatternVisitor"/> -->
-				<ref bean="lockVisitor"/>
+<!--  				<ref bean="scriptingEngineVisitor"/>  -->
+<!--  				<ref bean="switchStatementVisitor"/>  -->
+<!-- 				<ref bean="fieldAndVariableDeclarationVisitor"/> -->
+<!--  				<ref bean="importDeclarationVisitor"/>  -->
+<!--   				<ref bean="methodCallVisitor"/>  -->
+<!--   				<ref bean="existPatternVisitor"/> -->
+<!--   				<ref bean="filterPatternVisitor"/> -->
+<!--   				<ref bean="mapPatternVisitor"/> -->
+<!-- 				<ref bean="lockVisitor"/> -->
 			</list>
 		</property>
 	</bean>
