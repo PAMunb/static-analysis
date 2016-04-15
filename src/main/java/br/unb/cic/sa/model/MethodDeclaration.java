@@ -17,12 +17,14 @@ public class MethodDeclaration {
 	private boolean synchronizedMethod;
 	private String parameterizedType;
 	private String annotations;
+	private boolean defaultMethod;
 	
 	public MethodDeclaration(String file, int startLine, int endLine, String name){
 		this.file = file;
 		this.startLine = startLine;
 		this.endLine = endLine;
 		this.name = name;
+		defaultMethod = false;
 	}
 
 	public String getFile() {
@@ -95,5 +97,13 @@ public class MethodDeclaration {
 	
 	public String getAnnotations() {
 		return this.annotations;
+	}
+
+	public boolean isDefaultMethod() {
+		return defaultMethod;
+	}
+
+	public void setDefaultMethod(boolean defaultMethod) {
+		this.defaultMethod = defaultMethod;
 	}
 }

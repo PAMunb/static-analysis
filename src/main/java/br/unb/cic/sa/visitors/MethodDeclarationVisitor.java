@@ -1,5 +1,7 @@
 package br.unb.cic.sa.visitors;
 
+import org.eclipse.jdt.core.dom.Modifier;
+
 import br.unb.cic.sa.model.MethodDeclaration;
 import br.unb.cic.sa.model.ModifyHandler;
 
@@ -21,7 +23,12 @@ public class MethodDeclarationVisitor extends Visitor<MethodDeclaration> {
 		if (node.isVarargs()) {
 			method.setVarArgs(true);
 		}
-
+		
+		for(Object m: node.modifiers()) {
+			if(m.toString().equals("default")) {
+				method.setDefaultMethod(true);
+			}
+		}
 		
 		if (!node.isConstructor() && node.getReturnType2() != null && node.typeParameters().size() > 0) {
 			method.setParameterizedMethod(true);

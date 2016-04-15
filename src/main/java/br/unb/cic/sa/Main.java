@@ -11,9 +11,7 @@ import br.unb.cic.sa.util.ReadCsv;
 public class Main {
 	 
 	public static void main(String[] args) {
-		
 		try{
-			
 			String command = "python ClearOutput.py ";
 			Process p = Runtime.getRuntime().exec(command, null);
 
@@ -25,8 +23,15 @@ public class Main {
 			e.getStackTrace();
 		}
 		
+		String pathCsv = null; 
 		
-		String pathCsv = "inputCassandra.csv";
+		if(args.length == 0) {
+			pathCsv = "inputANT.csv";
+		}
+		else {
+			pathCsv = args[0];
+		}
+		
 		ReadCsv rcsv = new ReadCsv(pathCsv);
 
 		List<String> errors = rcsv.getError();

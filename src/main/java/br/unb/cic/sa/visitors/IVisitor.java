@@ -10,5 +10,6 @@ public interface IVisitor<T> {
 	public void setCollectedData(Data<T> colletion);
 	public Data<T> getCollectedData();
 	public void setFile(String file);
+	default void foo() {}
 	
 }
