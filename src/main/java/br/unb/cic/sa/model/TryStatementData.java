@@ -12,7 +12,13 @@ public class TryStatementData  {
 	private int endLine;
 	private boolean tryWithResource = false;
 	private boolean multiCatch = false;
+	private int numberOfCatches;
+	private int numberOfStatements;
+	private int numberOfCatchStatements;
 	
+
+
+
 	public TryStatementData(String file, int startLine, int endLine){
 		this.file = file;
 		this.startLine = startLine;
@@ -60,5 +66,34 @@ public class TryStatementData  {
 
 	public void setMultiCatch(boolean multiCatch) {
 		this.multiCatch = multiCatch;
+	}
+	
+	public int getNumberOfCatches() {
+		return numberOfCatches;
+	}
+
+
+	public void setNumberOfCatches(int numberOfCatches) {
+		this.numberOfCatches = numberOfCatches;
+	}
+
+
+	public int getNumberOfStatements() {
+		return numberOfStatements;
+	}
+
+
+	public void setNumberOfStatements(int numberOfStatements) {
+		this.numberOfStatements = numberOfStatements;
+	}
+
+
+	public int getNumberOfCatchStatements() {
+		return numberOfCatchStatements;
+	}
+
+
+	public void setNumberOfCatchStatements(int numberOfCatchStatements) {
+		this.numberOfCatchStatements = numberOfCatchStatements;
 	}
 }

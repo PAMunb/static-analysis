@@ -22,15 +22,10 @@ public class ReadCsv {
 	}
 
 	public List<Project> readInput() {
-		BufferedReader br = null;
-		FileReader fileReader = null;
 		List<Project> projects = new ArrayList<Project>();
 
-		try {
-
-			fileReader = new FileReader(pathCsv);
-			br = new BufferedReader(fileReader);
-
+		try(BufferedReader br = new BufferedReader(new FileReader(pathCsv))) {
+			
 			String line = "";
 			while ((line = br.readLine()) != null) {
 //				ProjectName, Version, Path, Files,Language,Blank,Comment,Code
@@ -39,16 +34,7 @@ public class ReadCsv {
 			}
 
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} finally {
-			if (br != null)
-				try {
-					br.close();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
 		}
 
 		return projects;
