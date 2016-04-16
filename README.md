@@ -1,5 +1,6 @@
 # static-analysis   
-	This work is a project of final course to degree in Computation at University of Brazilian (Brazil). The main feature of this project is a data mining to obsolete construction in softwares open-software developed in Java.
+	This work is a project of final course to degree in Computation at University of Brazilian (Brazil). __
+	The main feature of this project is a data mining to obsolete construction in softwares __open-software developed in Java.
 
 	To execute this you need a input that is a csv file that contains 6 columns like the following example:
 	
@@ -17,7 +18,7 @@
 
 	
 ## Run
-	To run you need execute a jar (StaticAnalyser.jar) file existents in targert folder. To generate a jar file run mvc clean & mvn package.
+	To run you need execute a jar (StaticAnalyser.jar) file existents in targert folder. __To generate a jar file run mvc clean & mvn package.
 	
 	After execute: java -jar target/StaticAnalyser.jar input.csv. Is necessary pass with args a csv file valid.
 
