@@ -4,7 +4,7 @@
 	 The main feature of this project is a data mining to obsolete construction in softwares open-software developed in Java. 
 
 ## Run
-	**Manualy**  
+	__Manually__  
 		To execute this you need a input that is a csv file that contains 6 columns like the following example:  
 		
 		columns:  
