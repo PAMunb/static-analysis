@@ -6,8 +6,8 @@ import org.eclipse.jdt.core.dom.MethodDeclaration;
 import org.eclipse.jdt.core.dom.MethodInvocation;
 import org.eclipse.jdt.core.dom.VariableDeclarationStatement;
 
-import br.unb.cic.sa.Parser;
 import br.unb.cic.sa.model.Lock;
+import br.unb.cic.sa.parser.Parser;
 
 public class LockVisitor extends Visitor<Lock> {
 

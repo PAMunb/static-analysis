@@ -6,13 +6,11 @@ import org.eclipse.jdt.core.dom.ASTNode;
 import org.eclipse.jdt.core.dom.ASTVisitor;
 import org.eclipse.jdt.core.dom.Block;
 import org.eclipse.jdt.core.dom.CatchClause;
-import org.eclipse.jdt.core.dom.Expression;
 import org.eclipse.jdt.core.dom.Statement;
 import org.eclipse.jdt.core.dom.TryStatement;
-import org.eclipse.jdt.internal.compiler.lookup.CatchParameterBinding;
 
-import br.unb.cic.sa.Parser;
 import br.unb.cic.sa.model.TryStatementData;
+import br.unb.cic.sa.parser.Parser;
 import br.unb.cic.sa.similarity.BasicSimilarityChecker;
 import br.unb.cic.sa.similarity.SimilarityChecker;
 
