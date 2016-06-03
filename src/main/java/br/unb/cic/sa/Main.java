@@ -26,7 +26,7 @@ public class Main {
 		String pathCsv = null; 
 		
 		if(args.length == 0) {
-			pathCsv = "inputANT.csv";
+			pathCsv = "input2016.csv";
 		}
 		else {
 			pathCsv = args[0];
