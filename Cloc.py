@@ -31,19 +31,21 @@ def execCloc(projectName, pathProject, version):
 
 	#print projectName, version, loc
 
-	print projectName+";"+ version+";"+pathProject+";"+str(loc)+";"
-	file.write(projectName+";"+ version+";"+pathProject+";"+str(loc)+";\n")
+	#print projectName+";"+ version+";"+pathProject+";"+str(loc)+";"
+	file.write(";;"+projectName+";"+ version+";"+pathProject+";"+str(loc)+";\n")
 
 	return loc
 
 
 if __name__ == "__main__":
 
-	defaultDir = '/home/thiago/git/ProjetosArtigoGenerics/'
+	defaultDir = '/home/thiago/git/Projetos/'
 
 	#diretorio que contem os projetos a serem computados pelo cloc.
 	pathDir = ''
 	
+	print sys.argv[1]
+
 	if len(sys.argv) is 2:
 		dir = str(sys.argv[1])
 		if os.path.isdir(dir):

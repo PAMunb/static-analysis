@@ -9,11 +9,12 @@ import org.eclipse.jdt.core.dom.CompilationUnit;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import br.unb.cic.sa.model.Project;
+import br.unb.cic.sa.parser.Parser;
 import br.unb.cic.sa.util.IO;
 import br.unb.cic.sa.visitors.IVisitor;
 
 public class ProjectAnalyser  {
-
+	
 	@Autowired
 	private List<IVisitor> listVisitors;
 
@@ -32,7 +33,7 @@ public class ProjectAnalyser  {
 			List<String> files = IO.listFiles(project.getFilePath(), new String[] { "java" });
 			
 			for (String file : files) {
-				
+								
 				compilationUnit = Parser.Instance().parse(new File(file));
 			
 				for(IVisitor visitor : listVisitors){

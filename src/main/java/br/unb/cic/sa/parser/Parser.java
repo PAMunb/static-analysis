@@ -1,4 +1,4 @@
-package br.unb.cic.sa;
+package br.unb.cic.sa.parser;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -13,7 +13,7 @@ import org.eclipse.jdt.core.dom.Block;
 import org.eclipse.jdt.core.dom.CompilationUnit;
 
 /**
- * Singleton Class of parser
+ * 
  * 
  * @author thiago
  *
@@ -23,9 +23,9 @@ public class Parser {
 
 	private static Parser instance;
 
-	private Parser() {
-	}
+	private Parser() {}
 
+	
 	public static Parser Instance() {
 		if (instance == null)
 			instance = new Parser();

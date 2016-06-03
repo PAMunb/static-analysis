@@ -141,9 +141,6 @@
 		<property name="collectedData" ref="methodDeclarationData"/>
 	</bean>
 	
-	<bean id="lambdaExpressionOpportunitiesVisitor" class="br.unb.cic.sa.visitors.LambdaExpressionOpportunitiesVisitor">
-		<property name="collectedData" ref="lambdaExpressionOpportunitiesData"/>
-	</bean>
 	
 	<bean id="switchStringOpportunitiesVisitor" class="br.unb.cic.sa.visitors.SwitchStringOpportunitiesVisitor">
 		<property name="collectedData" ref="switchStringOpportunitiesData"/>
@@ -186,20 +183,17 @@
 		<property name="collectedData" ref="lockData"/>
 	</bean>
 	
-  <!--   <bean id="enhancedForStatementVisitor" class="br.unb.cic.sa.visitors.RICVisitor">
-		<property name="collectedData" ref="enhancedForStatementData"/>
-	</bean>
- 	 -->
+
 	<bean id="pa" class="br.unb.cic.sa.ProjectAnalyser">
 		<property name="listVisitors">
 			<list>
+   				<ref bean="aicVisitor"/> 
    				<ref bean="aicVisitor"/> 
  				<ref bean="tryStatementVisitor"/> 
  				<ref bean="enumDeclarationVisitor"/>
  				<ref bean="typeDeclarationVisitor"/> 
  				<ref bean="lambdaExpressionVisitor"/> 
  				<ref bean="methodDeclarationVisitor"/> 
-				<ref bean="lambdaExpressionOpportunitiesVisitor"/>
  				<ref bean="switchStringOpportunitiesVisitor"/> 
  				<ref bean="scriptingEngineVisitor"/> 
  				<ref bean="switchStatementVisitor"/> 

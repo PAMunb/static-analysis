@@ -3,6 +3,7 @@ package br.unb.cic.sa;
 import java.util.List;
 
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import br.unb.cic.sa.model.Project;
 import br.unb.cic.sa.util.CDI;
@@ -11,30 +12,21 @@ import br.unb.cic.sa.util.ReadCsv;
 public class Main {
 	 
 	public static void main(String[] args) {
-		try{
-			String command = "python ClearOutput.py ";
-			Process p = Runtime.getRuntime().exec(command, null);
-
-	        p.waitFor();
-			p.destroy();
+				
+		String pathCsv = ""; 
 			
-		}catch(Exception e){
-			System.out.println(e.getMessage());
-			e.getStackTrace();
-		}
-		
-		String pathCsv = null; 
-		
-		if(args.length == 0) {
-			pathCsv = "input2016.csv";
-		}
-		else {
+		if(args.length == 1) {
+			System.out.println("Args: "+ args[0].toString());
 			pathCsv = args[0];
+		}else {
+			System.out.println("Error: inform a valid csv file!!!\nEXIT");
+			System.exit(0);
 		}
 		
 		ReadCsv rcsv = new ReadCsv(pathCsv);
-
+		
 		List<String> errors = rcsv.getError();
+		
 		errors.forEach(e -> System.out.println("Error in "+e));
  
 		ApplicationContext ctx = CDI.Instance().getContextCdi(); 
@@ -50,8 +42,7 @@ public class Main {
 		}
 		
 //		Count total of lines of code in each project
-		int totalLoc = projects.parallelStream().mapToInt(Project::getLoc).sum();
-		
-		System.out.println("TotalLoc: "+ totalLoc);
+//		int totalLoc = projects.parallelStream().mapToInt(Project::getLoc).sum();	
+//		System.out.println("TotalLoc: "+ totalLoc);
 	}
 }
