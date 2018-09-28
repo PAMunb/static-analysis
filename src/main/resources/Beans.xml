@@ -41,7 +41,7 @@
 	<bean id="methodDeclarationData" class="br.unb.cic.sa.model.CSVData">
 		<property name="outDir" value="output"/>
 		<property name="fileName" value="methodDeclaration"/>
-		<property name="head" value="typeProject, before, project, version, file, start, end, name, varArgs, parameterizedMethod, synchronized, parameterizedType, annotations, defaultMethod"/> 
+		<property name="head" value="typeProject, before, project, version, file, start, end, name, varArgs, parameterizedMethod, synchronized, parameterizedType, annotations, defaultMethod, accn"/> 
 	</bean>
 
 	<bean id="lambdaExpressionOpportunitiesData" class="br.unb.cic.sa.model.CSVData">
@@ -85,6 +85,13 @@
 		<property name="fileName" value="importDeclarations"/>
 		<property name="head" value="typeProject, before, project, version, file, start, end, import"/> 
 	</bean>	
+	
+	<bean id="bcData" class="br.unb.cic.sa.model.CSVData">
+		<property name="outDir" value="output"/>
+		<property name="fileName" value="bcImports"/>
+		<property name="head" value="typeProject, before, project, version, file, start, end, import"/> 
+	</bean>	
+	
 		
 	<bean id="methodCallData" class="br.unb.cic.sa.model.CSVData">
 		<property name="outDir" value="output"/>
@@ -162,6 +169,10 @@
 		<property name="collectedData" ref="importDeclarationData"/>
 	</bean>
 	
+	<bean id="bcVisitor" class="br.unb.cic.sa.visitors.BCVisitor">
+		<property name="collectedData" ref="bcData"/>
+	</bean>
+	
 	
 	<bean id="methodCallVisitor" class="br.unb.cic.sa.visitors.MethodCallVisitor">
 		<property name="collectedData" ref="methodCallData"/>
@@ -187,24 +198,26 @@
 	<bean id="pa" class="br.unb.cic.sa.ProjectAnalyser">
 		<property name="listVisitors">
 			<list>
-   				<ref bean="aicVisitor"/> 
+			    <ref bean="bcVisitor"/> 
+   				
+				<!-- <ref bean="methodCallVisitor"/> 
+   				<ref bean="methodDeclarationVisitor"/> --> 
+   				<!-- ref bean="aicVisitor"/> 
    				<ref bean="aicVisitor"/> 
  				<ref bean="tryStatementVisitor"/> 
  				<ref bean="enumDeclarationVisitor"/>
  				<ref bean="typeDeclarationVisitor"/> 
  				<ref bean="lambdaExpressionVisitor"/> 
- 				<ref bean="methodDeclarationVisitor"/> 
  				<ref bean="switchStringOpportunitiesVisitor"/> 
  				<ref bean="scriptingEngineVisitor"/> 
  				<ref bean="switchStatementVisitor"/> 
 				<ref bean="fieldAndVariableDeclarationVisitor"/>
- 				<ref bean="importDeclarationVisitor"/> 
-  				<ref bean="methodCallVisitor"/> 
-  				<ref bean="existPatternVisitor"/>
+ 				<ref bean="importDeclarationVisitor"/--> 
+  				<!-- ref bean="existPatternVisitor"/>
   				<ref bean="filterPatternVisitor"/>
   				<ref bean="mapPatternVisitor"/> 
 				<ref bean="lockVisitor"/>
-			    <ref bean="tryStatementVisitor"/> 
+			    <ref bean="tryStatementVisitor"/ --> 
 			</list>
 		</property>
 	</bean>

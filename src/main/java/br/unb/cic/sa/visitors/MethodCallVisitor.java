@@ -1,6 +1,7 @@
 package br.unb.cic.sa.visitors;
 
 import org.eclipse.jdt.core.dom.MethodInvocation;
+import org.eclipse.jdt.core.dom.Statement;
 
 import br.unb.cic.sa.model.MethodCall;
 

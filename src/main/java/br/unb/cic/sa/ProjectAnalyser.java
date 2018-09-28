@@ -2,10 +2,15 @@ package br.unb.cic.sa;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.eclipse.jdt.core.dom.ASTVisitor;
 import org.eclipse.jdt.core.dom.CompilationUnit;
+import org.eclipse.jdt.core.dom.MethodDeclaration;
+import org.eclipse.jdt.core.dom.PackageDeclaration;
+import org.eclipse.jdt.core.dom.TypeDeclaration;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import br.unb.cic.sa.model.Project;
@@ -31,6 +36,7 @@ public class ProjectAnalyser  {
 	
 		try{ 
 			List<String> files = IO.listFiles(project.getFilePath(), new String[] { "java" });
+			VisitorDeclaration vm = new VisitorDeclaration();
 			
 			for (String file : files) {
 								
@@ -41,13 +47,20 @@ public class ProjectAnalyser  {
 					visitor.setFile(file);
 					visitor.setUnit(compilationUnit);
 					
-					compilationUnit.accept((ASTVisitor) visitor);
-					
+					compilationUnit.accept((ASTVisitor) visitor);	
 				}
-			}
-			
+				
+				compilationUnit.accept(vm);
+				
+			}		
 			exportData();
 			
+			System.out.println("======================================");
+			System.out.println("Packages: " + vm.packages.size());
+			System.out.println("Classes: " + vm.classes);
+			System.out.println("Methods: " + vm.methods);
+			System.out.println("======================================");
+				
 		}
 		catch(IOException e) {
 			System.out.println(e.getMessage());
@@ -63,6 +76,41 @@ public class ProjectAnalyser  {
 											visitor.getCollectedData().export();
 											visitor.getCollectedData().clean();
 										});
+		
+	}
+	
+	class VisitorDeclaration extends ASTVisitor {
+		int classes = 0;
+		int methods = 0; 
+		Set<String> packages; 
+		
+		public VisitorDeclaration() {
+			packages = new HashSet<>();
+		}
+		
+		@Override
+		public boolean visit(MethodDeclaration node) {
+			methods++;
+			return super.visit(node);
+		}
+
+
+
+		@Override
+		public boolean visit(PackageDeclaration decl) {
+			packages.add(decl.getName().getFullyQualifiedName()); 
+			return super.visit(decl);
+		}
+
+
+		@Override
+		public boolean visit(TypeDeclaration node) {
+			classes++; 
+			return super.visit(node);
+		} 
+		
+		
+		
 		
 	}
 	

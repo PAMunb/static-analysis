@@ -3,7 +3,6 @@ package br.unb.cic.sa;
 import java.util.List;
 
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import br.unb.cic.sa.model.Project;
 import br.unb.cic.sa.util.CDI;
@@ -13,15 +12,17 @@ public class Main {
 	 
 	public static void main(String[] args) {
 				
-		String pathCsv = ""; 
+		//String pathCsv = "/Users/rbonifacio/Documents/workspace-java/static-analysis/cassandra.csv"; 
+		
+		String pathCsv = "/Users/rbonifacio/Documents/workspace-java/static-analysis/bc.csv"; 
 			
-		if(args.length == 1) {
-			System.out.println("Args: "+ args[0].toString());
-			pathCsv = args[0];
-		}else {
-			System.out.println("Error: inform a valid csv file!!!\nEXIT");
-			System.exit(0);
-		}
+//		if(args.length == 1) {
+//			System.out.println("Args: "+ args[0].toString());
+//			pathCsv = args[0];
+//		}else {
+//			System.out.println("Error: inform a valid csv file!!!\nEXIT");
+//			System.exit(0);
+//		}
 		
 		ReadCsv rcsv = new ReadCsv(pathCsv);
 		

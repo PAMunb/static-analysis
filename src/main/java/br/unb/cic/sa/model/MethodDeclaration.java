@@ -18,6 +18,7 @@ public class MethodDeclaration {
 	private String parameterizedType;
 	private String annotations;
 	private boolean defaultMethod;
+	private int accn; 
 	
 	public MethodDeclaration(String file, int startLine, int endLine, String name){
 		this.file = file;
@@ -106,4 +107,13 @@ public class MethodDeclaration {
 	public void setDefaultMethod(boolean defaultMethod) {
 		this.defaultMethod = defaultMethod;
 	}
+
+	public int getAccn() {
+		return accn;
+	}
+
+	public void setAccn(int accn) {
+		this.accn = accn;
+	}
+	
 }
