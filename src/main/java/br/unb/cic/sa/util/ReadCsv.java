@@ -25,20 +25,15 @@ public class ReadCsv {
 		List<Project> projects = new ArrayList<Project>();
 
 		try(BufferedReader br = new BufferedReader(new FileReader(pathCsv))) {
-			
 			String line = "";
 			while ((line = br.readLine()) != null) {
-//				ProjectName, Version, Path, Files,Language,Blank,Comment,Code
 				String[] lineSplit = line.split(";");
-				projects.add(new Project(lineSplit[0], lineSplit[1], lineSplit[2], lineSplit[3],lineSplit[4], new Integer(lineSplit[5])));
+				projects.add(new Project(lineSplit[0], new Integer(lineSplit[1])));
 			}
-
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
 		return projects;
-
 	}
 
 }

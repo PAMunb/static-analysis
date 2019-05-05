@@ -27,19 +27,14 @@ public class ImportDeclarationVisitor extends Visitor<ImpDeclaration> {
 	
 	@Override
 	public boolean visit(ImportDeclaration node) {
-		
-//		System.out.println(node.getName());
-		
 		ImpDeclaration id = new ImpDeclaration(file, unit
 				.getLineNumber(node.getStartPosition()), unit
 				.getLineNumber(node.getStartPosition()
 						+ node.getLength()));
 		
-		id.setImportDeclaration(node.getName().toString());
+		id.setImportDeclaration(node.getName().toString().replace(";", ""));
 		
 		collectedData.addValue(id);
-		
-		
 		return true;
 	}
 	

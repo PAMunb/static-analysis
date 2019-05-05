@@ -69,6 +69,7 @@ public class CSVData<T> implements Data<T>{
 		
 		File csv = new File(outDir + "/" + fileName  + ".csv");
 		
+		System.out.println(csv.getAbsoluteFile());
 		if(!csv.exists()){
 			csv.createNewFile();
 			FileWriter writer = new FileWriter(csv);
@@ -92,7 +93,6 @@ public class CSVData<T> implements Data<T>{
 	public void export() {
 		
 		try (FileWriter writer = new FileWriter(this.makeCsv(head), true)){
-		
 			StringBuffer str = new StringBuffer("");
 
 			if(data == null) {
@@ -102,23 +102,16 @@ public class CSVData<T> implements Data<T>{
 			for(T value : data) {
 				str = new StringBuffer("");
 				
-				str.append(project.getTypeOfProject());
-				str.append(";");
-				str.append(project.getBefore());
-				str.append(";");
 				str.append(project.getProjectName());
 				str.append(";");
-				str.append(project.getProjectRevision());
+				str.append(project.getLoc());
 				str.append(";");
-//				str.append(project.getLoc());
-//				str.append(";");
 				
 				//writer.append(str);
 				//writer.append("\n");
 					
 				//reflection code... trying to understand this might lead to a huge headache!!!
 				for(Field f: value.getClass().getDeclaredFields()){
-										
 					String fieldName = f.getName();
 					String prefix = "get";
 					
@@ -140,9 +133,7 @@ public class CSVData<T> implements Data<T>{
 				writer.append("\n");
 				
 			}
-			writer.flush();
-			
-		
+			writer.flush();	
 		}
 		catch(Exception e) {
 			e.printStackTrace();

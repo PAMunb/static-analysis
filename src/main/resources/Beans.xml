@@ -8,203 +8,35 @@
 	
 	<context:annotation-config />
 	
-	<bean id="aicData" class="br.unb.cic.sa.model.CSVData">
+	
+	<bean id="cryptoData" class="br.unb.cic.sa.model.CSVData">
 		<property name="outDir" value="output"/>
-		<property name="fileName" value="aic"/>
-		<property name="head" value="typeProject, before, project, version, file, start, end, p1, p2, p3, p4"/> 
+		<property name="fileName" value="crypto"/>
+		<property name="head" value="project, file, api, detail"/> 
 	</bean>
 
-	<bean id="tryStatementData" class="br.unb.cic.sa.model.CSVData">
+	<bean id="importData" class="br.unb.cic.sa.model.CSVData">
 		<property name="outDir" value="output"/>
-		<property name="fileName" value="tryStatement"/>
-		<property name="head" value="typeProject, before, project, version, file, start, end, resource, multiCatch, catches, stmt1, stmt2"/> 
-	</bean>
-	
-	<bean id="enumDeclarationData" class="br.unb.cic.sa.model.CSVData">
-		<property name="outDir" value="output"/>
-		<property name="fileName" value="enumDeclaration"/>
-		<property name="head" value="typeProject, before, project, version, file, start, end"/> 
-	</bean>
-	
-	<bean id="typeDeclarationData" class="br.unb.cic.sa.model.CSVData">
-		<property name="outDir" value="output"/>
-		<property name="fileName" value="typeDeclaration"/>
-		<property name="head" value="typeProject, before, project, version, file, start, end, name, superClass, interfaces, typeParameters, typeParameterModifiers, annotations"/> 
-	</bean>
-	
-	<bean id="lambdaExpressionData" class="br.unb.cic.sa.model.CSVData">
-		<property name="outDir" value="output"/>
-		<property name="fileName" value="lambdaExpression"/>
-		<property name="head" value="typeProject, before, project, version, file, start, end, parentMethod"/> 
-	</bean>
-	
-	<bean id="methodDeclarationData" class="br.unb.cic.sa.model.CSVData">
-		<property name="outDir" value="output"/>
-		<property name="fileName" value="methodDeclaration"/>
-		<property name="head" value="typeProject, before, project, version, file, start, end, name, varArgs, parameterizedMethod, synchronized, parameterizedType, annotations, defaultMethod"/> 
-	</bean>
-
-	<bean id="lambdaExpressionOpportunitiesData" class="br.unb.cic.sa.model.CSVData">
-		<property name="outDir" value="output"/>
-		<property name="fileName" value="lambdaExpressionOpportunities"/>
-		<property name="head" value="typeProject, before, project, version, file, start, end, filter, map, p1, p2, p3, p4, p5"/> 
+		<property name="fileName" value="importData"/>
+		<property name="head" value="project, file, importDeclaration"/> 
 	</bean>	
 	
-	<bean id="switchStringOpportunitiesData" class="br.unb.cic.sa.model.CSVData">
-		<property name="outDir" value="output"/>
-		<property name="fileName" value="switchStringOpportunities"/>
-		<property name="head" value="typeProject, before, project, version, file, start, end"/> 
-	</bean>
-	
-	<bean id="scriptingEngineData" class="br.unb.cic.sa.model.CSVData">
-		<property name="outDir" value="output"/>
-		<property name="fileName" value="scriptingEngine"/>
-		<property name="head" value="typeProject, before, project, version, file, start, end, method"/> 
-	</bean>	
-	
-	<bean id="switchStatementData" class="br.unb.cic.sa.model.CSVData">
-		<property name="outDir" value="output"/>
-		<property name="fileName" value="switchStatement"/>
-		<property name="head" value="typeProject, before, project, version, file, start, end, switchString"/> 
-	</bean>	
-	
-	<bean id="fieldAndVariableDeclarationData" class="br.unb.cic.sa.model.CSVData">
-		<property name="outDir" value="output"/>
-		<property name="fileName" value="fieldAndVariableDeclaration"/>
-		<property name="head" value="typeProject, before, project, version, file, start, end, name, type, field, parameterized, baseType, typeParameters, annotations"/> 
-	</bean>	
-	
-	<bean id="enhancedForStatementData" class="br.unb.cic.sa.model.CSVData">
-		<property name="outDir" value="output"/>
-		<property name="fileName" value="enhancedForStatement"/>
-		<property name="head" value="typeProject, before, project, version, file, start, end, applyLambda"/> 
-	</bean>	
-	
-	<bean id="importDeclarationData" class="br.unb.cic.sa.model.CSVData">
-		<property name="outDir" value="output"/>
-		<property name="fileName" value="importDeclarations"/>
-		<property name="head" value="typeProject, before, project, version, file, start, end, import"/> 
-	</bean>	
 		
-	<bean id="methodCallData" class="br.unb.cic.sa.model.CSVData">
-		<property name="outDir" value="output"/>
-		<property name="fileName" value="methodCallData"/>
-		<property name="head" value="typeProject, before, project, version, file, name, type, start, end"/> 
-	</bean>	
-	
-	<bean id="existPatternData" class="br.unb.cic.sa.model.CSVData">
-		<property name="outDir" value="output"/>
-		<property name="fileName" value="existPattern"/>
-		<property name="head" value="typeProject, before, project, version, file, start, end, stmts"/> 
+	<bean id="cryptoVisitor" class="br.unb.cic.sa.visitors.CryptographicAPIVisitor">
+		<property name="collectedData" ref="cryptoData"/>
 	</bean>
 	
-	<bean id="filterPatternData" class="br.unb.cic.sa.model.CSVData">
-		<property name="outDir" value="output"/>
-		<property name="fileName" value="filterPattern"/>
-		<property name="head" value="typeProject, before, project, version, file, start, end, stmts"/> 
+	 <bean id="importVisitor" class="br.unb.cic.sa.visitors.ImportDeclarationVisitor">
+		<property name="collectedData" ref="importData"/>
 	</bean>
-
-	<bean id="mapPatternData" class="br.unb.cic.sa.model.CSVData">
-		<property name="outDir" value="output"/>
-		<property name="fileName" value="mapPattern"/>
-		<property name="head" value="typeProject, before, project, version, file, start, end, stmts"/> 
-	</bean>
-	
-	<bean id="lockData" class="br.unb.cic.sa.model.CSVData">
-		<property name="outDir" value="output"/>
-		<property name="fileName" value="lockData"/>
-		<property name="head" value="typeProject, before, project, version, file, start, end, type, callLock, releaseLock"/> 
-	</bean>
-	
-	
-	<bean id="aicVisitor" class="br.unb.cic.sa.visitors.AICVisitor">
-		<property name="collectedData" ref="aicData"/>
-	</bean>
-	
-	<bean id="tryStatementVisitor" class="br.unb.cic.sa.visitors.TryStatementVisitor">
-		<property name="collectedData" ref="tryStatementData"/>
-	</bean>
-	
-	<bean id="enumDeclarationVisitor" class="br.unb.cic.sa.visitors.EnumDeclarationVisitor">
-		<property name="collectedData" ref="enumDeclarationData"/>
-	</bean>
-	
-	<bean id="typeDeclarationVisitor" class="br.unb.cic.sa.visitors.TypeDeclarationVisitor">
-		<property name="collectedData" ref="typeDeclarationData"/>
-	</bean>
-
-	<bean id="lambdaExpressionVisitor" class="br.unb.cic.sa.visitors.LambdaExpressionVisitor">
-		<property name="collectedData" ref="lambdaExpressionData"/>
-	</bean>
-	
-	<bean id="methodDeclarationVisitor" class="br.unb.cic.sa.visitors.MethodDeclarationVisitor">
-		<property name="collectedData" ref="methodDeclarationData"/>
-	</bean>
-	
-	
-	<bean id="switchStringOpportunitiesVisitor" class="br.unb.cic.sa.visitors.SwitchStringOpportunitiesVisitor">
-		<property name="collectedData" ref="switchStringOpportunitiesData"/>
-	</bean>
-	
-	<bean id="scriptingEngineVisitor" class="br.unb.cic.sa.visitors.ScriptingEngineVisitor">
-		<property name="collectedData" ref="scriptingEngineData"/>
-	</bean>
-	
-	<bean id="switchStatementVisitor" class="br.unb.cic.sa.visitors.SwitchStatementVisitor">
-		<property name="collectedData" ref="switchStatementData"/>
-	</bean>
-	
-	<bean id="fieldAndVariableDeclarationVisitor" class="br.unb.cic.sa.visitors.FieldAndVariableDeclarationVisitor">
-		<property name="collectedData" ref="fieldAndVariableDeclarationData"/>
-	</bean>
-	
-	<bean id="importDeclarationVisitor" class="br.unb.cic.sa.visitors.ImportDeclarationVisitor">
-		<property name="collectedData" ref="importDeclarationData"/>
-	</bean>
-	
-	
-	<bean id="methodCallVisitor" class="br.unb.cic.sa.visitors.MethodCallVisitor">
-		<property name="collectedData" ref="methodCallData"/>
-	</bean>
-
-	<bean id="existPatternVisitor" class="br.unb.cic.sa.visitors.ExistPatternVisitor">
-		<property name="collectedData" ref="existPatternData"/>
-	</bean>
-	
-	<bean id="filterPatternVisitor" class="br.unb.cic.sa.visitors.FilterPatternVisitor">
-		<property name="collectedData" ref="filterPatternData"/>
-	</bean>
-	
-	<bean id="mapPatternVisitor" class="br.unb.cic.sa.visitors.MapPatternVisitor">
-		<property name="collectedData" ref="mapPatternData"/>
-	</bean>
-	
-	<bean id="lockVisitor" class="br.unb.cic.sa.visitors.LockVisitor">
-		<property name="collectedData" ref="lockData"/>
-	</bean>
-	
+ 
+		
 
 	<bean id="pa" class="br.unb.cic.sa.ProjectAnalyser">
+		<property name="basePath" value="/Users/rbonifacio/Documents/papers/splc2019/projects/msr-java/" />
 		<property name="listVisitors">
 			<list>
-   				<ref bean="aicVisitor"/> 
-   				<ref bean="aicVisitor"/> 
- 				<ref bean="tryStatementVisitor"/> 
- 				<ref bean="enumDeclarationVisitor"/>
- 				<ref bean="typeDeclarationVisitor"/> 
- 				<ref bean="lambdaExpressionVisitor"/> 
- 				<ref bean="methodDeclarationVisitor"/> 
- 				<ref bean="switchStringOpportunitiesVisitor"/> 
- 				<ref bean="scriptingEngineVisitor"/> 
- 				<ref bean="switchStatementVisitor"/> 
-				<ref bean="fieldAndVariableDeclarationVisitor"/>
- 				<ref bean="importDeclarationVisitor"/> 
-  				<ref bean="methodCallVisitor"/> 
-  				<ref bean="existPatternVisitor"/>
-  				<ref bean="filterPatternVisitor"/>
-  				<ref bean="mapPatternVisitor"/> 
-				<ref bean="lockVisitor"/>
-			    <ref bean="tryStatementVisitor"/> 
+   				<ref bean="importVisitor"/>  
 			</list>
 		</property>
 	</bean>

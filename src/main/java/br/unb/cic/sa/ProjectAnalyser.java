@@ -18,10 +18,16 @@ public class ProjectAnalyser  {
 	@Autowired
 	private List<IVisitor> listVisitors;
 
+	private String basePath; 
+	
 	public ProjectAnalyser(){ }
 	
 	public void setListVisitors(List<IVisitor> listVisitors){
 		this.listVisitors = listVisitors;
+	}
+	
+	public void setBasePath(String basePath) {
+		this.basePath = basePath;
 	}
 		
 	public void analyse(Project project)  {
@@ -30,24 +36,24 @@ public class ProjectAnalyser  {
 		System.out.println(project.getProjectName());
 	
 		try{ 
-			List<String> files = IO.listFiles(project.getFilePath(), new String[] { "java" });
+			File path = new File(basePath + project.getProjectName());
+			if(! path.exists() || !path.isDirectory()) {
+				throw new RuntimeException("could not find project path" + path.getAbsolutePath()); 
+			}
+			List<String> files = IO.listFiles(basePath + project.getProjectName(), new String[] { "java" });
 			
 			for (String file : files) {
-								
 				compilationUnit = Parser.Instance().parse(new File(file));
-			
 				for(IVisitor visitor : listVisitors){
 					visitor.getCollectedData().setProject(project);
 					visitor.setFile(file);
 					visitor.setUnit(compilationUnit);
 					
 					compilationUnit.accept((ASTVisitor) visitor);
-					
 				}
 			}
 			
 			exportData();
-			
 		}
 		catch(IOException e) {
 			System.out.println(e.getMessage());
@@ -55,15 +61,14 @@ public class ProjectAnalyser  {
 		catch(Exception e) {
 			throw new RuntimeException(e);
 		}
-				
 	}
 	
 	public void exportData() throws Exception {
-		listVisitors.stream().forEach(visitor -> {
-											visitor.getCollectedData().export();
-											visitor.getCollectedData().clean();
-										});
+		listVisitors.stream()
+					.forEach(visitor -> {
+					   visitor.getCollectedData().export();
+					   visitor.getCollectedData().clean();
+					});
 		
 	}
-	
 }
